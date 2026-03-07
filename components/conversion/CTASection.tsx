@@ -22,14 +22,15 @@ export default function CTASection({
       <div className="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 pointer-events-none" aria-hidden style={{ background: "linear-gradient(90deg, transparent 0%, rgba(201,162,39,0.08) 20%, rgba(201,162,39,0.2) 50%, rgba(201,162,39,0.08) 80%, transparent 100%)" }} />
       <div className="relative max-w-[1100px] mx-auto px-4 sm:px-6">
         <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl lg:text-[3rem] font-extrabold text-white mb-3 leading-[1.1] tracking-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-[3rem] font-extrabold text-white mb-2 leading-[1.1] tracking-tight">
             {title}
           </h2>
           {subtitle && (
-            <p className="text-text-muted text-lg md:text-xl mb-6 leading-relaxed">
+            <p className="text-text-muted text-lg md:text-xl mb-5 leading-relaxed">
               {subtitle}
             </p>
           )}
+          <p className="text-sm text-accent/90 font-medium mb-4">Book with confidence — we come to you.</p>
           <div className="flex flex-wrap gap-4 justify-center mb-5">
             <Link
               href="/contact"

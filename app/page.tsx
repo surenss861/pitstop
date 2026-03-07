@@ -32,8 +32,8 @@ export default function HomePage() {
     <>
       <Hero />
 
-      {/* Why: left-aligned, split, statement + stat + proof with labels */}
-      <section className="py-20 lg:py-24 bg-bg-card">
+      {/* Why */}
+      <section className="py-16 lg:py-20 bg-bg-card">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <Reveal variant="scale">
             <SectionHeading
@@ -58,7 +58,7 @@ export default function HomePage() {
                   <span className="text-xs text-text-muted">13 reviews</span>
                 </div>
               </div>
-              <blockquote className="border-l-2 border-accent pl-4 text-base text-white/90 italic max-w-[28ch] leading-relaxed">
+              <blockquote className="border-l-2 border-accent pl-4 mt-1 text-base text-white/90 italic max-w-[28ch] leading-relaxed">
                 &ldquo;{whyMiniQuote}&rdquo;
                 <cite className="not-italic text-accent/90 text-xs font-medium mt-2 block uppercase tracking-wider">Google review · Toronto</cite>
               </blockquote>
@@ -85,8 +85,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Services: left-aligned, featured Full Detail + asymmetric grid */}
-      <section className="py-20 lg:py-24">
+      {/* Services */}
+      <section className="py-16 lg:py-20">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <Reveal variant="scale">
             <div className="text-left mb-12">
@@ -112,6 +112,7 @@ export default function HomePage() {
                 ctaHref="/services#full"
                 tag="Full detail"
                 featured
+                premiumLine="One visit. Full reset."
               />
             </div>
             <div className="stagger-item">
@@ -149,8 +150,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Reviews: left-aligned, editorial featured quote */}
-      <section className="py-20 lg:py-24 bg-bg-card">
+      {/* Reviews */}
+      <section className="py-16 lg:py-20 bg-bg-card">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <Reveal variant="lateral">
             <div className="text-left mb-10">
@@ -204,11 +205,11 @@ export default function HomePage() {
 
       <HowItWorks />
 
-      {/* Service areas: left-aligned, with line motif */}
-      <section className="py-20 lg:py-24">
+      {/* Service areas — compressed */}
+      <section className="py-14 lg:py-16">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <Reveal variant="scale">
-            <div className="text-left mb-12">
+            <div className="text-left mb-8">
               <SectionHeading
                 align="left"
                 label="Service area"
@@ -218,7 +219,7 @@ export default function HomePage() {
             </div>
           </Reveal>
           <ServiceAreaGrid />
-          <p className="text-left mt-8">
+          <p className="text-left mt-6">
             <Link href="/service-areas" className="text-text-muted hover:text-accent text-sm font-medium">
               Full service areas
             </Link>
@@ -226,8 +227,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FAQ: centered */}
-      <section className="py-20 lg:py-24 bg-bg-card">
+      {/* FAQ */}
+      <section className="py-16 lg:py-20 bg-bg-card">
         <div className="max-w-[1100px] mx-auto px-4 sm:px-6">
           <Reveal variant="scale">
             <SectionHeading
@@ -237,7 +238,7 @@ export default function HomePage() {
             />
           </Reveal>
           <FAQAccordion />
-          <p className="text-center mt-10">
+          <p className="text-center mt-8">
             <Link
               href="/faq"
               className="inline-flex py-3 px-6 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors"

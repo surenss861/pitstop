@@ -64,7 +64,7 @@ export default function BeforeAfterShowcase() {
   const isFiltered = activeCategory !== "All";
 
   return (
-    <section className="py-20 bg-bg-card">
+    <section className="py-16 lg:py-20 bg-bg-card">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
         <div className="text-left mb-10">
           <SectionHeading

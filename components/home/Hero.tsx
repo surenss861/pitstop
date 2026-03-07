@@ -182,17 +182,6 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Macro inset: overlapping detail panel (add wheel/interior image via NEXT_PUBLIC_HERO_INSET for full effect) */}
-            <div
-              className="absolute right-4 bottom-20 w-[38%] min-w-[140px] max-w-[200px] aspect-square rounded-xl overflow-hidden border border-white/15 bg-bg/80 backdrop-blur-sm shadow-2xl z-10 hidden sm:block"
-              aria-hidden
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-bg/90" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-[10px] uppercase tracking-widest text-accent/60 font-semibold">Detail</span>
-              </div>
-            </div>
-
             <div className="absolute bottom-6 left-6 right-6 sm:left-8 sm:right-auto sm:max-w-[220px] flex flex-col gap-3 z-10">
               <span className="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-bg/90 backdrop-blur-md border border-white/10 text-white text-sm font-semibold shadow-xl">
                 <span className="text-accent">★★★★★</span> 5.0 · 13 reviews

@@ -10,6 +10,7 @@ type ServiceCardProps = {
   bestFor?: string;
   includes?: string[];
   featured?: boolean;
+  premiumLine?: string;
 };
 
 export default function ServiceCard({
@@ -22,6 +23,7 @@ export default function ServiceCard({
   bestFor,
   includes = [],
   featured = false,
+  premiumLine,
 }: ServiceCardProps) {
   return (
     <div
@@ -62,6 +64,9 @@ export default function ServiceCard({
         <p className={`text-[11px] text-accent/90 font-medium mb-3 tracking-tight ${featured ? "px-3 py-1.5 rounded-lg bg-accent/5 border border-accent/10 inline-block" : ""}`}>
           Best for: {bestFor}
         </p>
+      )}
+      {featured && premiumLine && (
+        <p className="text-sm font-semibold text-accent/95 mb-5 tracking-tight">{premiumLine}</p>
       )}
       {includes.length > 0 && (
         <ul className={`text-text-muted space-y-1.5 mb-6 tracking-tight ${featured ? "text-sm" : "text-sm"}`}>

@@ -18,9 +18,7 @@ Every image must say **detail culture**, not generic car.
 
 **Never use:** Scenic car, performance wallpaper, wide "car as object," dealership style.
 
-**Override:** `NEXT_PUBLIC_HERO_IMAGE` = your hero URL.
-
-**Hero inset (optional):** Small overlapping panel can show a second detail (e.g. wheel or interior). Add via `NEXT_PUBLIC_HERO_INSET` when you have the asset.
+**Override:** `NEXT_PUBLIC_HERO_IMAGE` = your hero URL. No placeholder inset — use a real macro image overlapping the hero only when you have the asset; otherwise keep hero single-image.
 
 ---
 
