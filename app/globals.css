@@ -18,7 +18,53 @@ html {
 }
 
 body {
-  @apply bg-bg text-[#f5f5f5] antialiased;
+  @apply bg-bg text-[#f5f5f5] antialiased font-sans tracking-tight;
+}
+
+/* Primary CTA with shine sweep on hover */
+.btn-primary-hero {
+  @apply relative overflow-hidden;
+}
+.btn-primary-hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+.btn-primary-hero:hover::after {
+  left: 100%;
+}
+
+/* Card hover: subtle lift + border glow */
+.card-hover-lift {
+  @apply transition-all duration-300 ease-out;
+}
+.card-hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(201, 162, 39, 0.12);
+}
+
+/* Gallery item hover: zoom image if present, else subtle scale */
+.gallery-item-hover {
+  @apply transition-transform duration-500 ease-out;
+}
+.gallery-item-hover:hover {
+  transform: scale(1.02);
+}
+.gallery-item-hover img {
+  @apply transition-transform duration-500 ease-out;
+}
+.gallery-item-hover:hover img {
+  transform: scale(1.06);
 }
 
 /* Reduce motion for users who prefer it */

@@ -20,17 +20,17 @@ export default function Navbar() {
   return (
     <>
       <header className="sticky top-0 z-50 bg-bg/95 backdrop-blur-sm border-b border-border">
-        <div className="max-w-[1100px] mx-auto px-4 flex items-center justify-between h-16 lg:h-18">
+        <div className="max-w-[1100px] mx-auto px-4 flex items-center justify-between h-16 lg:h-[4.25rem]">
           <Link href="/" className="font-bold text-lg text-white tracking-tight">
             PitStop <span className="text-accent">Polish</span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8" aria-label="Main">
+          <nav className="hidden md:flex items-center gap-6" aria-label="Main">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium transition-colors relative after:absolute after:left-0 after:bottom-[-2px] after:h-px after:bg-accent after:transition-transform after:origin-right ${
+                className={`text-[13px] font-medium tracking-tight transition-colors relative after:absolute after:left-0 after:bottom-[-2px] after:h-px after:bg-accent after:transition-transform after:origin-right ${
                   pathname === link.href
                     ? "text-white after:w-full"
                     : "text-text-muted hover:text-white after:w-0 hover:after:w-full after:origin-left"

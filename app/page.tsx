@@ -11,27 +11,13 @@ import Reveal from "@/components/animation/Reveal";
 import StaggerChildren from "@/components/animation/StaggerChildren";
 import Link from "next/link";
 
-const whyCards = [
-  {
-    icon: "🚗",
-    title: "No drop-off. No wasted time.",
-    text: "We come to your driveway, condo, or office. Full detail at your location — you don't have to go anywhere.",
-  },
-  {
-    icon: "✨",
-    title: "Clean finishes that actually show",
-    text: "Interior resets and exterior shine. Real care in every corner. Our reviews back it up.",
-  },
-  {
-    icon: "📍",
-    title: "Done right at your location",
-    text: "Toronto and surrounding areas. Same quality whether you're at home or work.",
-  },
-  {
-    icon: "💰",
-    title: "Pricing that matches the quality",
-    text: "Honest rates for the result you get. No hidden fees, no upsell pressure.",
-  },
+const whyStatement =
+  "We come to you. We do quality work. People already trust us. Booking is easy.";
+const whyProof = [
+  "No drop-off — we come to your driveway, condo, or office.",
+  "Clean finishes that actually show. Interior and exterior, real care.",
+  "Toronto and surrounding areas. Same quality at home or work.",
+  "Honest pricing. No hidden fees, no upsell pressure.",
 ];
 
 const reviewQuotes = [
@@ -45,46 +31,48 @@ export default function HomePage() {
     <>
       <Hero />
 
-      <section className="py-20 bg-bg-card">
+      <section className="py-16 lg:py-20 bg-bg-card">
         <div className="max-w-[1100px] mx-auto px-4">
-          <Reveal>
+          <Reveal variant="scale">
             <SectionHeading
               label="Why PitStop Polish"
               title="Why People Choose Us"
-              subtitle="We come to you. We do quality work. People already trust us. Booking is easy."
             />
           </Reveal>
-          <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            {whyCards.map((card) => (
-              <div
-                key={card.title}
-                className="stagger-item p-6 lg:p-8 rounded-xl bg-bg border border-border hover:border-accent/40 transition-all text-center"
-              >
-                <div className="w-14 h-14 rounded-xl bg-accent/15 flex items-center justify-center text-2xl mx-auto mb-5">
-                  {card.icon}
-                </div>
-                <h3 className="text-lg font-bold text-white mb-3">{card.title}</h3>
-                <p className="text-text-muted leading-relaxed m-0">{card.text}</p>
-              </div>
-            ))}
+          <StaggerChildren className="grid grid-cols-1 lg:grid-cols-[0.9fr,1fr] gap-10 lg:gap-16 items-center" stagger={0.12} variant="lateral">
+            <div className="stagger-item">
+              <p className="text-lg lg:text-xl text-white/90 leading-relaxed max-w-[32ch]">
+                {whyStatement}
+              </p>
+            </div>
+            <ul className="stagger-item space-y-4">
+              {whyProof.map((line) => (
+                <li key={line} className="flex items-start gap-3">
+                  <span className="text-accent mt-1.5 flex-shrink-0">·</span>
+                  <span className="text-text-muted leading-relaxed">{line}</span>
+                </li>
+              ))}
+            </ul>
           </StaggerChildren>
         </div>
       </section>
 
       <section className="py-20">
         <div className="max-w-[1100px] mx-auto px-4">
-          <Reveal>
+          <Reveal variant="scale">
             <SectionHeading
               label="Services"
               title="What We Offer"
               subtitle="Interior, exterior, full detail, and add-ons. Clear packages for every need."
             />
           </Reveal>
-          <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8" stagger={0.1} variant="scale">
             <div className="stagger-item">
               <ServiceCard
                 title="Interior Detail"
-                description="Deep clean seats, carpets, dash, and trim. Perfect for daily drivers and rideshare vehicles."
+                description="Deep clean seats, carpets, dash, and trim."
+                bestFor="Daily drivers, family cars, rideshare vehicles"
+                includes={["Vacuum & extraction", "Seat & carpet deep clean", "Dash & trim wipe-down"]}
                 ctaHref="/services#interior"
                 tag="Interior reset"
               />
@@ -93,6 +81,8 @@ export default function HomePage() {
               <ServiceCard
                 title="Exterior Detail"
                 description="Wash, clay, polish, and protect. Restore shine and defend your paint."
+                bestFor="Anyone wanting a showroom finish"
+                includes={["Wash & dry", "Clay bar", "Polish & protection"]}
                 ctaHref="/services#exterior"
                 tag="Exterior shine"
               />
@@ -101,6 +91,8 @@ export default function HomePage() {
               <ServiceCard
                 title="Full Detail"
                 description="Interior + exterior in one visit. The complete reset."
+                bestFor="Full transformation at your location"
+                includes={["Everything in Interior + Exterior", "One visit"]}
                 ctaHref="/services#full"
                 tag="Full detail"
               />
@@ -109,6 +101,8 @@ export default function HomePage() {
               <ServiceCard
                 title="Add-ons & Paint Enhancement"
                 description="Headlight restoration, leather conditioning, paint correction, and more."
+                bestFor="Extra care where you need it"
+                includes={["Headlight restoration", "Leather conditioning", "Paint correction"]}
                 ctaText="See options"
                 ctaHref="/services#addons"
                 tag="Add-ons"
@@ -120,7 +114,7 @@ export default function HomePage() {
 
       <section className="py-20 bg-bg-card">
         <div className="max-w-[1100px] mx-auto px-4">
-          <Reveal>
+          <Reveal variant="lateral">
             <SectionHeading
               label="Reviews"
               title="What Toronto Drivers Say"
@@ -133,13 +127,17 @@ export default function HomePage() {
             <span className="text-text-muted">·</span>
             <span className="text-text-muted">13 Google Reviews</span>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="md:col-span-3">
+          <StaggerChildren className="grid grid-cols-1 md:grid-cols-3 gap-6" stagger={0.12} variant="lateral">
+            <div className="md:col-span-3 stagger-item">
               <ReviewCard quote={reviewQuotes[0]} featured />
             </div>
-            <ReviewCard quote={reviewQuotes[1]} />
-            <ReviewCard quote={reviewQuotes[2]} />
-          </div>
+            <div className="stagger-item">
+              <ReviewCard quote={reviewQuotes[1]} />
+            </div>
+            <div className="stagger-item">
+              <ReviewCard quote={reviewQuotes[2]} />
+            </div>
+          </StaggerChildren>
           <div className="flex flex-wrap gap-4 justify-center mt-10">
             <Link
               href="/reviews"
@@ -159,7 +157,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <Reveal>
+      <Reveal variant="scale">
         <BeforeAfterShowcase />
       </Reveal>
 
@@ -167,7 +165,7 @@ export default function HomePage() {
 
       <section className="py-20">
         <div className="max-w-[1100px] mx-auto px-4">
-          <Reveal>
+          <Reveal variant="scale">
             <SectionHeading
               label="Service area"
               title="We Serve Toronto & Surrounding Areas"
@@ -185,7 +183,7 @@ export default function HomePage() {
 
       <section className="py-20 bg-bg-card">
         <div className="max-w-[1100px] mx-auto px-4">
-          <Reveal>
+          <Reveal variant="scale">
             <SectionHeading
               label="FAQ"
               title="Common Questions"

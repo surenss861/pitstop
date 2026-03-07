@@ -7,6 +7,8 @@ type ServiceCardProps = {
   ctaHref?: string;
   icon?: string;
   tag?: string;
+  bestFor?: string;
+  includes?: string[];
 };
 
 export default function ServiceCard({
@@ -16,11 +18,13 @@ export default function ServiceCard({
   ctaHref = "/services",
   icon,
   tag,
+  bestFor,
+  includes = [],
 }: ServiceCardProps) {
   return (
-    <div className="p-6 lg:p-8 rounded-xl bg-bg-card border border-border hover:border-accent/50 hover:shadow-[0_0_0_1px_rgba(201,162,39,0.15)] transition-all duration-200 group">
+    <div className="card-hover-lift p-6 lg:p-8 rounded-xl bg-bg-card border border-border hover:border-accent/50 hover:shadow-[0_0_0_1px_rgba(201,162,39,0.15)] group">
       {tag && (
-        <span className="inline-block text-xs uppercase tracking-wider text-accent font-medium mb-3">
+        <span className="inline-block text-[10px] uppercase tracking-[0.2em] text-accent font-semibold mb-3">
           {tag}
         </span>
       )}
@@ -29,8 +33,23 @@ export default function ServiceCard({
           {icon}
         </div>
       )}
-      <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-      <p className="text-text-muted leading-relaxed mb-5">{description}</p>
+      <h3 className="text-xl font-extrabold text-white mb-2 tracking-tight">{title}</h3>
+      <p className="text-text-muted text-[15px] leading-relaxed mb-4 tracking-tight">{description}</p>
+      {bestFor && (
+        <p className="text-[11px] text-accent/90 font-medium mb-3 tracking-tight">
+          Best for: {bestFor}
+        </p>
+      )}
+      {includes.length > 0 && (
+        <ul className="text-sm text-text-muted space-y-1.5 mb-5 tracking-tight">
+          {includes.map((item) => (
+            <li key={item} className="flex items-center gap-2">
+              <span className="text-accent/80">·</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      )}
       {ctaHref && (
         <Link
           href={ctaHref}

@@ -44,31 +44,39 @@ export default function FAQAccordion({ items = defaultFaqs }: FAQAccordionProps)
 
   return (
     <div className="max-w-2xl mx-auto">
-      {items.map((item, i) => (
-        <div
-          key={i}
-          className="border-b border-border transition-colors hover:border-border/80"
-        >
-          <button
-            type="button"
-            className="w-full py-5 flex justify-between items-center gap-4 text-left font-semibold text-white hover:text-accent transition-colors"
-            onClick={() => setOpenIndex(openIndex === i ? null : i)}
-            aria-expanded={openIndex === i}
-          >
-            {item.question}
-            <span className="text-accent text-xl flex-shrink-0 transition-transform duration-200">
-              {openIndex === i ? "−" : "+"}
-            </span>
-          </button>
+      {items.map((item, i) => {
+        const isOpen = openIndex === i;
+        return (
           <div
-            className={`overflow-hidden transition-all duration-300 ease-out ${
-              openIndex === i ? "max-h-96" : "max-h-0"
+            key={i}
+            className={`border-b border-border transition-colors ${
+              isOpen ? "border-accent/20 bg-accent/[0.04]" : "hover:border-border/80"
             }`}
           >
-            <p className="pb-5 text-text-muted leading-relaxed">{item.answer}</p>
+            <button
+              type="button"
+              className="w-full py-5 px-1 flex justify-between items-center gap-4 text-left font-semibold text-white hover:text-accent transition-colors"
+              onClick={() => setOpenIndex(isOpen ? null : i)}
+              aria-expanded={isOpen}
+            >
+              {item.question}
+              <span
+                className="text-accent text-xl flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-full border border-accent/30 transition-all duration-300"
+                aria-hidden
+              >
+                {isOpen ? "−" : "+"}
+              </span>
+            </button>
+            <div
+              className={`overflow-hidden transition-all duration-300 ease-out ${
+                isOpen ? "max-h-96" : "max-h-0"
+              }`}
+            >
+              <p className="pb-5 px-1 text-text-muted leading-relaxed">{item.answer}</p>
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

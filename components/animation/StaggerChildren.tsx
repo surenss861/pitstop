@@ -6,16 +6,32 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+type StaggerVariant = "up" | "scale" | "lateral";
+
 type StaggerChildrenProps = {
   children: ReactNode;
   className?: string;
   stagger?: number;
+  variant?: StaggerVariant;
+};
+
+const staggerFrom = {
+  up: { y: 28, opacity: 0 },
+  scale: { scale: 0.92, opacity: 0 },
+  lateral: { x: 24, opacity: 0 },
+};
+
+const staggerTo = {
+  up: { y: 0, opacity: 1 },
+  scale: { scale: 1, opacity: 1 },
+  lateral: { x: 0, opacity: 1 },
 };
 
 export default function StaggerChildren({
   children,
   className = "",
   stagger = 0.1,
+  variant = "up",
 }: StaggerChildrenProps) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -23,13 +39,12 @@ export default function StaggerChildren({
     const el = ref.current;
     if (!el) return;
 
-    const children = el.querySelectorAll(".stagger-item");
+    const childEls = el.querySelectorAll(".stagger-item");
     gsap.fromTo(
-      children,
-      { y: 28, opacity: 0 },
+      childEls,
+      staggerFrom[variant],
       {
-        y: 0,
-        opacity: 1,
+        ...staggerTo[variant],
         duration: 0.5,
         stagger,
         ease: "power3.out",
@@ -40,7 +55,7 @@ export default function StaggerChildren({
         },
       }
     );
-  }, [stagger]);
+  }, [stagger, variant]);
 
   return (
     <div ref={ref} className={className}>
