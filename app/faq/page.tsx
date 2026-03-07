@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import FAQAccordion from "@/components/conversion/FAQAccordion";
 import CTASection from "@/components/conversion/CTASection";
+import { serviceAreaCopy } from "@/lib/service-areas-data";
 
 export const metadata: Metadata = {
   title: "FAQ",
@@ -13,7 +14,7 @@ const faqItems = [
   {
     question: "Do you come to me?",
     answer:
-      "Yes. We're fully mobile and come to your driveway, condo, or location in the Toronto area. You don't need to go anywhere.",
+      "Yes. We're fully mobile and come to your driveway, condo, or location in the Toronto area and across the GTA. You don't need to go anywhere.",
   },
   {
     question: "How long does detailing take?",
@@ -38,7 +39,7 @@ const faqItems = [
   {
     question: "What areas do you serve?",
     answer:
-      "Toronto and surrounding neighbourhoods including East York, Danforth, Downtown, Leslieville, Riverdale, Scarborough, North York, Etobicoke, and more. See our Service Areas page for the full list. If you're not sure, just ask when you request a quote.",
+      `${serviceAreaCopy} See our Service Areas page for the full list. If you're not sure, just ask when you request a quote.`,
   },
   {
     question: "How do I book?",

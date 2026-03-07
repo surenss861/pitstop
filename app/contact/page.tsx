@@ -5,7 +5,7 @@ import QuoteForm from "@/components/conversion/QuoteForm";
 export const metadata: Metadata = {
   title: "Contact & Book Now",
   description:
-    "Book mobile detailing or get a quote. Call (647) 823-7338 or use our form. We serve Toronto and surrounding areas.",
+    "Book mobile detailing or get a quote. Call (647) 823-7338 or use our form. We serve Toronto, Mississauga, Oakville, Brampton, Vaughan, Markham, Pickering, King City, and the GTA.",
 };
 
 export default function ContactPage() {
@@ -18,7 +18,7 @@ export default function ContactPage() {
           </h1>
           <p className="text-text-muted max-w-[50ch] mx-auto">
             Request a quote or call us. We'll confirm availability and price, then come to your
-            location in Toronto or the surrounding areas.
+            location across Toronto and the GTA.
           </p>
         </div>
       </section>
@@ -38,8 +38,7 @@ export default function ContactPage() {
               <p className="text-text-muted text-sm mb-4">
                 <strong className="text-white">Service areas</strong>
                 <br />
-                Toronto, East York, Danforth, Downtown, Leslieville, Riverdale, Scarborough, North
-                York, and more. <Link href="/service-areas" className="text-accent">See full list</Link>.
+                Toronto (Downtown, Annex, King West, Danforth, Leslieville, Riverdale, Beaches), plus Mississauga, Oakville, Brampton, Vaughan, Markham, Pickering, King City. <Link href="/service-areas" className="text-accent">See full list</Link>.
               </p>
               <p className="text-text-muted text-sm mb-4">
                 <strong className="text-white">Google</strong>

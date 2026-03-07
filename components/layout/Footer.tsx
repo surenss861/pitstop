@@ -18,7 +18,7 @@ export default function Footer() {
             <h4 className="text-xs uppercase tracking-wider text-text-muted font-semibold mb-4">
               PitStop Polish
             </h4>
-            <p className="text-text-muted text-sm">Professional mobile detailing in Toronto. We come to you.</p>
+            <p className="text-text-muted text-sm">Premium mobile detailing in Toronto and the GTA. We come to you.</p>
             <p className="mt-2">
               <a href="tel:+16478237338" className="text-accent font-medium">
                 (647) 823-7338
@@ -54,7 +54,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="pt-8 border-t border-border text-center text-sm text-text-muted">
-          © PitStop Polish. Toronto mobile detailing. All rights reserved.
+          © PitStop Polish. Toronto & GTA mobile detailing. All rights reserved.
         </div>
       </div>
     </footer>

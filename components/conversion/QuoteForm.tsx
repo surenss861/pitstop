@@ -83,7 +83,7 @@ export default function QuoteForm() {
           id="location"
           name="location"
           required
-          placeholder="e.g. East York, Toronto"
+          placeholder="e.g. Toronto, Mississauga, Oakville"
           className="w-full px-4 py-3 rounded-lg bg-bg-card border border-border text-white placeholder:text-text-muted focus:outline-none focus:border-accent"
         />
       </div>

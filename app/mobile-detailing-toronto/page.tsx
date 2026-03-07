@@ -55,8 +55,7 @@ export default function MobileDetailingTorontoPage() {
               <div className="w-12 h-12 rounded-lg bg-accent/15 flex items-center justify-center text-2xl mx-auto mb-4">📍</div>
               <h3 className="font-bold text-white mb-2">We come to you</h3>
               <p className="text-text-muted text-sm m-0">
-                Toronto, East York, Danforth, Downtown, and surrounding areas. We bring the detail
-                to your location.
+                Toronto and GTA — Mississauga, Oakville, Brampton, Vaughan, Markham, Pickering, King City. We bring the detail to your location.
               </p>
             </div>
             <div className="p-6 rounded-xl bg-bg border border-border text-center">
@@ -95,7 +94,7 @@ export default function MobileDetailingTorontoPage() {
 
       <section className="py-12 bg-bg-card">
         <div className="max-w-[1100px] mx-auto px-4">
-          <SectionHeading title="Toronto Service Areas" subtitle="We serve Toronto and surrounding neighbourhoods." />
+          <SectionHeading title="Toronto & GTA Service Areas" subtitle="Toronto neighbourhoods and GTA cities. Same quality at home or work." />
           <ServiceAreaGrid />
           <p className="text-center mt-8">
             <Link

@@ -189,8 +189,8 @@ export default function HomePage() {
               <SectionHeading
                 align="left"
                 label="Service area"
-                title="We Serve Toronto & Surrounding Areas"
-                subtitle="Local proof. We come to you."
+                title="Toronto & GTA Service Areas"
+                subtitle="Primary: Toronto. Expanded: Mississauga, Oakville, Brampton, Vaughan, Markham, Pickering, King City."
               />
             </div>
           </Reveal>

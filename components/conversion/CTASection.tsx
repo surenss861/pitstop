@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { serviceAreaCopy } from "@/lib/service-areas-data";
 
 type CTASectionProps = {
   title?: string;
@@ -48,7 +49,7 @@ export default function CTASection({
           <div className="pt-4 md:pt-5 border-t border-white/10 flex flex-wrap items-center justify-center gap-2 md:gap-3">
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-semibold">5.0</span>
             <p className="text-text-muted text-sm m-0">
-              <span className="text-accent font-semibold">★★★★★</span> 13 reviews · We come to you across Toronto & the GTA
+              <span className="text-accent font-semibold">★★★★★</span> 13 reviews · {serviceAreaCopy}
             </p>
           </div>
         </div>

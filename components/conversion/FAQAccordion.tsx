@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { serviceAreaCopy } from "@/lib/service-areas-data";
 
 type FAQItem = { question: string; answer: string };
 
@@ -8,7 +9,7 @@ const defaultFaqs: FAQItem[] = [
   {
     question: "Do you come to me?",
     answer:
-      "Yes. We're fully mobile and come to your driveway, condo, or location in the Toronto area.",
+      "Yes. We're fully mobile and come to your driveway, condo, or location in the Toronto area and across the GTA.",
   },
   {
     question: "How long does detailing take?",
@@ -33,7 +34,7 @@ const defaultFaqs: FAQItem[] = [
   {
     question: "What areas do you serve?",
     answer:
-      "Toronto and surrounding neighbourhoods including East York, Danforth, Downtown, Leslieville, Riverdale, Scarborough, North York. See our Service Areas page for the full list.",
+      `${serviceAreaCopy} See our Service Areas page for the full list.`,
   },
 ];
 
