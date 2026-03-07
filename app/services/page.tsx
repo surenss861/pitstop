@@ -1,37 +1,43 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import SectionHeading from "@/components/ui/SectionHeading";
-import ServiceCard from "@/components/conversion/ServiceCard";
 import CTASection from "@/components/conversion/CTASection";
+import { serviceSections } from "@/lib/services-data";
 
 export const metadata: Metadata = {
-  title: "Mobile Detailing Services in Toronto",
+  title: "Mobile Detailing Services — Paint Correction, Ceramic Coating, Toronto",
   description:
-    "Interior, exterior, and full mobile detailing in Toronto. Clear packages and pricing. We come to you — request a quote or call (647) 823-7338.",
+    "Premium mobile detailing in Toronto: packages, paint correction, ceramic coating, interior & exterior care, restoration. We come to you — request a quote or call (647) 823-7338.",
 };
 
 export default function ServicesPage() {
   return (
     <>
-      <section className="py-16 text-center">
-        <div className="max-w-[1100px] mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Mobile Detailing Services in Toronto
+      {/* Hero — premium positioning */}
+      <section className="py-16 md:py-20 text-center">
+        <div className="max-w-[800px] mx-auto px-4">
+          <p className="text-[10px] uppercase tracking-[0.25em] text-accent font-semibold mb-4">
+            Services
+          </p>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 leading-tight tracking-tight">
+            Mobile Detailing · Paint Correction · Ceramic Coating
           </h1>
-          <p className="text-text-muted max-w-[50ch] mx-auto mb-6">
-            Interior, exterior, and full-detail packages. Pricing depends on vehicle size and
-            condition — request a quick quote or call for an estimate.
+          <p className="text-text-muted text-lg md:text-xl mb-2 max-w-[50ch] mx-auto">
+            Premium vehicle protection and care at your location. Not just a car wash — packages, correction, and protection that show.
+          </p>
+          <p className="text-text-muted text-base mb-8">
+            We come to you across Toronto and the GTA. Quote-based pricing — vehicle size and condition.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link
               href="/contact"
-              className="inline-flex py-3 px-6 rounded-lg bg-accent text-bg font-semibold hover:bg-accent-hover transition-colors"
+              className="inline-flex py-3.5 px-8 rounded-xl bg-accent text-bg font-semibold hover:bg-accent-hover transition-colors"
             >
               Get a Quote
             </Link>
             <a
               href="tel:+16478237338"
-              className="inline-flex py-3 px-6 rounded-lg border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors"
+              className="inline-flex py-3.5 px-8 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors"
             >
               Call (647) 823-7338
             </a>
@@ -39,118 +45,52 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section id="interior" className="py-12 bg-bg-card">
-        <div className="max-w-[1100px] mx-auto px-4">
-          <SectionHeading title="Interior Detailing" />
-          <div className="p-6 rounded-xl bg-bg border border-border max-w-3xl">
-            <h3 className="font-bold text-white mb-2">What's included</h3>
-            <p className="text-text-muted text-sm mb-4">
-              Deep clean of seats (fabric or leather), carpets and mats, dash and console, door
-              panels and trim, windows. Vacuum, brush, and appropriate cleaners. Optional: leather
-              conditioning, odor treatment, steam clean.
-            </p>
-            <h3 className="font-bold text-white mb-2">Who it's for</h3>
-            <p className="text-text-muted text-sm mb-4">
-              Daily drivers, family vehicles, rideshare drivers, anyone who wants a fresh interior.
-            </p>
-            <p className="text-text-muted text-sm mb-4">
-              <strong className="text-white">Time:</strong> Typically 2–3 hours ·{" "}
-              <strong className="text-white">Pricing:</strong> Depends on vehicle size and
-              condition. <Link href="/contact" className="text-accent">Request a quote</Link> or
-              call (647) 823-7338.
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex py-2 px-5 rounded-lg bg-accent text-bg font-semibold hover:bg-accent-hover transition-colors"
-            >
-              Get a Quote
-            </Link>
+      {/* Full service structure — order: Packages → Ceramic → Correction → Exterior → Interior → Restoration → Add-Ons */}
+      {serviceSections.map((section, index) => (
+        <section
+          key={section.id}
+          id={section.id}
+          className={index % 2 === 0 ? "py-14 md:py-16 bg-bg" : "py-14 md:py-16 bg-bg-card"}
+        >
+          <div className="max-w-[1100px] mx-auto px-4 sm:px-6">
+            <div className="mb-8">
+              <SectionHeading
+                label={section.label}
+                title={section.title}
+                subtitle={section.subtitle}
+                align="left"
+              />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {section.items.map((item) => (
+                <div
+                  key={item.name}
+                  className="px-4 py-3 rounded-xl border border-border bg-bg/50 hover:border-accent/40 transition-colors"
+                >
+                  <span className="text-white font-medium text-sm md:text-base">{item.name}</span>
+                  {item.description && (
+                    <p className="text-text-muted text-xs mt-1">{item.description}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+            {(section.id === "packages" || section.id === "ceramic" || section.id === "addons") && (
+              <p className="mt-6">
+                <Link
+                  href="/contact"
+                  className="inline-flex py-2.5 px-5 rounded-lg border-2 border-accent text-accent font-semibold text-sm hover:bg-accent/10 transition-colors"
+                >
+                  Request a quote for {section.label.toLowerCase()}
+                </Link>
+              </p>
+            )}
           </div>
-        </div>
-      </section>
-
-      <section id="exterior" className="py-12">
-        <div className="max-w-[1100px] mx-auto px-4">
-          <SectionHeading title="Exterior Detailing" />
-          <div className="p-6 rounded-xl bg-bg-card border border-border max-w-3xl">
-            <h3 className="font-bold text-white mb-2">What's included</h3>
-            <p className="text-text-muted text-sm mb-4">
-              Wash, decontamination (clay if needed), polish to restore shine, and protection (wax
-              or sealant). Wheels and tires cleaned and dressed. Windows streak-free.
-            </p>
-            <h3 className="font-bold text-white mb-2">Who it's for</h3>
-            <p className="text-text-muted text-sm mb-4">
-              Anyone who wants their paint to look sharp and stay protected.
-            </p>
-            <p className="text-text-muted text-sm mb-4">
-              <strong className="text-white">Time:</strong> Typically 2–3 hours · Quote-based.{" "}
-              <Link href="/contact" className="text-accent">Request a quote</Link> or call.
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex py-2 px-5 rounded-lg bg-accent text-bg font-semibold hover:bg-accent-hover transition-colors"
-            >
-              Get a Quote
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section id="full" className="py-12 bg-bg-card">
-        <div className="max-w-[1100px] mx-auto px-4">
-          <SectionHeading title="Full Detailing" />
-          <div className="p-6 rounded-xl bg-bg border border-border max-w-3xl">
-            <h3 className="font-bold text-white mb-2">What's included</h3>
-            <p className="text-text-muted text-sm mb-4">
-              Everything from interior and exterior in one visit: full interior deep clean plus
-              exterior wash, clay, polish, and protection.
-            </p>
-            <h3 className="font-bold text-white mb-2">Who it's for</h3>
-            <p className="text-text-muted text-sm mb-4">
-              Best for a full refresh — spring clean, before sale, or when you want the whole car
-              looking and feeling new.
-            </p>
-            <p className="text-text-muted text-sm mb-4">
-              <strong className="text-white">Time:</strong> Typically 4–6 hours · Quote-based.{" "}
-              <Link href="/contact" className="text-accent">Request a quote</Link> or call (647)
-              823-7338.
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex py-2 px-5 rounded-lg bg-accent text-bg font-semibold hover:bg-accent-hover transition-colors"
-            >
-              Get a Quote
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section id="addons" className="py-12">
-        <div className="max-w-[1100px] mx-auto px-4">
-          <SectionHeading
-            title="Add-ons & Paint Enhancement"
-            subtitle="Add these to any package or book standalone."
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <ServiceCard title="Headlight restoration" description="Restore cloudy or yellow headlights. Quote per vehicle." ctaHref="/contact" ctaText="Request quote" />
-            <ServiceCard title="Leather conditioning" description="Clean and condition leather seats and trim." ctaHref="/contact" ctaText="Request quote" />
-            <ServiceCard title="Paint correction" description="Remove light scratches and swirls for a deeper gloss." ctaHref="/contact" ctaText="Request quote" />
-            <ServiceCard title="Other extras" description="Engine bay clean, pet hair removal, odor treatment, ceramic-style protection." ctaHref="/contact" ctaText="Ask when you quote" />
-          </div>
-          <p className="text-center mt-8">
-            <Link
-              href="/contact"
-              className="inline-flex py-3 px-6 rounded-lg bg-accent text-bg font-semibold hover:bg-accent-hover transition-colors"
-            >
-              Request a Quote
-            </Link>
-          </p>
-        </div>
-      </section>
+        </section>
+      ))}
 
       <CTASection
         title="Ready to book?"
-        subtitle="Get a quote or call — we'll come to you in Toronto and the surrounding areas."
+        subtitle="Get a quote or call — we'll come to you in Toronto and the surrounding areas. Paint correction, ceramic coating, full detail, and more."
       />
     </>
   );

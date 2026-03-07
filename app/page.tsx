@@ -94,23 +94,23 @@ export default function HomePage() {
                 align="left"
                 label="Services"
                 title="What We Offer"
-                subtitle="Interior, exterior, full detail, and add-ons. Clear packages for every need."
+                subtitle="Packages, correction, protection, and care — at your location. Premium mobile detailing in Toronto."
               />
             </div>
           </Reveal>
           <StaggerChildren
-            className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
-            stagger={0.1}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+            stagger={0.08}
             variant="scale"
           >
-            <div className="stagger-item md:col-span-2">
+            <div className="stagger-item md:col-span-2 lg:col-span-2">
               <ServiceCard
                 title="Full Detail"
                 description="Interior + exterior in one visit. The complete reset."
                 bestFor="Full transformation at your location"
                 includes={["Everything in Interior + Exterior", "One visit"]}
                 ctaHref="/services#full"
-                tag="Full detail"
+                tag="Package"
                 featured
                 premiumLine="One visit. Full reset."
               />
@@ -119,28 +119,48 @@ export default function HomePage() {
               <ServiceCard
                 title="Interior Detail"
                 description="Deep clean seats, carpets, dash, and trim."
-                bestFor="Daily drivers, family cars, rideshare vehicles"
-                includes={["Vacuum & extraction", "Seat & carpet deep clean", "Dash & trim wipe-down"]}
+                bestFor="Daily drivers, family cars, rideshare"
+                includes={["Vacuum & extraction", "Seat & carpet deep clean", "Dash & trim"]}
                 ctaHref="/services#interior"
-                tag="Interior reset"
+                tag="Interior"
               />
             </div>
             <div className="stagger-item">
               <ServiceCard
                 title="Exterior Detail"
                 description="Wash, clay, polish, and protect. Restore shine and defend your paint."
-                bestFor="Anyone wanting a showroom finish"
+                bestFor="Showroom finish at your driveway"
                 includes={["Wash & dry", "Clay bar", "Polish & protection"]}
                 ctaHref="/services#exterior"
-                tag="Exterior shine"
+                tag="Exterior"
               />
             </div>
             <div className="stagger-item">
               <ServiceCard
-                title="Add-ons & Paint Enhancement"
-                description="Headlight restoration, leather conditioning, paint correction, and more."
+                title="Paint Correction"
+                description="Remove swirls and scratches. Restore clarity and gloss — not just a wash."
+                bestFor="Serious shine and paint care"
+                includes={["1–3 stage correction", "Machine polish", "Scratch & swirl removal"]}
+                ctaHref="/services#correction"
+                tag="Correction"
+              />
+            </div>
+            <div className="stagger-item">
+              <ServiceCard
+                title="Ceramic Coating"
+                description="Long-term paint protection. Ceramic, graphene, wheel and glass coating."
+                bestFor="Maximum protection and gloss"
+                includes={["Paint coating", "Wheel & glass options", "1–5 year options"]}
+                ctaHref="/services#ceramic"
+                tag="Protection"
+              />
+            </div>
+            <div className="stagger-item">
+              <ServiceCard
+                title="Add-Ons & Specialty"
+                description="Headlight restoration, leather, odor removal, engine bay, and more."
                 bestFor="Extra care where you need it"
-                includes={["Headlight restoration", "Leather conditioning", "Paint correction"]}
+                includes={["Headlight restoration", "Leather conditioning", "Odor / pet hair"]}
                 ctaText="See options"
                 ctaHref="/services#addons"
                 tag="Add-ons"

@@ -1,0 +1,163 @@
+/**
+ * PitStop Polish — full service inventory.
+ * Order: Packages → Ceramic & Protection → Paint Correction → Exterior → Interior → Restoration → Add-Ons
+ */
+
+export type ServiceItem = { name: string; description?: string };
+
+export type ServiceSection = {
+  id: string;
+  label: string;
+  title: string;
+  subtitle?: string;
+  items: ServiceItem[];
+};
+
+export const serviceSections: ServiceSection[] = [
+  {
+    id: "packages",
+    label: "Packages",
+    title: "Popular Packages",
+    subtitle: "We don't make you build from scratch. Pick a package and we'll match the right level of care.",
+    items: [
+      { name: "Basic Detail" },
+      { name: "Interior Detail" },
+      { name: "Exterior Detail" },
+      { name: "Full Detail" },
+      { name: "Premium Detail" },
+      { name: "Showroom Detail" },
+      { name: "Paint Correction Package" },
+      { name: "Ceramic Coating Package" },
+      { name: "Sale Prep / Pre-Sale Detail" },
+    ],
+  },
+  {
+    id: "ceramic",
+    label: "Ceramic & Protection",
+    title: "Ceramic Coatings & Paint Protection",
+    subtitle: "Highest-ticket, authority-building protection. We bring pro-grade coatings to your location.",
+    items: [
+      { name: "Ceramic Paint Coating" },
+      { name: "Graphene Coating" },
+      { name: "1-Year Ceramic Coating" },
+      { name: "3-Year Ceramic Coating" },
+      { name: "5-Year Ceramic Coating" },
+      { name: "Paint Protection Film (PPF)" },
+      { name: "Ceramic Wheel Coating" },
+      { name: "Glass / Windshield Ceramic Coating" },
+      { name: "Trim Ceramic Coating" },
+      { name: "Interior Ceramic Coating" },
+      { name: "Leather Protection Coating" },
+      { name: "Fabric Protection Coating" },
+      { name: "Paint Sealant Protection" },
+      { name: "Exterior Wax Protection" },
+    ],
+  },
+  {
+    id: "correction",
+    label: "Paint Correction",
+    title: "Paint Correction & Polishing",
+    subtitle: "Serious car care. Restore clarity and gloss — not just wash and wax.",
+    items: [
+      { name: "1-Stage Paint Enhancement" },
+      { name: "2-Stage Paint Correction" },
+      { name: "3-Stage Paint Correction" },
+      { name: "Machine Polishing" },
+      { name: "Paint Refinement Polish" },
+      { name: "High-Gloss Finishing Polish" },
+      { name: "Scratch Removal" },
+      { name: "Swirl Mark Removal" },
+      { name: "Oxidation Removal" },
+      { name: "Wet Sanding" },
+      { name: "Buffing & Paint Leveling" },
+      { name: "Paint Clarity Restoration" },
+    ],
+  },
+  {
+    id: "exterior",
+    label: "Exterior",
+    title: "Exterior Detailing Services",
+    subtitle: "Core exterior care. Wash, decontaminate, protect.",
+    items: [
+      { name: "Hand Wash" },
+      { name: "Foam Cannon Pre-Wash" },
+      { name: "Bug Removal" },
+      { name: "Tar Removal" },
+      { name: "Iron Fallout Removal" },
+      { name: "Clay Bar Treatment" },
+      { name: "Paint Decontamination" },
+      { name: "Wheel & Rim Deep Cleaning" },
+      { name: "Brake Dust Removal" },
+      { name: "Tire Dressing" },
+      { name: "Wheel Well Cleaning" },
+      { name: "Door Jamb Cleaning" },
+      { name: "Exterior Trim Dressing" },
+      { name: "Exterior Trim Restoration" },
+      { name: "Chrome & Metal Polishing" },
+      { name: "Exterior Window Cleaning" },
+      { name: "Exterior Wax Application" },
+    ],
+  },
+  {
+    id: "interior",
+    label: "Interior",
+    title: "Interior Detailing Services",
+    subtitle: "Deep clean, protect, and refresh. One of our highest-demand categories.",
+    items: [
+      { name: "Full Interior Vacuum" },
+      { name: "Interior Surface Wipe Down" },
+      { name: "Dashboard & Console Cleaning" },
+      { name: "Carpet Shampooing" },
+      { name: "Fabric Seat Shampoo" },
+      { name: "Hot Water Extraction" },
+      { name: "Steam Cleaning" },
+      { name: "Leather Cleaning" },
+      { name: "Leather Conditioning" },
+      { name: "Headliner Cleaning" },
+      { name: "Floor Mat Deep Cleaning" },
+      { name: "Interior Plastic & Trim Protection" },
+      { name: "Interior Glass Cleaning" },
+      { name: "Interior Sanitizing" },
+    ],
+  },
+  {
+    id: "restoration",
+    label: "Restoration",
+    title: "Restoration & Specialty Services",
+    subtitle: "Expert-level fixes and add-ons. Headlights, trim, leather, odors, and more.",
+    items: [
+      { name: "Headlight Restoration" },
+      { name: "Black Trim Restoration" },
+      { name: "Leather Restoration" },
+      { name: "Scratch Repair" },
+      { name: "Paint Touch-Ups" },
+      { name: "Engine Bay Detailing" },
+      { name: "Odor Removal" },
+      { name: "Ozone Treatment" },
+      { name: "Smoke Smell Removal" },
+      { name: "Pet Hair Removal" },
+      { name: "Salt Stain Removal" },
+      { name: "Tree Sap Removal" },
+      { name: "Water Spot Removal" },
+      { name: "Windshield Water Repellent Treatment" },
+    ],
+  },
+  {
+    id: "addons",
+    label: "Add-Ons",
+    title: "Add-Ons & Extras",
+    subtitle: "Stack these on any package or book standalone.",
+    items: [
+      { name: "Headlight Restoration" },
+      { name: "Leather Conditioning" },
+      { name: "Paint Correction (1–3 stage)" },
+      { name: "Ceramic Coating (paint, wheels, glass, interior)" },
+      { name: "Engine Bay Detailing" },
+      { name: "Odor / Ozone Treatment" },
+      { name: "Pet Hair Removal" },
+      { name: "Trim Restoration" },
+      { name: "Wheel Coating" },
+      { name: "Glass Coating" },
+    ],
+  },
+];
