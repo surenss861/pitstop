@@ -13,25 +13,27 @@ export default function ReviewCard({
     <div
       className={`rounded-2xl border transition-colors hover:border-accent/30 ${
         featured
-          ? "p-8 lg:p-12 border-accent/20 bg-gradient-to-b from-accent/[0.08] to-bg-elevated shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]"
+          ? "p-8 lg:p-12 border-accent/10 bg-gradient-to-b from-accent/[0.06] to-bg-elevated shadow-[inset_0_1px_0_rgba(255,255,255,0.02)]"
           : "p-5 border-border bg-bg-elevated card-hover-lift"
       }`}
     >
       <div className={`text-accent tracking-wider ${featured ? "mb-5 text-lg" : "mb-3"}`}>★★★★★</div>
       <blockquote
-        className={`text-white/95 m-0 ${featured ? "text-xl lg:text-2xl leading-relaxed font-medium" : "text-sm"} ${
+        className={`text-white/95 m-0 ${featured ? "text-xl lg:text-2xl leading-relaxed font-medium max-w-[32ch]" : "text-sm"} ${
           featured ? "italic" : ""
         }`}
       >
         {featured && (
-          <span className="text-5xl lg:text-6xl text-accent/30 font-serif leading-none align-top mr-2">"</span>
+          <span className="text-5xl lg:text-6xl text-accent/25 font-serif leading-none align-top mr-2">"</span>
         )}
         {quote}
         {featured && (
-          <span className="text-5xl lg:text-6xl text-accent/30 font-serif leading-none align-bottom ml-1">"</span>
+          <span className="text-5xl lg:text-6xl text-accent/25 font-serif leading-none align-bottom ml-1">"</span>
         )}
       </blockquote>
-      <p className={`text-text-muted mt-5 ${featured ? "text-sm" : "text-sm"}`}>{author}</p>
+      <p className={`text-text-muted mt-5 ${featured ? "text-xs uppercase tracking-wider text-accent/80" : "text-sm"}`}>
+        {author}
+      </p>
     </div>
   );
 }

@@ -25,10 +25,15 @@ export default function ServiceCard({
 }: ServiceCardProps) {
   return (
     <div
-      className={`card-hover-lift rounded-xl bg-bg-card border border-border hover:border-accent/50 hover:shadow-[0_0_0_1px_rgba(201,162,39,0.2)] group ${
-        featured ? "p-8 lg:p-10" : "p-6 lg:p-8"
+      className={`card-hover-lift rounded-xl bg-bg-card border border-border hover:border-accent/50 hover:shadow-[0_0_0_1px_rgba(201,162,39,0.2)] group relative overflow-hidden ${
+        featured ? "p-8 lg:p-10 border-l-4 border-l-accent bg-gradient-to-br from-accent/[0.06] to-bg-card" : "p-6 lg:p-8"
       }`}
     >
+      {featured && (
+        <span className="absolute top-4 right-4 text-[10px] uppercase tracking-wider font-semibold text-accent/90">
+          Most popular
+        </span>
+      )}
       {tag && (
         <span className="inline-block text-[10px] uppercase tracking-[0.2em] text-accent font-semibold mb-3">
           {tag}

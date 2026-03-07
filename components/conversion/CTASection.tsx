@@ -7,7 +7,7 @@ type CTASectionProps = {
 
 export default function CTASection({
   title = "Ready to get your car detailed without leaving home?",
-  subtitle = "We come to you anywhere across Toronto. Book now or call for a quick quote.",
+  subtitle = "We come to you anywhere across Toronto and the GTA. Book now or call for a quick quote.",
 }: CTASectionProps) {
   return (
     <section className="py-28 relative overflow-hidden">
@@ -19,9 +19,10 @@ export default function CTASection({
         style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z' fill='%23c9a227' fill-opacity='1' fill-rule='nonzero'/%3E%3C/g%3E%3C/svg%3E\")" }}
         aria-hidden
       />
+      <div className="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-accent/20 to-transparent pointer-events-none" aria-hidden />
       <div className="relative max-w-[1100px] mx-auto px-4 sm:px-6">
         <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-extrabold text-white mb-5 leading-tight tracking-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-[2.85rem] font-extrabold text-white mb-5 leading-tight tracking-tight">
             {title}
           </h2>
           {subtitle && (

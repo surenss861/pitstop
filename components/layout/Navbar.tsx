@@ -23,7 +23,7 @@ export default function Navbar() {
         <div className="max-w-[1100px] mx-auto px-5 lg:px-6 flex items-center justify-between h-[4.25rem] lg:h-[4.5rem]">
           <Link
             href="/"
-            className="font-extrabold text-xl text-white tracking-tight hover:text-accent transition-colors"
+            className="font-extrabold text-xl text-white tracking-tighter hover:text-accent transition-colors"
           >
             PitStop <span className="text-accent">Polish</span>
           </Link>

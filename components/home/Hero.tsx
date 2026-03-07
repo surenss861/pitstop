@@ -5,8 +5,9 @@ import Image from "next/image";
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 
+// Detailing-proof hero: polished reflection / premium care. Override with NEXT_PUBLIC_HERO_IMAGE.
 const DEFAULT_HERO_IMAGE =
-  "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&q=85";
+  "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=1200&q=85";
 const HERO_IMAGE_URL = process.env.NEXT_PUBLIC_HERO_IMAGE || DEFAULT_HERO_IMAGE;
 
 export default function Hero() {
@@ -21,6 +22,8 @@ export default function Hero() {
   const ctaRef = useRef<HTMLDivElement>(null);
   const visualRef = useRef<HTMLDivElement>(null);
   const maskRef = useRef<HTMLDivElement>(null);
+  const glossRef = useRef<HTMLDivElement>(null);
+  const chipRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (typeof document === "undefined") return;
@@ -53,6 +56,28 @@ export default function Hero() {
         "-=0.8"
       );
     }
+  }, []);
+
+  // Signature motion: gloss sweep every 7s + gentle float on review chip
+  useEffect(() => {
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced || !glossRef.current || !chipRef.current) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        glossRef.current,
+        { x: "-100%" },
+        { x: "220%", duration: 1.4, ease: "power2.inOut", repeat: -1, repeatDelay: 5.5 }
+      );
+      gsap.to(chipRef.current, {
+        y: -5,
+        duration: 2.8,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
+      });
+    });
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -147,11 +172,26 @@ export default function Hero() {
                 <div className="absolute inset-0 bg-gradient-to-t from-bg/60 via-transparent to-transparent" />
                 <div className="absolute left-0 top-0 bottom-0 w-32 lg:w-40 bg-gradient-to-r from-bg to-transparent" />
               </div>
+              <div
+                ref={glossRef}
+                className="absolute inset-0 w-[50%] pointer-events-none"
+                style={{ transform: "translateX(-100%)" }}
+                aria-hidden
+              >
+                <div
+                  className="absolute inset-0 opacity-20"
+                  style={{
+                    background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%)",
+                  }}
+                />
+              </div>
             </div>
 
-            {/* Floating chips only */}
             <div className="absolute bottom-6 left-6 right-6 sm:left-8 sm:right-auto sm:max-w-[220px] flex flex-col gap-3 z-10">
-              <span className="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-bg/90 backdrop-blur-md border border-white/10 text-white text-sm font-semibold shadow-xl">
+              <span
+                ref={chipRef}
+                className="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-bg/90 backdrop-blur-md border border-white/10 text-white text-sm font-semibold shadow-xl"
+              >
                 <span className="text-accent">★★★★★</span> 5.0 · 13 reviews
               </span>
               <span className="inline-flex items-center px-4 py-2.5 rounded-xl bg-bg/80 backdrop-blur-md border border-white/10 text-text-muted text-xs font-medium">

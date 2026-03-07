@@ -8,45 +8,46 @@ import { useState } from "react";
 
 const categories = ["All", "Interior", "Exterior", "Wheels", "Full detail"];
 
+// Detailing-proof: gloss, interior, finish, restoration — not generic car shots
 const items = [
   {
     src: "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80",
-    label: "Interior reset",
+    label: "Interior deep clean",
     category: "Interior",
     span: "col-span-2 row-span-2" as const,
     minH: "min-h-[260px] lg:min-h-[340px]",
   },
   {
     src: "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=600&q=80",
-    label: "Exterior gloss",
+    label: "Exterior gloss & protection",
     category: "Exterior",
     span: "" as const,
     minH: "min-h-[140px] lg:min-h-[165px]",
   },
   {
     src: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&q=80",
-    label: "Premium finish",
-    category: "Exterior",
+    label: "Wheel & tire finish",
+    category: "Wheels",
     span: "" as const,
     minH: "min-h-[140px] lg:min-h-[165px]",
   },
   {
     src: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&q=80",
-    label: "Wheel & tire",
-    category: "Wheels",
-    span: "col-span-2" as const,
-    minH: "min-h-[110px] lg:min-h-[130px]",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=800&q=80",
-    label: "Full detail",
-    category: "Full detail",
+    label: "Paint reflection & correction",
+    category: "Exterior",
     span: "col-span-2" as const,
     minH: "min-h-[110px] lg:min-h-[130px]",
   },
   {
     src: "https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=800&q=80",
-    label: "Mobile detail — Toronto",
+    label: "Trim & interior reset",
+    category: "Interior",
+    span: "col-span-2" as const,
+    minH: "min-h-[110px] lg:min-h-[130px]",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=800&q=80",
+    label: "Full detail — your location",
     category: "Full detail",
     span: "col-span-2" as const,
     minH: "min-h-[110px] lg:min-h-[130px]",

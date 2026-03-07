@@ -13,11 +13,12 @@ import Link from "next/link";
 
 const whyStatement =
   "We come to you. We do quality work. People already trust us. Booking is easy.";
+const whyMiniQuote = "Done at my driveway — so convenient. Quality was top notch.";
 const whyProof = [
-  { label: "We come to you", line: "No drop-off — your driveway, condo, or office." },
+  { label: "We come to you", line: "No drop-off. Your driveway, condo, or office." },
   { label: "Quality that shows", line: "Interior and exterior, real care in every corner." },
   { label: "Toronto & GTA", line: "Same standard at home or work." },
-  { label: "Honest pricing", line: "No hidden fees, no upsell pressure." },
+  { label: "Honest pricing", line: "No hidden fees. No upsell pressure." },
 ];
 
 const reviewQuotes = [
@@ -54,6 +55,9 @@ export default function HomePage() {
                 <span className="text-2xl font-extrabold text-accent">5.0</span>
                 <span className="text-sm text-text-muted">Google · 13 reviews</span>
               </div>
+              <blockquote className="border-l-2 border-accent/50 pl-4 text-sm text-text-muted italic max-w-[28ch]">
+                &ldquo;{whyMiniQuote}&rdquo; <cite className="not-italic text-accent/90 text-xs mt-1 block">— Google review · Toronto</cite>
+              </blockquote>
             </div>
             <ul className="stagger-item space-y-6">
               {whyProof.map(({ label, line }) => (
@@ -155,7 +159,7 @@ export default function HomePage() {
           </div>
           <StaggerChildren className="grid grid-cols-1 md:grid-cols-3 gap-6" stagger={0.12} variant="lateral">
             <div className="md:col-span-3 stagger-item">
-              <ReviewCard quote={reviewQuotes[0]} featured />
+              <ReviewCard quote={reviewQuotes[0]} author="Driveway detail customer · Google review · Toronto" featured />
             </div>
             <div className="stagger-item">
               <ReviewCard quote={reviewQuotes[1]} />
