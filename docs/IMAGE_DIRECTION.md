@@ -1,64 +1,53 @@
-# Image direction — PitStop Polish
+# Image direction — PitStop Polish (no-BS)
 
-So the site reads **detail culture**, not generic car content.
+Every image must say **detail culture**, not generic car.
 
 ---
 
 ## Hero
 
-**Goal:** "These people make cars look insane." Not "nice car."
+**Must feel:** "These people make surfaces look unreal."
 
-**Use one of:**
-- Polished black hood with reflected light (tight crop)
-- Wheel + tire finish close-up
-- Wet gloss / paint correction reflection
-- Luxury interior detail (leather, trim)
-- Hand + microfiber + reflected light
-- Elegant before/after (one panel)
+**Use exactly one of:**
+- Polished black hood reflection (tight crop, no full car)
+- Close-up wheel + tire finish
+- Deep-clean interior luxury (seat, console, trim)
+- Hand + microfiber on paint in good light
+- Elegant before/after crop
+- Driveway detail with strong lighting
 
-**Avoid:** Full car in scenery, desert/road trip, dealership, sports car wallpaper.
+**Never use:** Scenic car, performance wallpaper, wide "car as object," dealership style.
 
-**Override:** Set `NEXT_PUBLIC_HERO_IMAGE` to your hero URL (e.g. Unsplash "shiny car hood reflects" — search that phrase for a strong default).
+**Override:** `NEXT_PUBLIC_HERO_IMAGE` = your hero URL.
+
+**Hero inset (optional):** Small overlapping panel can show a second detail (e.g. wheel or interior). Add via `NEXT_PUBLIC_HERO_INSET` when you have the asset.
 
 ---
 
 ## Gallery / Results
 
-**Goal:** Proof of craftsmanship. Gloss, cleanliness, correction, restoration.
+**Must feel:** Proof of craftsmanship — gloss, correction, restoration.
 
-**Use:**
-- Glossy paint reflection close-up
-- Wheel and tire finish
-- Interior seat / console / carpet deep clean
-- Trim restore, dashboard / leather detail
-- Before/after hood or panel
-- Mobile detailing at driveway (if shot well)
+**Swap in for each slot:**
+1. Black paint reflection close-up  
+2. Wheel + tire shine (macro)  
+3. Interior console/seat/carpet detail  
+4. Trim / leather / dashboard detail  
+5. Water bead or corrected paint  
+6. One real before/after or driveway service  
 
-**Avoid:** Generic scenic car, lifestyle automotive, vehicle-as-hero shots.
-
-**Ratio:** Keep mixed aspect ratios; one big transformation, one wheel close-up, one interior, one exterior gloss, one before/after, one on-location.
+**Never use:** Cool car, nice car, lifestyle automotive, vehicle-as-hero.
 
 ---
 
-## Final CTA (optional)
+## Final CTA
 
-**Goal:** Last frame of a luxury ad.
-
-- Subtle detailing texture or ghosted reflection (very low opacity)
-- Or keep gradient + reflection line only
+- Optional: one faint detailing texture or ghosted reflection (very low opacity).
+- Otherwise: gradient + reflection line only.
 
 ---
 
-## Service section (optional)
+## One signature move (committed)
 
-- Featured card can stay without image
-- Or one small "finish" accent image if you add a visual asset later
-
----
-
-## One signature move (already in place)
-
-- **Gloss sweep** across hero every ~7s
-- **Floating review chip** gentle drift
-
-Commit to these; don’t add more motion clutter.
+- **Gloss sweep** across hero every ~6–7s. That’s the only motion signature.
+- No second motion. Restraint = premium.

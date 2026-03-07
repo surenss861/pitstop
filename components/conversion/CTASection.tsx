@@ -19,18 +19,18 @@ export default function CTASection({
         style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z' fill='%23c9a227' fill-opacity='1' fill-rule='nonzero'/%3E%3C/g%3E%3C/svg%3E\")" }}
         aria-hidden
       />
-      <div className="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-accent/25 to-transparent pointer-events-none" aria-hidden />
+      <div className="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 pointer-events-none" aria-hidden style={{ background: "linear-gradient(90deg, transparent 0%, rgba(201,162,39,0.08) 20%, rgba(201,162,39,0.2) 50%, rgba(201,162,39,0.08) 80%, transparent 100%)" }} />
       <div className="relative max-w-[1100px] mx-auto px-4 sm:px-6">
         <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl lg:text-[3rem] font-extrabold text-white mb-4 leading-[1.1] tracking-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-[3rem] font-extrabold text-white mb-3 leading-[1.1] tracking-tight">
             {title}
           </h2>
           {subtitle && (
-            <p className="text-text-muted text-lg md:text-xl mb-8 leading-relaxed">
+            <p className="text-text-muted text-lg md:text-xl mb-6 leading-relaxed">
               {subtitle}
             </p>
           )}
-          <div className="flex flex-wrap gap-4 justify-center mb-6">
+          <div className="flex flex-wrap gap-4 justify-center mb-5">
             <Link
               href="/contact"
               className="btn-primary-hero inline-flex py-5 px-12 rounded-xl bg-accent text-bg font-semibold text-lg hover:bg-accent-hover transition-all shadow-[0_0_0_0_rgba(201,162,39,0.3)] hover:shadow-[0_0_28px_6px_rgba(201,162,39,0.25)]"
@@ -44,9 +44,10 @@ export default function CTASection({
               Call (647) 823-7338
             </a>
           </div>
-          <div className="pt-6 border-t border-white/10">
-            <p className="text-text-muted text-sm">
-              <span className="text-accent font-semibold">★★★★★</span> 5.0 · 13 reviews · We come to you across Toronto & the GTA
+          <div className="pt-5 border-t border-white/10 flex flex-wrap items-center justify-center gap-3">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-semibold">5.0</span>
+            <p className="text-text-muted text-sm m-0">
+              <span className="text-accent font-semibold">★★★★★</span> 13 reviews · We come to you across Toronto & the GTA
             </p>
           </div>
         </div>

@@ -33,8 +33,9 @@ export default function ServiceCard({
     >
       {featured && (
         <>
-          <div className="absolute inset-0 opacity-30 pointer-events-none" aria-hidden>
-            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-accent/10 to-transparent rounded-full blur-3xl" />
+          <div className="absolute inset-0 pointer-events-none" aria-hidden>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-accent/10 to-transparent rounded-full blur-3xl opacity-40" />
+            <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-gradient-to-l from-accent/[0.04] to-transparent" />
           </div>
           <span className="absolute top-4 right-4 text-[10px] uppercase tracking-wider font-semibold text-accent">
             Most popular
@@ -58,7 +59,7 @@ export default function ServiceCard({
         {description}
       </p>
       {bestFor && (
-        <p className="text-[11px] text-accent/90 font-medium mb-3 tracking-tight">
+        <p className={`text-[11px] text-accent/90 font-medium mb-3 tracking-tight ${featured ? "px-3 py-1.5 rounded-lg bg-accent/5 border border-accent/10 inline-block" : ""}`}>
           Best for: {bestFor}
         </p>
       )}

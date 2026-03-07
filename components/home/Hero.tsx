@@ -23,7 +23,6 @@ export default function Hero() {
   const visualRef = useRef<HTMLDivElement>(null);
   const maskRef = useRef<HTMLDivElement>(null);
   const glossRef = useRef<HTMLDivElement>(null);
-  const chipRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (typeof document === "undefined") return;
@@ -58,24 +57,17 @@ export default function Hero() {
     }
   }, []);
 
-  // Signature motion: gloss sweep every 7s + gentle float on review chip
+  // One signature move: gloss sweep only (no second motion)
   useEffect(() => {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced || !glossRef.current || !chipRef.current) return;
+    if (prefersReduced || !glossRef.current) return;
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
         glossRef.current,
         { x: "-100%" },
-        { x: "220%", duration: 1.4, ease: "power2.inOut", repeat: -1, repeatDelay: 5.5 }
+        { x: "220%", duration: 1.4, ease: "power2.inOut", repeat: -1, repeatDelay: 6 }
       );
-      gsap.to(chipRef.current, {
-        y: -5,
-        duration: 2.8,
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
-      });
     });
     return () => ctx.revert();
   }, []);
@@ -190,11 +182,19 @@ export default function Hero() {
               </div>
             </div>
 
+            {/* Macro inset: overlapping detail panel (add wheel/interior image via NEXT_PUBLIC_HERO_INSET for full effect) */}
+            <div
+              className="absolute right-4 bottom-20 w-[38%] min-w-[140px] max-w-[200px] aspect-square rounded-xl overflow-hidden border border-white/15 bg-bg/80 backdrop-blur-sm shadow-2xl z-10 hidden sm:block"
+              aria-hidden
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-bg/90" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-[10px] uppercase tracking-widest text-accent/60 font-semibold">Detail</span>
+              </div>
+            </div>
+
             <div className="absolute bottom-6 left-6 right-6 sm:left-8 sm:right-auto sm:max-w-[220px] flex flex-col gap-3 z-10">
-              <span
-                ref={chipRef}
-                className="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-bg/90 backdrop-blur-md border border-white/10 text-white text-sm font-semibold shadow-xl"
-              >
+              <span className="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-bg/90 backdrop-blur-md border border-white/10 text-white text-sm font-semibold shadow-xl">
                 <span className="text-accent">★★★★★</span> 5.0 · 13 reviews
               </span>
               <span className="inline-flex items-center px-4 py-2.5 rounded-xl bg-bg/80 backdrop-blur-md border border-white/10 text-text-muted text-xs font-medium">

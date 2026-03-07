@@ -14,12 +14,12 @@ export default function ReviewCard({
       className={`rounded-2xl border transition-colors hover:border-accent/30 ${
         featured
           ? "p-10 lg:p-16 border-accent/10 bg-gradient-to-b from-accent/[0.06] to-bg-elevated shadow-[inset_0_1px_0_rgba(255,255,255,0.02)]"
-          : "p-4 lg:p-5 border-border/80 bg-bg-elevated/80 card-hover-lift"
+          : "p-3 lg:p-4 border-border/60 bg-bg-elevated/60 card-hover-lift"
       }`}
     >
       <div className={`text-accent tracking-wider ${featured ? "mb-6 text-lg" : "mb-2 text-sm"}`}>★★★★★</div>
       <blockquote
-        className={`text-white/95 m-0 ${featured ? "text-xl lg:text-2xl leading-relaxed font-medium max-w-[26ch]" : "text-sm"} ${
+        className={`text-white/95 m-0 ${featured ? "text-xl lg:text-2xl leading-relaxed font-medium max-w-[24ch]" : "text-sm"} ${
           featured ? "italic" : ""
         }`}
       >

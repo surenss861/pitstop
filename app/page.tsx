@@ -63,7 +63,13 @@ export default function HomePage() {
                 <cite className="not-italic text-accent/90 text-xs font-medium mt-2 block uppercase tracking-wider">Google review · Toronto</cite>
               </blockquote>
             </div>
-            <ul className="stagger-item space-y-5">
+            <div className="stagger-item space-y-5">
+              <div className="flex items-center gap-4" aria-hidden>
+                <div className="h-px flex-1 bg-gradient-to-r from-transparent to-border" />
+                <span className="text-[10px] uppercase tracking-[0.2em] text-accent/80 font-semibold">5-star Google rated</span>
+                <div className="h-px flex-1 bg-gradient-to-l from-transparent to-border" />
+              </div>
+              <ul className="space-y-5">
               {whyProof.map(({ label, line }) => (
                 <li key={label} className="flex items-start gap-4">
                   <span className="flex-shrink-0 w-2 h-2 rounded-full bg-accent mt-2" />
@@ -73,7 +79,8 @@ export default function HomePage() {
                   </div>
                 </li>
               ))}
-            </ul>
+              </ul>
+            </div>
           </StaggerChildren>
         </div>
       </section>
