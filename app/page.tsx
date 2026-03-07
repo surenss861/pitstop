@@ -12,10 +12,26 @@ import StaggerChildren from "@/components/animation/StaggerChildren";
 import Link from "next/link";
 
 const whyCards = [
-  { icon: "🚗", title: "We Come to You", text: "Driveway, condo, or office — we bring the full detail to your location. No drop-off, no wait." },
-  { icon: "✨", title: "Interior & Exterior", text: "Full interior resets and exterior shine. One package or à la carte — your choice." },
-  { icon: "🔍", title: "Attention to Detail", text: "Real care in every corner. Our reviews say it — the finish shows." },
-  { icon: "💰", title: "Great Pricing", text: "Honest pricing for the quality you get. No hidden fees, no upsell pressure." },
+  {
+    icon: "🚗",
+    title: "No drop-off. No wasted time.",
+    text: "We come to your driveway, condo, or office. Full detail at your location — you don't have to go anywhere.",
+  },
+  {
+    icon: "✨",
+    title: "Clean finishes that actually show",
+    text: "Interior resets and exterior shine. Real care in every corner. Our reviews back it up.",
+  },
+  {
+    icon: "📍",
+    title: "Done right at your location",
+    text: "Toronto and surrounding areas. Same quality whether you're at home or work.",
+  },
+  {
+    icon: "💰",
+    title: "Pricing that matches the quality",
+    text: "Honest rates for the result you get. No hidden fees, no upsell pressure.",
+  },
 ];
 
 const reviewQuotes = [
@@ -29,42 +45,48 @@ export default function HomePage() {
     <>
       <Hero />
 
-      <section className="py-16 bg-bg-card">
+      <section className="py-20 bg-bg-card">
         <div className="max-w-[1100px] mx-auto px-4">
           <Reveal>
             <SectionHeading
-              title="Why People Choose PitStop Polish"
+              label="Why PitStop Polish"
+              title="Why People Choose Us"
               subtitle="We come to you. We do quality work. People already trust us. Booking is easy."
             />
           </Reveal>
-          <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {whyCards.map((card) => (
               <div
                 key={card.title}
-                className="stagger-item p-6 rounded-xl bg-bg border border-border hover:border-accent transition-colors text-center"
+                className="stagger-item p-6 lg:p-8 rounded-xl bg-bg border border-border hover:border-accent/40 transition-all text-center"
               >
-                <div className="w-12 h-12 rounded-lg bg-accent/15 flex items-center justify-center text-2xl mx-auto mb-4">
+                <div className="w-14 h-14 rounded-xl bg-accent/15 flex items-center justify-center text-2xl mx-auto mb-5">
                   {card.icon}
                 </div>
-                <h3 className="font-bold text-white mb-2">{card.title}</h3>
-                <p className="text-text-muted text-sm m-0">{card.text}</p>
+                <h3 className="text-lg font-bold text-white mb-3">{card.title}</h3>
+                <p className="text-text-muted leading-relaxed m-0">{card.text}</p>
               </div>
             ))}
           </StaggerChildren>
         </div>
       </section>
 
-      <section className="py-16">
+      <section className="py-20">
         <div className="max-w-[1100px] mx-auto px-4">
           <Reveal>
-            <SectionHeading title="What We Offer" />
+            <SectionHeading
+              label="Services"
+              title="What We Offer"
+              subtitle="Interior, exterior, full detail, and add-ons. Clear packages for every need."
+            />
           </Reveal>
-          <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             <div className="stagger-item">
               <ServiceCard
                 title="Interior Detail"
                 description="Deep clean seats, carpets, dash, and trim. Perfect for daily drivers and rideshare vehicles."
                 ctaHref="/services#interior"
+                tag="Interior reset"
               />
             </div>
             <div className="stagger-item">
@@ -72,6 +94,7 @@ export default function HomePage() {
                 title="Exterior Detail"
                 description="Wash, clay, polish, and protect. Restore shine and defend your paint."
                 ctaHref="/services#exterior"
+                tag="Exterior shine"
               />
             </div>
             <div className="stagger-item">
@@ -79,6 +102,7 @@ export default function HomePage() {
                 title="Full Detail"
                 description="Interior + exterior in one visit. The complete reset."
                 ctaHref="/services#full"
+                tag="Full detail"
               />
             </div>
             <div className="stagger-item">
@@ -87,31 +111,39 @@ export default function HomePage() {
                 description="Headlight restoration, leather conditioning, paint correction, and more."
                 ctaText="See options"
                 ctaHref="/services#addons"
+                tag="Add-ons"
               />
             </div>
           </StaggerChildren>
         </div>
       </section>
 
-      <section className="py-16 bg-bg-card">
+      <section className="py-20 bg-bg-card">
         <div className="max-w-[1100px] mx-auto px-4">
           <Reveal>
-            <SectionHeading title="What Toronto Drivers Say" />
+            <SectionHeading
+              label="Reviews"
+              title="What Toronto Drivers Say"
+              subtitle="Real feedback from real customers. 5.0 on Google."
+            />
           </Reveal>
-          <p className="text-center text-text-muted mb-8">
-            ★★★★★ 5.0 · 13 Google Reviews · Trusted by Toronto drivers
-          </p>
-          <StaggerChildren className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {reviewQuotes.map((quote) => (
-              <div key={quote.slice(0, 20)} className="stagger-item">
-                <ReviewCard quote={quote} />
-              </div>
-            ))}
-          </StaggerChildren>
-          <div className="flex flex-wrap gap-4 justify-center mt-8">
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
+            <span className="text-accent text-2xl tracking-wider">★★★★★</span>
+            <span className="text-white font-semibold">5.0</span>
+            <span className="text-text-muted">·</span>
+            <span className="text-text-muted">13 Google Reviews</span>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="md:col-span-3">
+              <ReviewCard quote={reviewQuotes[0]} featured />
+            </div>
+            <ReviewCard quote={reviewQuotes[1]} />
+            <ReviewCard quote={reviewQuotes[2]} />
+          </div>
+          <div className="flex flex-wrap gap-4 justify-center mt-10">
             <Link
               href="/reviews"
-              className="inline-flex py-2 px-5 rounded-lg border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors"
+              className="inline-flex py-3 px-6 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors"
             >
               Read more reviews
             </Link>
@@ -119,7 +151,7 @@ export default function HomePage() {
               href="https://www.google.com/maps?cid=0x89d4cdaa61cd7613:0xf0845188efaf56c6"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex py-2 px-5 rounded-lg text-text-muted hover:text-accent transition-colors"
+              className="inline-flex py-3 px-6 rounded-xl text-text-muted hover:text-accent transition-colors"
             >
               See us on Google
             </a>
@@ -133,10 +165,14 @@ export default function HomePage() {
 
       <HowItWorks />
 
-      <section className="py-16">
+      <section className="py-20">
         <div className="max-w-[1100px] mx-auto px-4">
           <Reveal>
-            <SectionHeading title="We Serve Toronto & Surrounding Areas" />
+            <SectionHeading
+              label="Service area"
+              title="We Serve Toronto & Surrounding Areas"
+              subtitle="Local proof. We come to you."
+            />
           </Reveal>
           <ServiceAreaGrid />
           <p className="text-center mt-8">
@@ -147,16 +183,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-16 bg-bg-card">
+      <section className="py-20 bg-bg-card">
         <div className="max-w-[1100px] mx-auto px-4">
           <Reveal>
-            <SectionHeading title="Common Questions" />
+            <SectionHeading
+              label="FAQ"
+              title="Common Questions"
+              subtitle="Quick answers before you book."
+            />
           </Reveal>
           <FAQAccordion />
-          <p className="text-center mt-8">
+          <p className="text-center mt-10">
             <Link
               href="/faq"
-              className="inline-flex py-2 px-5 rounded-lg border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors"
+              className="inline-flex py-3 px-6 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors"
             >
               All FAQs
             </Link>
@@ -164,10 +204,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <CTASection
-        title="Ready to get your car detailed without leaving home?"
-        subtitle="Book now or call for a quick quote. We'll come to you."
-      />
+      <CTASection />
     </>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const navLinks = [
@@ -14,28 +15,33 @@ const navLinks = [
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-bg/95 backdrop-blur border-b border-border">
-        <div className="max-w-[1100px] mx-auto px-4 flex items-center justify-between h-16">
+      <header className="sticky top-0 z-50 bg-bg/95 backdrop-blur-sm border-b border-border">
+        <div className="max-w-[1100px] mx-auto px-4 flex items-center justify-between h-16 lg:h-18">
           <Link href="/" className="font-bold text-lg text-white tracking-tight">
             PitStop <span className="text-accent">Polish</span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-6" aria-label="Main">
+          <nav className="hidden md:flex items-center gap-8" aria-label="Main">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm text-text-muted hover:text-white transition-colors"
+                className={`text-sm font-medium transition-colors relative after:absolute after:left-0 after:bottom-[-2px] after:h-px after:bg-accent after:transition-transform after:origin-right ${
+                  pathname === link.href
+                    ? "text-white after:w-full"
+                    : "text-text-muted hover:text-white after:w-0 hover:after:w-full after:origin-left"
+                }`}
               >
                 {link.label}
               </Link>
             ))}
             <Link
               href="/contact"
-              className="btn-primary px-5 py-2.5 rounded-lg text-bg font-semibold text-sm bg-accent hover:bg-accent-hover transition-colors"
+              className="px-5 py-2.5 rounded-xl text-bg font-semibold text-sm bg-accent hover:bg-accent-hover transition-colors"
             >
               Book Now
             </Link>
@@ -43,7 +49,7 @@ export default function Navbar() {
 
           <a
             href="tel:+16478237338"
-            className="hidden md:inline-flex btn-primary px-5 py-2.5 rounded-lg text-bg font-semibold text-sm bg-accent hover:bg-accent-hover transition-colors"
+            className="hidden md:inline-flex px-5 py-2.5 rounded-xl text-bg font-semibold text-sm bg-accent hover:bg-accent-hover transition-colors"
             aria-label="Call us"
           >
             Call (647) 823-7338
@@ -63,7 +69,6 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Mobile menu */}
       <div
         className={`fixed inset-0 z-[100] bg-bg flex flex-col p-8 transition-transform duration-300 md:hidden ${
           mobileOpen ? "translate-x-0" : "translate-x-full"
@@ -95,14 +100,14 @@ export default function Navbar() {
           ))}
           <a
             href="tel:+16478237338"
-            className="mt-4 py-3 px-4 rounded-lg bg-accent text-bg font-semibold text-center"
+            className="mt-4 py-3 px-4 rounded-xl bg-accent text-bg font-semibold text-center"
             onClick={() => setMobileOpen(false)}
           >
             Call (647) 823-7338
           </a>
           <Link
             href="/contact"
-            className="py-3 px-4 rounded-lg border-2 border-accent text-accent font-semibold text-center"
+            className="py-3 px-4 rounded-xl border-2 border-accent text-accent font-semibold text-center"
             onClick={() => setMobileOpen(false)}
           >
             Get a Quote

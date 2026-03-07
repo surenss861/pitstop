@@ -37,37 +37,35 @@ const defaultFaqs: FAQItem[] = [
   },
 ];
 
-type FAQAccordionProps = {
-  items?: FAQItem[];
-};
+type FAQAccordionProps = { items?: FAQItem[] };
 
 export default function FAQAccordion({ items = defaultFaqs }: FAQAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <div className="max-w-2xl mx-auto space-y-0">
+    <div className="max-w-2xl mx-auto">
       {items.map((item, i) => (
         <div
           key={i}
-          className="border-b border-border"
+          className="border-b border-border transition-colors hover:border-border/80"
         >
           <button
             type="button"
-            className="w-full py-4 flex justify-between items-center gap-4 text-left font-semibold text-white hover:text-accent transition-colors"
+            className="w-full py-5 flex justify-between items-center gap-4 text-left font-semibold text-white hover:text-accent transition-colors"
             onClick={() => setOpenIndex(openIndex === i ? null : i)}
             aria-expanded={openIndex === i}
           >
             {item.question}
-            <span className="text-accent text-xl flex-shrink-0">
+            <span className="text-accent text-xl flex-shrink-0 transition-transform duration-200">
               {openIndex === i ? "−" : "+"}
             </span>
           </button>
           <div
-            className={`overflow-hidden transition-all duration-300 ${
+            className={`overflow-hidden transition-all duration-300 ease-out ${
               openIndex === i ? "max-h-96" : "max-h-0"
             }`}
           >
-            <p className="pb-4 text-text-muted text-sm">{item.answer}</p>
+            <p className="pb-5 text-text-muted leading-relaxed">{item.answer}</p>
           </div>
         </div>
       ))}

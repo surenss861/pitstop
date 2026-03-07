@@ -17,15 +17,20 @@ const areas = [
 
 export default function ServiceAreaGrid() {
   return (
-    <div className="flex flex-wrap gap-3 justify-center">
-      {areas.map((area) => (
-        <span
-          key={area}
-          className="px-4 py-2 rounded-lg bg-bg-card border border-border text-sm text-white/90"
-        >
-          {area}
-        </span>
-      ))}
+    <div>
+      <p className="text-text-muted text-center mb-6 max-w-[32ch] mx-auto">
+        Serving Toronto and nearby neighborhoods. We come to you.
+      </p>
+      <div className="flex flex-wrap gap-3 justify-center">
+        {areas.map((area) => (
+          <span
+            key={area}
+            className="px-4 py-2.5 rounded-xl bg-bg-card border border-border text-sm text-white/90 hover:border-accent/40 transition-colors"
+          >
+            {area}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }
