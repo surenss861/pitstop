@@ -75,13 +75,13 @@ export default function BeforeAfterShowcase() {
           />
         </div>
 
-        <div className="flex flex-wrap gap-2 mb-8">
+        <div className="flex gap-2 mb-6 md:mb-8 overflow-x-auto pb-1 md:flex-wrap md:overflow-visible snap-x snap-mandatory md:snap-none">
           {categories.map((cat) => (
             <button
               key={cat}
               type="button"
               onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+              className={`flex-shrink-0 snap-start px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                 activeCategory === cat
                   ? "bg-accent/20 border border-accent/40 text-accent"
                   : "border border-border text-text-muted hover:border-accent/40 hover:text-accent"
@@ -93,15 +93,17 @@ export default function BeforeAfterShowcase() {
         </div>
 
         <StaggerChildren
-          className={`grid gap-3 lg:gap-4 ${isFiltered ? "grid-cols-2 lg:grid-cols-3" : "grid-cols-2 lg:grid-cols-4"}`}
+          className={`flex md:grid overflow-x-auto md:overflow-visible gap-4 md:gap-3 lg:gap-4 snap-x snap-mandatory md:snap-none pb-2 md:pb-0 ${
+            isFiltered ? "md:grid-cols-2 lg:grid-cols-3" : "md:grid-cols-2 lg:grid-cols-4"
+          }`}
           stagger={0.06}
           variant="scale"
         >
           {filtered.map((item) => (
             <div
               key={`${item.src}-${item.label}`}
-              className={`gallery-item-hover stagger-item overflow-hidden rounded-xl border border-border relative ${
-                isFiltered ? "min-h-[200px] lg:min-h-[240px]" : `${item.span} ${item.minH}`
+              className={`gallery-item-hover stagger-item flex-shrink-0 w-[82vw] md:w-auto snap-center overflow-hidden rounded-xl border border-border relative ${
+                isFiltered ? "min-h-[200px] lg:min-h-[240px]" : `min-h-[200px] md:min-h-0 ${item.span} ${item.minH}`.trim()
               }`}
             >
               <Image
@@ -109,14 +111,14 @@ export default function BeforeAfterShowcase() {
                 alt=""
                 fill
                 className="object-cover"
-                sizes="(max-width: 1023px) 50vw, 25vw"
+                sizes="(max-width: 767px) 82vw, (max-width: 1023px) 50vw, 25vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-3 lg:p-4">
+              <div className="absolute bottom-0 left-0 right-0 p-4 lg:p-4">
                 <span className="text-[10px] uppercase tracking-wider text-accent/90 font-semibold">
                   {item.category}
                 </span>
-                <p className="text-white text-sm font-medium mt-0.5">{item.label}</p>
+                <p className="text-white text-base font-medium mt-1">{item.label}</p>
               </div>
             </div>
           ))}

@@ -59,7 +59,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col font-sans">
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 pb-24 md:pb-0">{children}</main>
         <Footer />
         <MobileStickyCTA />
       </body>

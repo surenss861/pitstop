@@ -10,11 +10,11 @@ const groups: { heading: string; areas: string[] }[] = [
 export default function ServiceAreaGrid() {
   return (
     <div>
-      <p className="text-text-muted text-sm text-center mb-6 max-w-[28ch] mx-auto">
+      <p className="text-text-muted text-sm text-center mb-4 md:mb-6 max-w-[28ch] mx-auto">
         We come to you. Same quality at home or work.
       </p>
       <StaggerChildren
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
         stagger={0.08}
         variant="up"
       >
@@ -23,7 +23,7 @@ export default function ServiceAreaGrid() {
             {i > 0 && (
               <div className="hidden lg:block absolute left-0 top-0 bottom-0 w-px bg-border/60 -translate-x-4" aria-hidden />
             )}
-            <h3 className="text-[11px] uppercase tracking-wider text-accent font-semibold mb-3">
+            <h3 className="text-[11px] uppercase tracking-wider text-accent font-semibold mb-2 md:mb-3">
               {group.heading}
             </h3>
             <div className="flex flex-wrap gap-2">

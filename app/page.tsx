@@ -64,7 +64,7 @@ export default function HomePage() {
               </blockquote>
             </div>
             <div className="stagger-item space-y-5">
-              <div className="flex items-center gap-4" aria-hidden>
+              <div className="hidden lg:flex items-center gap-4" aria-hidden>
                 <div className="h-px flex-1 bg-gradient-to-r from-transparent to-border" />
                 <span className="text-[10px] uppercase tracking-[0.2em] text-accent/80 font-semibold">5-star Google rated</span>
                 <div className="h-px flex-1 bg-gradient-to-l from-transparent to-border" />
@@ -176,7 +176,7 @@ export default function HomePage() {
             <div className="stagger-item">
               <ReviewCard quote={reviewQuotes[1]} />
             </div>
-            <div className="stagger-item">
+            <div className="stagger-item hidden md:block">
               <ReviewCard quote={reviewQuotes[2]} />
             </div>
           </StaggerChildren>
@@ -206,10 +206,10 @@ export default function HomePage() {
       <HowItWorks />
 
       {/* Service areas — compressed */}
-      <section className="py-14 lg:py-16">
+      <section className="py-10 md:py-14 lg:py-16">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <Reveal variant="scale">
-            <div className="text-left mb-8">
+            <div className="text-left mb-6 md:mb-8">
               <SectionHeading
                 align="left"
                 label="Service area"
@@ -219,9 +219,9 @@ export default function HomePage() {
             </div>
           </Reveal>
           <ServiceAreaGrid />
-          <p className="text-left mt-6">
+          <p className="text-left mt-4 md:mt-6">
             <Link href="/service-areas" className="text-text-muted hover:text-accent text-sm font-medium">
-              Full service areas
+              View full service areas
             </Link>
           </p>
         </div>

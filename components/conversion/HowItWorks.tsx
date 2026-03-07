@@ -33,7 +33,7 @@ export default function HowItWorks() {
           >
             {steps.map((step) => (
               <div key={step.num} className="stagger-item relative flex gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-accent/20 text-accent font-bold flex items-center justify-center text-lg border border-accent/30">
+                <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-accent/20 text-accent font-bold flex items-center justify-center text-base md:text-lg border border-accent/30">
                   {step.num}
                 </div>
                 <div className="flex-1 min-w-0">

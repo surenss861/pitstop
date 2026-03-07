@@ -73,7 +73,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-[85vh] flex flex-col justify-center overflow-hidden lg:min-h-[95vh]">
+    <section className="relative min-h-0 flex flex-col justify-center overflow-hidden md:min-h-[85vh] lg:min-h-[95vh]">
       {/* Atmosphere */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <div className="absolute inset-0 bg-gradient-to-b from-bg via-bg/98 to-bg" />
@@ -85,31 +85,31 @@ export default function Hero() {
         />
       </div>
 
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 lg:pt-16 lg:pb-20">
-        <div className="lg:grid lg:grid-cols-[minmax(0,0.45fr)_minmax(0,1fr)] lg:gap-12 xl:gap-16 lg:items-center">
-          {/* Left: copy only */}
-          <div className="max-w-[30rem]">
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-8 md:pt-12 md:pb-16 lg:pt-16 lg:pb-20">
+        <div className="flex flex-col lg:grid lg:grid-cols-[minmax(0,0.45fr)_minmax(0,1fr)] lg:gap-12 xl:gap-16 lg:items-center">
+          {/* Copy: first on mobile, left on desktop */}
+          <div className="max-w-[30rem] order-1">
             <p
               ref={eyebrowRef}
-              className="text-[10px] uppercase tracking-[0.25em] text-accent font-semibold mb-5"
+              className="text-[10px] uppercase tracking-[0.25em] text-accent font-semibold mb-3 md:mb-5"
             >
               Mobile Detailing Toronto
             </p>
-            <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] xl:text-[3.25rem] font-extrabold text-white leading-[1.06] tracking-tighter mb-5">
-              <span ref={line1Ref} className="block">
+            <h1 className="text-2xl leading-tight font-extrabold text-white tracking-tighter mb-3 md:mb-5 md:text-3xl lg:text-[2.75rem] xl:text-[3.25rem] md:leading-[1.06]">
+              <span ref={line1Ref} className="block md:block">
                 Mobile detailing
               </span>
               <span ref={line2Ref} className="block text-accent">
                 that comes to you.
               </span>
               <span ref={line3Ref} className="block mt-1 text-white/95">
-                Done right in Toronto.
+                Done right across Toronto.
               </span>
             </h1>
-            <p ref={subRef} className="text-base text-text-muted leading-relaxed mb-3 max-w-[28ch] tracking-tight">
-              Interior and exterior at your driveway or location. Real attention to detail, local 5-star service.
+            <p ref={subRef} className="text-sm text-text-muted leading-relaxed mb-2 max-w-[28ch] tracking-tight md:text-base md:mb-3">
+              At your driveway or location. 5-star local service.
             </p>
-            <p className="text-sm text-accent/90 font-medium mb-5 tracking-tight">
+            <p className="text-xs text-accent/90 font-medium mb-4 tracking-tight md:text-sm md:mb-5">
               At your driveway. One visit.
             </p>
 
@@ -122,43 +122,43 @@ export default function Hero() {
               <span className="text-text-muted text-sm">Toronto</span>
             </div>
 
-            <div ref={statRef} className="flex items-center gap-6 mb-6 text-xs text-text-muted tracking-tight">
+            <div ref={statRef} className="hidden md:flex items-center gap-6 mb-6 text-xs text-text-muted tracking-tight">
               <span><strong className="text-white font-semibold">5.0</strong> rating</span>
               <span><strong className="text-white font-semibold">Toronto</strong> & GTA</span>
               <span><strong className="text-white font-semibold">Mobile</strong> — we come to you</span>
             </div>
 
-            <div ref={ctaRef} className="flex flex-wrap gap-4">
+            <div ref={ctaRef} className="flex flex-wrap gap-3 md:gap-4">
               <Link
                 href="/contact"
-                className="btn-primary-hero inline-flex py-4 px-8 rounded-xl bg-accent text-bg font-semibold hover:bg-accent-hover transition-all duration-300"
+                className="btn-primary-hero inline-flex py-3.5 px-6 md:py-4 md:px-8 rounded-xl bg-accent text-bg font-semibold hover:bg-accent-hover transition-all duration-300 text-sm md:text-base"
               >
                 Book Now
               </Link>
               <a
                 href="tel:+16478237338"
-                className="inline-flex py-4 px-8 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors"
+                className="inline-flex py-3.5 px-6 md:py-4 md:px-8 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors text-sm md:text-base"
               >
-                Call (647) 823-7338
+                Call
               </a>
             </div>
           </div>
 
-          {/* Right: campaign panel — bleeds, no box */}
+          {/* Image: below copy on mobile, right on desktop */}
           <div
             ref={visualRef}
-            className="relative mt-12 lg:mt-0 w-full lg:min-h-[min(82vh,720px)] flex items-center"
+            className="relative mt-8 w-full min-h-[240px] md:min-h-0 md:mt-12 lg:mt-0 lg:min-h-[min(82vh,720px)] flex items-center order-2"
           >
             <div
               ref={maskRef}
-              className="absolute inset-0 lg:inset-y-0 lg:left-0 lg:right-[-5vw] xl:right-[-8vw] overflow-hidden rounded-xl lg:rounded-none lg:rounded-l-2xl"
+              className="absolute inset-0 rounded-xl overflow-hidden lg:inset-y-0 lg:left-0 lg:right-[-5vw] xl:right-[-8vw] lg:rounded-none lg:rounded-l-2xl"
               style={{ clipPath: "inset(0 0 0 0)" }}
             >
               <Image
                 src={HERO_IMAGE_URL}
                 alt=""
                 fill
-                className="object-cover object-center lg:object-[70%_50%]"
+                className="object-cover object-center object-[50%_35%] md:object-center lg:object-[70%_50%]"
                 sizes="(max-width: 1023px) 100vw, 65vw"
                 priority
               />
@@ -182,11 +182,11 @@ export default function Hero() {
               </div>
             </div>
 
-            <div className="absolute bottom-6 left-6 right-6 sm:left-8 sm:right-auto sm:max-w-[220px] flex flex-col gap-3 z-10">
-              <span className="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-bg/90 backdrop-blur-md border border-white/10 text-white text-sm font-semibold shadow-xl">
+            <div className="absolute bottom-4 left-4 right-4 sm:left-8 sm:right-auto sm:max-w-[220px] flex flex-col gap-2 z-10 md:bottom-6 md:left-6 md:gap-3">
+              <span className="inline-flex items-center gap-2 px-3 py-2 md:px-4 md:py-3 rounded-xl bg-bg/90 backdrop-blur-md border border-white/10 text-white text-xs md:text-sm font-semibold shadow-xl">
                 <span className="text-accent">★★★★★</span> 5.0 · 13 reviews
               </span>
-              <span className="inline-flex items-center px-4 py-2.5 rounded-xl bg-bg/80 backdrop-blur-md border border-white/10 text-text-muted text-xs font-medium">
+              <span className="hidden sm:inline-flex items-center px-4 py-2.5 rounded-xl bg-bg/80 backdrop-blur-md border border-white/10 text-text-muted text-xs font-medium">
                 Mobile Detailing Toronto
               </span>
             </div>

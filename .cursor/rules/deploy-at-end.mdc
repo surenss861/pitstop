@@ -1,0 +1,16 @@
+---
+description: Deploy to GitHub at the end of every task. Not optional.
+alwaysApply: true
+---
+
+# Deploy at end of every task
+
+**Rule:** At the end of **every** task that changes code or content, you **must** deploy to GitHub.
+
+- Stage relevant files (e.g. `git add app/ components/ docs/` or the files you changed).
+- Commit with a clear message.
+- Push to `origin main`: `git push origin main`.
+
+This is **not optional**. The user expects the repo to be up to date after each task so Vercel (or other CI) can deploy.
+
+If the task did not touch any files, skip deployment.

@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 type ServiceCardProps = {
   title: string;
@@ -25,6 +28,16 @@ export default function ServiceCard({
   featured = false,
   premiumLine,
 }: ServiceCardProps) {
+  const [isNarrow, setIsNarrow] = useState(false);
+  useEffect(() => {
+    const check = () => setIsNarrow(typeof window !== "undefined" && window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  const includesDisplay = isNarrow && includes.length > 2 ? includes.slice(0, 2) : includes;
+  const showIncludesMore = isNarrow && includes.length > 2;
+
   return (
     <div
       className={`rounded-xl border group relative overflow-hidden ${
@@ -68,14 +81,17 @@ export default function ServiceCard({
       {featured && premiumLine && (
         <p className="text-sm font-semibold text-accent/95 mb-5 tracking-tight">{premiumLine}</p>
       )}
-      {includes.length > 0 && (
-        <ul className={`text-text-muted space-y-1.5 mb-6 tracking-tight ${featured ? "text-sm" : "text-sm"}`}>
-          {includes.map((item) => (
+      {(includesDisplay.length > 0 || showIncludesMore) && (
+        <ul className={`text-text-muted space-y-1.5 mb-4 md:mb-6 tracking-tight ${featured ? "text-sm" : "text-sm"}`}>
+          {includesDisplay.map((item) => (
             <li key={item} className="flex items-center gap-2">
               <span className="text-accent/80 font-bold">·</span>
               {item}
             </li>
           ))}
+          {showIncludesMore && (
+            <li className="text-accent/80 text-xs font-medium">See details for full list</li>
+          )}
         </ul>
       )}
       {ctaHref && (

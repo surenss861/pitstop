@@ -55,13 +55,13 @@ export default function FAQAccordion({ items = defaultFaqs }: FAQAccordionProps)
           >
             <button
               type="button"
-              className="w-full py-5 px-1 flex justify-between items-center gap-4 text-left font-semibold text-white hover:text-accent transition-colors"
+              className="w-full min-h-[48px] py-4 md:py-5 px-4 flex justify-between items-center gap-4 text-left font-semibold text-white hover:text-accent transition-colors"
               onClick={() => setOpenIndex(isOpen ? null : i)}
               aria-expanded={isOpen}
             >
               {item.question}
               <span
-                className="text-accent text-xl flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-full border border-accent/30 transition-all duration-300"
+                className="text-accent text-xl flex-shrink-0 w-10 h-10 md:w-9 md:h-9 flex items-center justify-center rounded-full border border-accent/30 transition-all duration-300 min-w-[2.5rem]"
                 aria-hidden
               >
                 {isOpen ? "−" : "+"}
@@ -72,7 +72,7 @@ export default function FAQAccordion({ items = defaultFaqs }: FAQAccordionProps)
                 isOpen ? "max-h-96" : "max-h-0"
               }`}
             >
-              <p className="pb-5 px-1 text-text-muted leading-relaxed">{item.answer}</p>
+              <p className="pb-5 px-4 md:px-1 text-text-muted leading-relaxed max-w-[65ch]">{item.answer}</p>
             </div>
           </div>
         );
