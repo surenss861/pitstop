@@ -7,6 +7,9 @@ import * as THREE from "three";
 
 const WHEEL_URL = "/tuner_car_wheel_free.glb";
 
+// Tilt so rim/spokes read — not flat dead-on. Slight angle = depth and silhouette.
+const WHEEL_TILT_X = 0.25;
+
 function WheelModel({ mobile, reduceMotion }: { mobile: boolean; reduceMotion: boolean }) {
   const groupRef = useRef<THREE.Group>(null);
   const { scene } = useGLTF(WHEEL_URL);
@@ -17,7 +20,7 @@ function WheelModel({ mobile, reduceMotion }: { mobile: boolean; reduceMotion: b
     const size = new THREE.Vector3();
     box.getSize(size);
     const maxDim = Math.max(size.x, size.y, size.z) || 1;
-    const targetSize = 1.8;
+    const targetSize = 2;
     const scale = targetSize / maxDim;
 
     clone.traverse((child) => {
@@ -30,10 +33,11 @@ function WheelModel({ mobile, reduceMotion }: { mobile: boolean; reduceMotion: b
           const newMats = mats.map((mat) => {
             if (mat instanceof THREE.MeshStandardMaterial) {
               const m = mat.clone();
-              m.metalness = Math.max(m.metalness, 0.75);
-              m.roughness = Math.min(m.roughness, 0.45);
-              m.envMapIntensity = 1.2;
-              m.color = new THREE.Color(0.28, 0.28, 0.3);
+              m.metalness = Math.max(m.metalness, 0.82);
+              m.roughness = Math.min(m.roughness, 0.28);
+              m.envMapIntensity = 1.4;
+              // Readable metal, not crushed black — luxury = visible form
+              m.color = new THREE.Color(0.42, 0.42, 0.45);
               return m;
             }
             return mat;
@@ -51,14 +55,19 @@ function WheelModel({ mobile, reduceMotion }: { mobile: boolean; reduceMotion: b
     if (groupRef.current && !reduceMotion) {
       groupRef.current.rotation.y = state.clock.elapsedTime * rotationSpeed;
       if (!mobile) {
-        groupRef.current.rotation.x = state.pointer.y * 0.02;
+        groupRef.current.rotation.x = WHEEL_TILT_X + state.pointer.y * 0.02;
         groupRef.current.rotation.z = state.pointer.x * -0.015;
       }
     }
   });
 
   return (
-    <group ref={groupRef} position={[0.4, 0, 0]} scale={scale}>
+    <group
+      ref={groupRef}
+      position={[0.55, -0.05, 0]}
+      scale={scale}
+      rotation={[WHEEL_TILT_X, 0, 0]}
+    >
       <primitive object={clonedScene} />
     </group>
   );
@@ -90,7 +99,7 @@ function WheelParticles({ mobile }: { mobile: boolean }) {
         size={mobile ? 0.02 : 0.03}
         color="#c9a227"
         transparent
-        opacity={0.4}
+        opacity={0.35}
         sizeAttenuation
       />
     </points>
@@ -102,18 +111,41 @@ function Scene({ mobile, reduceMotion }: { mobile: boolean; reduceMotion: boolea
     <>
       <color attach="background" args={["#0d0d0d"]} />
 
-      <directionalLight position={[2, 4, 3]} intensity={1.2} castShadow={false} />
-      <directionalLight position={[-2, 1, 2]} intensity={0.7} />
-      <pointLight position={[1.5, 0.5, 1]} intensity={0.6} color="#c9a227" distance={8} />
-      <pointLight position={[-1, -0.5, 1]} intensity={0.25} color="#a0b0c0" distance={6} />
-      <ambientLight intensity={0.35} />
-      <pointLight position={[1.2, 0, -0.8]} intensity={0.4} color="#c9a227" distance={5} decay={2} />
+      {/* Strong key from upper front-right — readable form, no crush */}
+      <directionalLight
+        position={[2.5, 3, 2.5]}
+        intensity={1.8}
+        castShadow={false}
+      />
+
+      {/* Softer cool fill from left */}
+      <directionalLight position={[-2.5, 0.5, 1.5]} intensity={0.65} />
+
+      {/* Rear rim light — silhouette separation from background */}
+      <pointLight
+        position={[0.3, 0.2, -1.5]}
+        intensity={0.7}
+        color="#c9a227"
+        distance={5}
+        decay={2}
+      />
+
+      {/* Amber accent front-right — one metallic highlight streak feel */}
+      <pointLight
+        position={[1.8, 0.8, 1.2]}
+        intensity={0.5}
+        color="#c9a227"
+        distance={6}
+      />
+
+      {/* Dim ambient so blacks don't crush — form still reads */}
+      <ambientLight intensity={0.5} />
 
       <Suspense
         fallback={
           <mesh position={[0.5, 0, 0]}>
             <sphereGeometry args={[0.3, 16, 16]} />
-            <meshStandardMaterial color="#333" metalness={0.8} roughness={0.3} />
+            <meshStandardMaterial color="#444" metalness={0.8} roughness={0.3} />
           </mesh>
         }
       >
@@ -129,7 +161,10 @@ type HeroSceneProps = { mobile?: boolean; reduceMotion?: boolean };
 export default function HeroScene({ mobile = false, reduceMotion = false }: HeroSceneProps) {
   return (
     <Canvas
-      camera={{ position: [-0.5, 0, 1.2], fov: 52 }}
+      camera={{
+        position: [-0.35, 0.08, 1.15],
+        fov: 48,
+      }}
       dpr={mobile ? [1, 1.2] : [1, 1.5]}
       gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
       className="w-full h-full"
@@ -138,4 +173,3 @@ export default function HeroScene({ mobile = false, reduceMotion = false }: Hero
     </Canvas>
   );
 }
-

@@ -1,8 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
+
+// Set to a path (e.g. "/hero-wheel.jpg") to use a photo instead of 3D. Leave empty for wheel GLB.
+const HERO_IMAGE_URL = process.env.NEXT_PUBLIC_HERO_IMAGE || "";
 
 const HeroScene = dynamic(() => import("./HeroScene"), {
   ssr: false,
@@ -28,9 +32,10 @@ export default function Hero() {
     return () => mq.removeEventListener("change", handler);
   }, []);
 
+  const usePhotoHero = Boolean(HERO_IMAGE_URL);
+
   return (
     <section className="relative min-h-[70vh] flex flex-col justify-center overflow-hidden lg:min-h-[85vh]">
-      {/* Desktop: copy left, wheel right. Mobile: copy full-width, wheel below/simpler */}
       <div className="relative z-10 max-w-[1100px] mx-auto w-full px-4 py-12 lg:py-16 lg:grid lg:grid-cols-[1fr,1fr] lg:gap-8 lg:items-center">
         <div className="max-w-xl">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
@@ -64,10 +69,20 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* 3D wheel — always show so it's visible; motion reduced when user prefers */}
         <div className="relative mt-10 lg:mt-0 min-h-[300px] sm:min-h-[360px] lg:min-h-[480px] w-full flex items-stretch">
           <div className="absolute inset-0 w-full h-full min-h-[300px] lg:min-h-[480px] lg:left-1/4 lg:right-0">
-            <HeroScene mobile={mobile} reduceMotion={reduceMotion} />
+            {usePhotoHero ? (
+              <Image
+                src={HERO_IMAGE_URL}
+                alt=""
+                fill
+                className="object-cover object-left"
+                sizes="(max-width: 1023px) 100vw, 50vw"
+                priority
+              />
+            ) : (
+              <HeroScene mobile={mobile} reduceMotion={reduceMotion} />
+            )}
           </div>
         </div>
       </div>
