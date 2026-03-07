@@ -19,21 +19,24 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-bg/95 backdrop-blur-sm border-b border-border">
-        <div className="max-w-[1100px] mx-auto px-4 flex items-center justify-between h-16 lg:h-[4.25rem]">
-          <Link href="/" className="font-bold text-lg text-white tracking-tight">
+      <header className="sticky top-0 z-50 bg-bg/90 backdrop-blur-md border-b border-white/10 shadow-[0_1px_0_0_rgba(255,255,255,0.04)]">
+        <div className="max-w-[1100px] mx-auto px-5 lg:px-6 flex items-center justify-between h-[4.25rem] lg:h-[4.5rem]">
+          <Link
+            href="/"
+            className="font-extrabold text-xl text-white tracking-tight hover:text-accent transition-colors"
+          >
             PitStop <span className="text-accent">Polish</span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-6" aria-label="Main">
+          <nav className="hidden md:flex items-center gap-8" aria-label="Main">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-[13px] font-medium tracking-tight transition-colors relative after:absolute after:left-0 after:bottom-[-2px] after:h-px after:bg-accent after:transition-transform after:origin-right ${
+                className={`text-[13px] font-semibold tracking-tight transition-colors relative py-1 after:absolute after:left-0 after:bottom-0 after:h-[2px] after:bg-accent after:transition-all after:duration-200 ${
                   pathname === link.href
                     ? "text-white after:w-full"
-                    : "text-text-muted hover:text-white after:w-0 hover:after:w-full after:origin-left"
+                    : "text-text-muted hover:text-white after:w-0 hover:after:w-full"
                 }`}
               >
                 {link.label}
@@ -41,7 +44,7 @@ export default function Navbar() {
             ))}
             <Link
               href="/contact"
-              className="px-5 py-2.5 rounded-xl text-bg font-semibold text-sm bg-accent hover:bg-accent-hover transition-colors"
+              className="px-6 py-3 rounded-xl text-bg font-semibold text-sm bg-accent hover:bg-accent-hover transition-all shadow-[0_0_0_0_rgba(201,162,39,0.2)] hover:shadow-[0_0_20px_2px_rgba(201,162,39,0.25)]"
             >
               Book Now
             </Link>
@@ -49,7 +52,7 @@ export default function Navbar() {
 
           <a
             href="tel:+16478237338"
-            className="hidden md:inline-flex px-5 py-2.5 rounded-xl text-bg font-semibold text-sm bg-accent hover:bg-accent-hover transition-colors"
+            className="hidden md:inline-flex px-6 py-3 rounded-xl text-bg font-semibold text-sm bg-accent hover:bg-accent-hover transition-all shadow-[0_0_0_0_rgba(201,162,39,0.2)] hover:shadow-[0_0_20px_2px_rgba(201,162,39,0.25)]"
             aria-label="Call us"
           >
             Call (647) 823-7338

@@ -5,7 +5,10 @@ import Image from "next/image";
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 
-const HERO_IMAGE_URL = process.env.NEXT_PUBLIC_HERO_IMAGE || "";
+// Premium fallback: glossy black car detail (Unsplash). Override with NEXT_PUBLIC_HERO_IMAGE.
+const DEFAULT_HERO_IMAGE =
+  "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&q=85";
+const HERO_IMAGE_URL = process.env.NEXT_PUBLIC_HERO_IMAGE || DEFAULT_HERO_IMAGE;
 
 export default function Hero() {
   const navRef = useRef<HTMLElement | null>(null);
@@ -50,13 +53,29 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-[75vh] flex flex-col justify-center overflow-hidden lg:min-h-[88vh]">
+    <section className="relative min-h-[80vh] flex flex-col justify-center overflow-hidden lg:min-h-[90vh]">
+      {/* Atmosphere: warm radial, amber glow, light wash */}
       <div
-        className="absolute inset-0 pointer-events-none bg-gradient-to-b from-bg via-bg/95 to-bg lg:via-transparent"
+        className="absolute inset-0 pointer-events-none"
         aria-hidden
-      />
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-bg via-bg/98 to-bg" />
+        <div
+          className="absolute inset-0 bg-[radial-gradient(ellipse_100%_80%_at_70%_50%,rgba(201,162,39,0.08)_0%,transparent_55%)]"
+          aria-hidden
+        />
+        <div
+          className="absolute bottom-0 right-0 w-[70%] h-[60%] bg-[radial-gradient(ellipse_at_bottom_right,rgba(201,162,39,0.06)_0%,transparent_50%)]"
+          aria-hidden
+        />
+        <div
+          className="absolute inset-0 opacity-100"
+          style={{ background: "linear-gradient(to bottom right, rgba(255,255,255,0.02) 0%, transparent 40%, transparent 100%)" }}
+          aria-hidden
+        />
+      </div>
 
-      <div className="relative z-10 max-w-[1200px] mx-auto w-full px-4 py-12 lg:py-16 lg:grid lg:grid-cols-[0.95fr,1.05fr] lg:gap-16 lg:items-center">
+      <div className="relative z-10 max-w-[1280px] mx-auto w-full px-4 py-12 lg:py-16 lg:grid lg:grid-cols-[0.92fr,1.08fr] lg:gap-14 lg:items-center">
         <div className="max-w-[28rem]">
           <h1 className="text-3xl md:text-4xl lg:text-[2.9rem] xl:text-[3.4rem] font-extrabold text-white leading-[1.08] tracking-tighter mb-6">
             <span ref={line1Ref} className="block">
@@ -66,7 +85,7 @@ export default function Hero() {
               that comes to you.
             </span>
             <span ref={line3Ref} className="block mt-1 text-white/95">
-              Done right across Toronto.
+              Done right in Toronto.
             </span>
           </h1>
           <p
@@ -102,44 +121,41 @@ export default function Hero() {
           </div>
         </div>
 
+        {/* Editorial panel: taller, bleeds, edge fade, floating badges */}
         <div
           ref={visualRef}
-          className="relative mt-14 lg:mt-0 min-h-[320px] sm:min-h-[380px] lg:min-h-[min(65vh,520px)] w-full rounded-2xl overflow-hidden"
+          className="relative mt-14 lg:mt-0 w-full lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:w-[58%] lg:max-w-[720px] min-h-[340px] sm:min-h-[400px] lg:min-h-[min(78vh,680px)]"
         >
           <div
             ref={maskRef}
-            className="absolute inset-0 rounded-2xl overflow-hidden"
+            className="absolute inset-0 overflow-hidden rounded-2xl lg:rounded-l-2xl lg:rounded-r-3xl"
             style={{ clipPath: "inset(0 0 0 0)" }}
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-accent/10 pointer-events-none" />
-            {HERO_IMAGE_URL ? (
-              <Image
-                src={HERO_IMAGE_URL}
-                alt=""
-                fill
-                className="object-cover object-center"
-                sizes="(max-width: 1023px) 100vw, 55vw"
-                priority
-              />
-            ) : (
-              <div className="absolute inset-0 bg-bg-card flex flex-col items-center justify-center gap-4 p-8 text-center border border-border rounded-2xl">
-                <div className="w-20 h-20 rounded-full bg-accent/10 flex items-center justify-center text-3xl">
-                  ✨
-                </div>
-                <p className="text-text-muted text-sm max-w-[260px]">
-                  Add a premium hero image: glossy car, wheel detail, or before/after. Set{" "}
-                  <code className="text-accent/90 text-xs">NEXT_PUBLIC_HERO_IMAGE</code> or add to{" "}
-                  <code className="text-accent/90 text-xs">public/</code>.
-                </p>
-              </div>
-            )}
+            <Image
+              src={HERO_IMAGE_URL}
+              alt=""
+              fill
+              className="object-cover object-center"
+              sizes="(max-width: 1023px) 100vw, 58vw"
+              priority
+            />
+            {/* Edge fade + dark overlay for depth */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              aria-hidden
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-bg/90 via-bg/20 to-transparent lg:from-bg/80" />
+              <div className="absolute inset-0 bg-gradient-to-t from-bg/70 via-transparent to-transparent" />
+              <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-bg to-transparent lg:w-32" />
+            </div>
           </div>
 
-          <div className="absolute bottom-5 left-5 right-5 lg:right-auto lg:max-w-[220px] flex flex-col gap-2">
-            <span className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-bg/95 backdrop-blur-sm border border-white/10 text-white text-sm font-medium shadow-lg">
+          {/* Floating trust + tag */}
+          <div className="absolute bottom-6 left-6 right-6 lg:left-8 lg:right-auto lg:max-w-[240px] flex flex-col gap-3">
+            <span className="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-bg/90 backdrop-blur-md border border-white/10 text-white text-sm font-semibold shadow-xl">
               <span className="text-accent">★★★★★</span> 5.0 · 13 reviews
             </span>
-            <span className="inline-flex items-center px-4 py-2 rounded-xl bg-bg/90 backdrop-blur-sm border border-white/10 text-text-muted text-xs font-medium">
+            <span className="inline-flex items-center px-4 py-2.5 rounded-xl bg-bg/80 backdrop-blur-md border border-white/10 text-text-muted text-xs font-medium">
               Mobile Detailing Toronto
             </span>
           </div>
@@ -147,4 +163,3 @@ export default function Hero() {
       </div>
     </section>
   );
-}
