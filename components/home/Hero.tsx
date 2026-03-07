@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 
-// Detailing-proof hero: polished reflection / premium care. Override with NEXT_PUBLIC_HERO_IMAGE.
+// Hero: use a detailing image (polished hood, wheel finish, interior detail). See docs/IMAGE_DIRECTION.md.
 const DEFAULT_HERO_IMAGE =
   "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=1200&q=85";
 const HERO_IMAGE_URL = process.env.NEXT_PUBLIC_HERO_IMAGE || DEFAULT_HERO_IMAGE;
@@ -114,11 +114,14 @@ export default function Hero() {
                 Done right in Toronto.
               </span>
             </h1>
-            <p ref={subRef} className="text-base text-text-muted leading-relaxed mb-6 max-w-[28ch] tracking-tight">
+            <p ref={subRef} className="text-base text-text-muted leading-relaxed mb-3 max-w-[28ch] tracking-tight">
               Interior and exterior at your driveway or location. Real attention to detail, local 5-star service.
             </p>
+            <p className="text-sm text-accent/90 font-medium mb-5 tracking-tight">
+              At your driveway. One visit.
+            </p>
 
-            <div ref={trustRef} className="flex flex-wrap items-center gap-2 mb-5">
+            <div ref={trustRef} className="flex flex-wrap items-center gap-2 mb-4">
               <span className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-accent/10 border border-accent/25 text-accent font-semibold text-sm">
                 <span className="tracking-wider">★★★★★</span> 5.0
               </span>
@@ -127,7 +130,7 @@ export default function Hero() {
               <span className="text-text-muted text-sm">Toronto</span>
             </div>
 
-            <div ref={statRef} className="flex items-center gap-6 mb-8 text-xs text-text-muted tracking-tight">
+            <div ref={statRef} className="flex items-center gap-6 mb-6 text-xs text-text-muted tracking-tight">
               <span><strong className="text-white font-semibold">5.0</strong> rating</span>
               <span><strong className="text-white font-semibold">Toronto</strong> & GTA</span>
               <span><strong className="text-white font-semibold">Mobile</strong> — we come to you</span>

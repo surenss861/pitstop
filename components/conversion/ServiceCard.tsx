@@ -25,14 +25,21 @@ export default function ServiceCard({
 }: ServiceCardProps) {
   return (
     <div
-      className={`card-hover-lift rounded-xl bg-bg-card border border-border hover:border-accent/50 hover:shadow-[0_0_0_1px_rgba(201,162,39,0.2)] group relative overflow-hidden ${
-        featured ? "p-8 lg:p-10 border-l-4 border-l-accent bg-gradient-to-br from-accent/[0.06] to-bg-card" : "p-6 lg:p-8"
+      className={`rounded-xl border group relative overflow-hidden ${
+        featured
+          ? "card-hover-lift p-8 lg:p-10 border-accent/30 bg-gradient-to-br from-accent/[0.08] via-bg-card to-bg-card shadow-[0_0_0_1px_rgba(201,162,39,0.1),inset_0_1px_0_rgba(255,255,255,0.03)] hover:border-accent/50"
+          : "card-hover-lift p-6 lg:p-8 border-border bg-bg-card hover:border-accent/50 hover:shadow-[0_0_0_1px_rgba(201,162,39,0.2)]"
       }`}
     >
       {featured && (
-        <span className="absolute top-4 right-4 text-[10px] uppercase tracking-wider font-semibold text-accent/90">
-          Most popular
-        </span>
+        <>
+          <div className="absolute inset-0 opacity-30 pointer-events-none" aria-hidden>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-accent/10 to-transparent rounded-full blur-3xl" />
+          </div>
+          <span className="absolute top-4 right-4 text-[10px] uppercase tracking-wider font-semibold text-accent">
+            Most popular
+          </span>
+        </>
       )}
       {tag && (
         <span className="inline-block text-[10px] uppercase tracking-[0.2em] text-accent font-semibold mb-3">

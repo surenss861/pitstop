@@ -43,29 +43,33 @@ export default function HomePage() {
             />
           </Reveal>
           <StaggerChildren
-            className="grid grid-cols-1 lg:grid-cols-[0.88fr,1fr] gap-12 lg:gap-20 items-start"
+            className="grid grid-cols-1 lg:grid-cols-[0.88fr,1fr] gap-12 lg:gap-16 items-start"
             stagger={0.12}
             variant="lateral"
           >
-            <div className="stagger-item space-y-6">
-              <p className="text-lg lg:text-xl text-white/90 leading-relaxed max-w-[32ch]">
+            <div className="stagger-item space-y-6 p-6 lg:p-8 rounded-2xl border border-white/5 bg-bg/50">
+              <p className="text-lg lg:text-xl text-white/95 leading-snug max-w-[32ch] font-medium">
                 {whyStatement}
               </p>
-              <div className="inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-accent/10 border border-accent/25">
-                <span className="text-2xl font-extrabold text-accent">5.0</span>
-                <span className="text-sm text-text-muted">Google · 13 reviews</span>
+              <div className="inline-flex items-center gap-4 px-6 py-4 rounded-xl bg-accent/10 border border-accent/30">
+                <span className="text-4xl font-extrabold text-accent leading-none">5.0</span>
+                <div>
+                  <span className="block text-sm font-semibold text-white">Google</span>
+                  <span className="text-xs text-text-muted">13 reviews</span>
+                </div>
               </div>
-              <blockquote className="border-l-2 border-accent/50 pl-4 text-sm text-text-muted italic max-w-[28ch]">
-                &ldquo;{whyMiniQuote}&rdquo; <cite className="not-italic text-accent/90 text-xs mt-1 block">— Google review · Toronto</cite>
+              <blockquote className="border-l-2 border-accent pl-4 text-base text-white/90 italic max-w-[28ch] leading-relaxed">
+                &ldquo;{whyMiniQuote}&rdquo;
+                <cite className="not-italic text-accent/90 text-xs font-medium mt-2 block uppercase tracking-wider">Google review · Toronto</cite>
               </blockquote>
             </div>
-            <ul className="stagger-item space-y-6">
+            <ul className="stagger-item space-y-5">
               {whyProof.map(({ label, line }) => (
                 <li key={label} className="flex items-start gap-4">
-                  <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-accent mt-2.5" />
+                  <span className="flex-shrink-0 w-2 h-2 rounded-full bg-accent mt-2" />
                   <div>
-                    <p className="text-sm font-semibold text-white mb-0.5">{label}</p>
-                    <p className="text-text-muted leading-relaxed m-0">{line}</p>
+                    <p className="text-sm font-bold text-white mb-1">{label}</p>
+                    <p className="text-text-muted text-sm leading-relaxed m-0">{line}</p>
                   </div>
                 </li>
               ))}
