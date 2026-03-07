@@ -14,10 +14,10 @@ import Link from "next/link";
 const whyStatement =
   "We come to you. We do quality work. People already trust us. Booking is easy.";
 const whyProof = [
-  "No drop-off — we come to your driveway, condo, or office.",
-  "Clean finishes that actually show. Interior and exterior, real care.",
-  "Toronto and surrounding areas. Same quality at home or work.",
-  "Honest pricing. No hidden fees, no upsell pressure.",
+  { label: "We come to you", line: "No drop-off — your driveway, condo, or office." },
+  { label: "Quality that shows", line: "Interior and exterior, real care in every corner." },
+  { label: "Toronto & GTA", line: "Same standard at home or work." },
+  { label: "Honest pricing", line: "No hidden fees, no upsell pressure." },
 ];
 
 const reviewQuotes = [
@@ -31,25 +31,38 @@ export default function HomePage() {
     <>
       <Hero />
 
-      <section className="py-16 lg:py-20 bg-bg-card">
-        <div className="max-w-[1100px] mx-auto px-4">
+      {/* Why: left-aligned, split, statement + stat + proof with labels */}
+      <section className="py-20 lg:py-24 bg-bg-card">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <Reveal variant="scale">
             <SectionHeading
+              align="left"
               label="Why PitStop Polish"
               title="Why People Choose Us"
             />
           </Reveal>
-          <StaggerChildren className="grid grid-cols-1 lg:grid-cols-[0.9fr,1fr] gap-10 lg:gap-16 items-center" stagger={0.12} variant="lateral">
-            <div className="stagger-item">
+          <StaggerChildren
+            className="grid grid-cols-1 lg:grid-cols-[0.88fr,1fr] gap-12 lg:gap-20 items-start"
+            stagger={0.12}
+            variant="lateral"
+          >
+            <div className="stagger-item space-y-6">
               <p className="text-lg lg:text-xl text-white/90 leading-relaxed max-w-[32ch]">
                 {whyStatement}
               </p>
+              <div className="inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-accent/10 border border-accent/25">
+                <span className="text-2xl font-extrabold text-accent">5.0</span>
+                <span className="text-sm text-text-muted">Google · 13 reviews</span>
+              </div>
             </div>
-            <ul className="stagger-item space-y-4">
-              {whyProof.map((line) => (
-                <li key={line} className="flex items-start gap-3">
-                  <span className="text-accent mt-1.5 flex-shrink-0">·</span>
-                  <span className="text-text-muted leading-relaxed">{line}</span>
+            <ul className="stagger-item space-y-6">
+              {whyProof.map(({ label, line }) => (
+                <li key={label} className="flex items-start gap-4">
+                  <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-accent mt-2.5" />
+                  <div>
+                    <p className="text-sm font-semibold text-white mb-0.5">{label}</p>
+                    <p className="text-text-muted leading-relaxed m-0">{line}</p>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -57,16 +70,35 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="max-w-[1100px] mx-auto px-4">
+      {/* Services: left-aligned, featured Full Detail + asymmetric grid */}
+      <section className="py-20 lg:py-24">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <Reveal variant="scale">
-            <SectionHeading
-              label="Services"
-              title="What We Offer"
-              subtitle="Interior, exterior, full detail, and add-ons. Clear packages for every need."
-            />
+            <div className="text-left mb-12">
+              <SectionHeading
+                align="left"
+                label="Services"
+                title="What We Offer"
+                subtitle="Interior, exterior, full detail, and add-ons. Clear packages for every need."
+              />
+            </div>
           </Reveal>
-          <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8" stagger={0.1} variant="scale">
+          <StaggerChildren
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
+            stagger={0.1}
+            variant="scale"
+          >
+            <div className="stagger-item md:col-span-2">
+              <ServiceCard
+                title="Full Detail"
+                description="Interior + exterior in one visit. The complete reset."
+                bestFor="Full transformation at your location"
+                includes={["Everything in Interior + Exterior", "One visit"]}
+                ctaHref="/services#full"
+                tag="Full detail"
+                featured
+              />
+            </div>
             <div className="stagger-item">
               <ServiceCard
                 title="Interior Detail"
@@ -89,16 +121,6 @@ export default function HomePage() {
             </div>
             <div className="stagger-item">
               <ServiceCard
-                title="Full Detail"
-                description="Interior + exterior in one visit. The complete reset."
-                bestFor="Full transformation at your location"
-                includes={["Everything in Interior + Exterior", "One visit"]}
-                ctaHref="/services#full"
-                tag="Full detail"
-              />
-            </div>
-            <div className="stagger-item">
-              <ServiceCard
                 title="Add-ons & Paint Enhancement"
                 description="Headlight restoration, leather conditioning, paint correction, and more."
                 bestFor="Extra care where you need it"
@@ -112,16 +134,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-20 bg-bg-card">
-        <div className="max-w-[1100px] mx-auto px-4">
+      {/* Reviews: left-aligned, editorial featured quote */}
+      <section className="py-20 lg:py-24 bg-bg-card">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <Reveal variant="lateral">
-            <SectionHeading
-              label="Reviews"
-              title="What Toronto Drivers Say"
-              subtitle="Real feedback from real customers. 5.0 on Google."
-            />
+            <div className="text-left mb-10">
+              <SectionHeading
+                align="left"
+                label="Reviews"
+                title="What Toronto Drivers Say"
+                subtitle="Real feedback from real customers. 5.0 on Google."
+              />
+            </div>
           </Reveal>
-          <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
+          <div className="flex flex-wrap items-center gap-2 mb-10">
             <span className="text-accent text-2xl tracking-wider">★★★★★</span>
             <span className="text-white font-semibold">5.0</span>
             <span className="text-text-muted">·</span>
@@ -138,7 +164,7 @@ export default function HomePage() {
               <ReviewCard quote={reviewQuotes[2]} />
             </div>
           </StaggerChildren>
-          <div className="flex flex-wrap gap-4 justify-center mt-10">
+          <div className="flex flex-wrap gap-4 mt-10">
             <Link
               href="/reviews"
               className="inline-flex py-3 px-6 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors"
@@ -163,26 +189,31 @@ export default function HomePage() {
 
       <HowItWorks />
 
-      <section className="py-20">
-        <div className="max-w-[1100px] mx-auto px-4">
+      {/* Service areas: left-aligned, with line motif */}
+      <section className="py-20 lg:py-24">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <Reveal variant="scale">
-            <SectionHeading
-              label="Service area"
-              title="We Serve Toronto & Surrounding Areas"
-              subtitle="Local proof. We come to you."
-            />
+            <div className="text-left mb-12">
+              <SectionHeading
+                align="left"
+                label="Service area"
+                title="We Serve Toronto & Surrounding Areas"
+                subtitle="Local proof. We come to you."
+              />
+            </div>
           </Reveal>
           <ServiceAreaGrid />
-          <p className="text-center mt-8">
-            <Link href="/service-areas" className="text-text-muted hover:text-accent text-sm">
+          <p className="text-left mt-8">
+            <Link href="/service-areas" className="text-text-muted hover:text-accent text-sm font-medium">
               Full service areas
             </Link>
           </p>
         </div>
       </section>
 
-      <section className="py-20 bg-bg-card">
-        <div className="max-w-[1100px] mx-auto px-4">
+      {/* FAQ: centered */}
+      <section className="py-20 lg:py-24 bg-bg-card">
+        <div className="max-w-[1100px] mx-auto px-4 sm:px-6">
           <Reveal variant="scale">
             <SectionHeading
               label="FAQ"

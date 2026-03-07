@@ -2,6 +2,7 @@ type SectionHeadingProps = {
   label?: string;
   title: string;
   subtitle?: string;
+  align?: "center" | "left";
   className?: string;
 };
 
@@ -9,10 +10,14 @@ export default function SectionHeading({
   label,
   title,
   subtitle,
+  align = "center",
   className = "",
 }: SectionHeadingProps) {
+  const isLeft = align === "left";
   return (
-    <div className={`text-center mb-12 ${className}`}>
+    <div
+      className={`mb-12 ${isLeft ? "text-left" : "text-center"} ${className}`}
+    >
       {label && (
         <p className="text-[11px] uppercase tracking-[0.22em] text-accent font-semibold mb-3">
           {label}
@@ -22,7 +27,11 @@ export default function SectionHeading({
         {title}
       </h2>
       {subtitle && (
-        <p className="text-text-muted max-w-[42ch] mx-auto text-lg leading-relaxed tracking-tight">
+        <p
+          className={`text-text-muted text-lg leading-relaxed tracking-tight ${
+            isLeft ? "max-w-[42ch]" : "max-w-[42ch] mx-auto"
+          }`}
+        >
           {subtitle}
         </p>
       )}

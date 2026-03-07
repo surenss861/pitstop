@@ -10,16 +10,23 @@ const groups: { heading: string; areas: string[] }[] = [
 export default function ServiceAreaGrid() {
   return (
     <div>
-      <p className="text-text-muted text-center mb-8 max-w-[36ch] mx-auto text-base">
-        We come to you. Same quality whether you're at home or work.
-      </p>
+      <div className="flex items-center gap-4 mb-8">
+        <div className="h-px flex-1 bg-gradient-to-r from-transparent to-border" aria-hidden />
+        <p className="text-text-muted text-sm max-w-[28ch] text-center">
+          We come to you. Same quality at home or work.
+        </p>
+        <div className="h-px flex-1 bg-gradient-to-l from-transparent to-border" aria-hidden />
+      </div>
       <StaggerChildren
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10"
         stagger={0.1}
         variant="up"
       >
-        {groups.map((group) => (
-          <div key={group.heading} className="stagger-item">
+        {groups.map((group, i) => (
+          <div key={group.heading} className="stagger-item relative">
+            {i > 0 && (
+              <div className="hidden lg:block absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-border to-transparent -translate-x-5" aria-hidden />
+            )}
             <h3 className="text-xs uppercase tracking-wider text-accent font-semibold mb-4">
               {group.heading}
             </h3>

@@ -1,62 +1,127 @@
+"use client";
+
 import Link from "next/link";
+import Image from "next/image";
 import SectionHeading from "@/components/ui/SectionHeading";
 import StaggerChildren from "@/components/animation/StaggerChildren";
+import { useState } from "react";
 
-const categories = ["Interior", "Exterior", "Wheels", "Full detail", "Before/after"];
+const categories = ["All", "Interior", "Exterior", "Wheels", "Full detail"];
 
 const items = [
-  { label: "Interior reset — SUV", category: "Interior" },
-  { label: "Seat & carpet deep clean", category: "Interior" },
-  { label: "Exterior gloss — sedan", category: "Exterior" },
-  { label: "Wheel & tire finish", category: "Wheels" },
-  { label: "Full detail — before/after", category: "Full detail" },
-  { label: "Mobile driveway detail — Toronto", category: "Full detail" },
+  {
+    src: "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80",
+    label: "Interior reset",
+    category: "Interior",
+    span: "col-span-2 row-span-2" as const,
+    minH: "min-h-[260px] lg:min-h-[340px]",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=600&q=80",
+    label: "Exterior gloss",
+    category: "Exterior",
+    span: "" as const,
+    minH: "min-h-[140px] lg:min-h-[165px]",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&q=80",
+    label: "Premium finish",
+    category: "Exterior",
+    span: "" as const,
+    minH: "min-h-[140px] lg:min-h-[165px]",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&q=80",
+    label: "Wheel & tire",
+    category: "Wheels",
+    span: "col-span-2" as const,
+    minH: "min-h-[110px] lg:min-h-[130px]",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=800&q=80",
+    label: "Full detail",
+    category: "Full detail",
+    span: "col-span-2" as const,
+    minH: "min-h-[110px] lg:min-h-[130px]",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=800&q=80",
+    label: "Mobile detail — Toronto",
+    category: "Full detail",
+    span: "col-span-2" as const,
+    minH: "min-h-[110px] lg:min-h-[130px]",
+  },
 ];
 
 export default function BeforeAfterShowcase() {
-  return (
-    <section className="py-20">
-      <div className="max-w-[1100px] mx-auto px-4">
-        <SectionHeading
-          label="Results"
-          title="Results That Speak"
-          subtitle="Real transformations — interior resets, exterior shine, and full details."
-        />
+  const [activeCategory, setActiveCategory] = useState("All");
 
-        <div className="flex flex-wrap gap-2 justify-center mb-8">
+  const filtered =
+    activeCategory === "All"
+      ? items
+      : items.filter((i) => i.category === activeCategory);
+  const isFiltered = activeCategory !== "All";
+
+  return (
+    <section className="py-20 bg-bg-card">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+        <div className="text-left mb-10">
+          <SectionHeading
+            align="left"
+            label="Results"
+            title="Results That Speak"
+            subtitle="Real transformations — interior, exterior, and full details."
+          />
+        </div>
+
+        <div className="flex flex-wrap gap-2 mb-8">
           {categories.map((cat) => (
-            <span
+            <button
               key={cat}
-              className="px-3.5 py-1.5 rounded-full text-xs font-medium text-text-muted border border-border hover:border-accent/40 hover:text-accent transition-colors"
+              type="button"
+              onClick={() => setActiveCategory(cat)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                activeCategory === cat
+                  ? "bg-accent/20 border border-accent/40 text-accent"
+                  : "border border-border text-text-muted hover:border-accent/40 hover:text-accent"
+              }`}
             >
               {cat}
-            </span>
+            </button>
           ))}
         </div>
 
-        <StaggerChildren className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4" stagger={0.08} variant="scale">
-          <div className="gallery-item-hover stagger-item col-span-2 row-span-2 rounded-xl bg-bg-card border border-border overflow-hidden min-h-[240px] lg:min-h-[320px] flex flex-col items-center justify-center p-6 text-center relative group">
-            <span className="text-text-muted text-sm font-medium">{items[0].label}</span>
-            <span className="absolute bottom-3 left-3 text-[10px] uppercase tracking-wider text-accent/80">{items[0].category}</span>
-          </div>
-          <div className="gallery-item-hover stagger-item rounded-xl bg-bg-card border border-border min-h-[120px] lg:min-h-[155px] flex items-center justify-center p-4 text-center overflow-hidden">
-            <span className="text-text-muted text-sm">{items[1].label}</span>
-          </div>
-          <div className="gallery-item-hover stagger-item rounded-xl bg-bg-card border border-border min-h-[120px] lg:min-h-[155px] flex items-center justify-center p-4 text-center overflow-hidden">
-            <span className="text-text-muted text-sm">{items[2].label}</span>
-          </div>
-          <div className="gallery-item-hover stagger-item col-span-2 rounded-xl bg-bg-card border border-border min-h-[100px] lg:min-h-[120px] flex items-center justify-center p-4 text-center overflow-hidden">
-            <span className="text-text-muted text-sm">{items[3].label}</span>
-          </div>
-          <div className="gallery-item-hover stagger-item col-span-2 rounded-xl bg-bg-card border border-border min-h-[100px] lg:min-h-[120px] flex items-center justify-center p-4 text-center overflow-hidden">
-            <span className="text-text-muted text-sm">{items[4].label}</span>
-          </div>
-          <div className="gallery-item-hover stagger-item col-span-2 rounded-xl bg-bg-card border border-border min-h-[100px] lg:min-h-[120px] flex items-center justify-center p-4 text-center overflow-hidden">
-            <span className="text-text-muted text-sm">{items[5].label}</span>
-          </div>
+        <StaggerChildren
+          className={`grid gap-3 lg:gap-4 ${isFiltered ? "grid-cols-2 lg:grid-cols-3" : "grid-cols-2 lg:grid-cols-4"}`}
+          stagger={0.06}
+          variant="scale"
+        >
+          {filtered.map((item) => (
+            <div
+              key={`${item.src}-${item.label}`}
+              className={`gallery-item-hover stagger-item overflow-hidden rounded-xl border border-border relative ${
+                isFiltered ? "min-h-[200px] lg:min-h-[240px]" : `${item.span} ${item.minH}`
+              }`}
+            >
+              <Image
+                src={item.src}
+                alt=""
+                fill
+                className="object-cover"
+                sizes="(max-width: 1023px) 50vw, 25vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-3 lg:p-4">
+                <span className="text-[10px] uppercase tracking-wider text-accent/90 font-semibold">
+                  {item.category}
+                </span>
+                <p className="text-white text-sm font-medium mt-0.5">{item.label}</p>
+              </div>
+            </div>
+          ))}
         </StaggerChildren>
 
-        <p className="text-center mt-10">
+        <p className="text-left mt-10">
           <Link
             href="/gallery"
             className="inline-flex py-3 px-6 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors"
