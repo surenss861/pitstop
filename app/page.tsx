@@ -2,6 +2,7 @@ import Hero from "@/components/home/Hero";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ServiceCard from "@/components/conversion/ServiceCard";
 import ReviewCard from "@/components/conversion/ReviewCard";
+import { homepageServiceCards } from "@/lib/services-data";
 import HowItWorks from "@/components/conversion/HowItWorks";
 import ServiceAreaGrid from "@/components/conversion/ServiceAreaGrid";
 import FAQAccordion from "@/components/conversion/FAQAccordion";
@@ -94,7 +95,7 @@ export default function HomePage() {
                 align="left"
                 label="Services"
                 title="What We Offer"
-                subtitle="Packages, correction, protection, and care — at your location. Premium mobile detailing in Toronto."
+                subtitle="Packages, correction, protection, and care — premium mobile detailing in Toronto, done at your location."
               />
             </div>
           </Reveal>
@@ -103,69 +104,24 @@ export default function HomePage() {
             stagger={0.08}
             variant="scale"
           >
-            <div className="stagger-item md:col-span-2 lg:col-span-2">
-              <ServiceCard
-                title="Full Detail"
-                description="Interior + exterior in one visit. The complete reset."
-                bestFor="Full transformation at your location"
-                includes={["Everything in Interior + Exterior", "One visit"]}
-                ctaHref="/services#full"
-                tag="Package"
-                featured
-                premiumLine="One visit. Full reset."
-              />
-            </div>
-            <div className="stagger-item">
-              <ServiceCard
-                title="Interior Detail"
-                description="Deep clean seats, carpets, dash, and trim."
-                bestFor="Daily drivers, family cars, rideshare"
-                includes={["Vacuum & extraction", "Seat & carpet deep clean", "Dash & trim"]}
-                ctaHref="/services#interior"
-                tag="Interior"
-              />
-            </div>
-            <div className="stagger-item">
-              <ServiceCard
-                title="Exterior Detail"
-                description="Wash, clay, polish, and protect. Restore shine and defend your paint."
-                bestFor="Showroom finish at your driveway"
-                includes={["Wash & dry", "Clay bar", "Polish & protection"]}
-                ctaHref="/services#exterior"
-                tag="Exterior"
-              />
-            </div>
-            <div className="stagger-item">
-              <ServiceCard
-                title="Paint Correction"
-                description="Remove swirls and scratches. Restore clarity and gloss — not just a wash."
-                bestFor="Serious shine and paint care"
-                includes={["1–3 stage correction", "Machine polish", "Scratch & swirl removal"]}
-                ctaHref="/services#correction"
-                tag="Correction"
-              />
-            </div>
-            <div className="stagger-item">
-              <ServiceCard
-                title="Ceramic Coating"
-                description="Long-term paint protection. Ceramic, graphene, wheel and glass coating."
-                bestFor="Maximum protection and gloss"
-                includes={["Paint coating", "Wheel & glass options", "1–5 year options"]}
-                ctaHref="/services#ceramic"
-                tag="Protection"
-              />
-            </div>
-            <div className="stagger-item">
-              <ServiceCard
-                title="Add-Ons & Specialty"
-                description="Headlight restoration, leather, odor removal, engine bay, and more."
-                bestFor="Extra care where you need it"
-                includes={["Headlight restoration", "Leather conditioning", "Odor / pet hair"]}
-                ctaText="See options"
-                ctaHref="/services#addons"
-                tag="Add-ons"
-              />
-            </div>
+            {homepageServiceCards.map((card) => (
+              <div
+                key={card.id}
+                className={`stagger-item ${card.featured ? "md:col-span-2 lg:col-span-2" : ""}`}
+              >
+                <ServiceCard
+                  title={card.title}
+                  description={card.description}
+                  bestFor={card.featured ? "Full transformation at your location" : undefined}
+                  includes={card.includes ?? []}
+                  ctaHref={card.href}
+                  ctaText={card.ctaText}
+                  tag={card.tag}
+                  featured={card.featured}
+                  premiumLine={card.premiumLine}
+                />
+              </div>
+            ))}
           </StaggerChildren>
         </div>
       </section>

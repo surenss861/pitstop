@@ -1,6 +1,7 @@
 /**
- * PitStop Polish — full service inventory.
- * Order: Packages → Ceramic & Protection → Paint Correction → Exterior → Interior → Restoration → Add-Ons
+ * PitStop Polish — single source of truth for services.
+ * Drives: homepage cards, services page sections, nav anchors, metadata.
+ * Order: Packages → Ceramic → Correction → Exterior → Interior → Restoration → Add-Ons
  */
 
 export type ServiceItem = { name: string; description?: string };
@@ -11,6 +12,8 @@ export type ServiceSection = {
   title: string;
   subtitle?: string;
   items: ServiceItem[];
+  /** Show "Request a quote" CTA at bottom of section */
+  showCta?: boolean;
 };
 
 export const serviceSections: ServiceSection[] = [
@@ -19,6 +22,7 @@ export const serviceSections: ServiceSection[] = [
     label: "Packages",
     title: "Popular Packages",
     subtitle: "We don't make you build from scratch. Pick a package and we'll match the right level of care.",
+    showCta: true,
     items: [
       { name: "Basic Detail" },
       { name: "Interior Detail" },
@@ -28,7 +32,7 @@ export const serviceSections: ServiceSection[] = [
       { name: "Showroom Detail" },
       { name: "Paint Correction Package" },
       { name: "Ceramic Coating Package" },
-      { name: "Sale Prep / Pre-Sale Detail" },
+      { name: "Sale Prep Detail" },
     ],
   },
   {
@@ -36,6 +40,7 @@ export const serviceSections: ServiceSection[] = [
     label: "Ceramic & Protection",
     title: "Ceramic Coatings & Paint Protection",
     subtitle: "Highest-ticket, authority-building protection. We bring pro-grade coatings to your location.",
+    showCta: true,
     items: [
       { name: "Ceramic Paint Coating" },
       { name: "Graphene Coating" },
@@ -146,18 +151,89 @@ export const serviceSections: ServiceSection[] = [
     id: "addons",
     label: "Add-Ons",
     title: "Add-Ons & Extras",
-    subtitle: "Stack these on any package or book standalone.",
+    subtitle: "Upsells that stack on any package or book standalone. Headlight, leather, coating upgrades, and more.",
+    showCta: true,
     items: [
       { name: "Headlight Restoration" },
       { name: "Leather Conditioning" },
-      { name: "Paint Correction (1–3 stage)" },
-      { name: "Ceramic Coating (paint, wheels, glass, interior)" },
+      { name: "Paint Correction Upgrade" },
+      { name: "Ceramic Coating Upgrade" },
       { name: "Engine Bay Detailing" },
-      { name: "Odor / Ozone Treatment" },
+      { name: "Odor Removal" },
       { name: "Pet Hair Removal" },
       { name: "Trim Restoration" },
       { name: "Wheel Coating" },
       { name: "Glass Coating" },
     ],
+  },
+];
+
+/** Homepage: 6 premium service cards. Deep-link to /services#anchor */
+export type HomepageServiceCard = {
+  id: string;
+  title: string;
+  description: string;
+  tag: string;
+  href: string;
+  featured?: boolean;
+  /** Short premium line (featured card only) */
+  premiumLine?: string;
+  /** Bullets for includes (optional, shown on card) */
+  includes?: string[];
+  /** Override CTA label (e.g. "See options") */
+  ctaText?: string;
+};
+
+export const homepageServiceCards: HomepageServiceCard[] = [
+  {
+    id: "full",
+    title: "Full Detail",
+    description: "Interior + exterior, one visit. A complete reset for vehicles that need the full treatment.",
+    tag: "Package",
+    href: "/services#packages",
+    featured: true,
+    premiumLine: "One visit. Full reset.",
+    includes: ["Everything in Interior + Exterior", "One visit"],
+  },
+  {
+    id: "interior",
+    title: "Interior Detail",
+    description: "Deep clean, vacuum, extraction, seats, carpets, trim, and interior surfaces.",
+    tag: "Interior",
+    href: "/services#interior",
+    includes: ["Vacuum & extraction", "Seat & carpet deep clean", "Dash & trim"],
+  },
+  {
+    id: "exterior",
+    title: "Exterior Detail",
+    description: "Wash, clay, polish, decontaminate, and protect for a cleaner, glossier finish.",
+    tag: "Exterior",
+    href: "/services#exterior",
+    includes: ["Wash & dry", "Clay bar", "Polish & protection"],
+  },
+  {
+    id: "correction",
+    title: "Paint Correction",
+    description: "1–3 stage machine polishing, scratch and swirl removal, gloss restoration.",
+    tag: "Correction",
+    href: "/services#correction",
+    includes: ["1–3 stage correction", "Machine polish", "Scratch & swirl removal"],
+  },
+  {
+    id: "ceramic",
+    title: "Ceramic Coating",
+    description: "Paint, wheel, trim, and glass protection with 1–5 year coating options.",
+    tag: "Protection",
+    href: "/services#ceramic",
+    includes: ["Paint coating", "Wheel & glass options", "1–5 year options"],
+  },
+  {
+    id: "addons",
+    title: "Add-Ons & Specialty",
+    description: "Headlight restoration, leather care, odor removal, pet hair, engine bay, and more.",
+    tag: "Add-Ons",
+    href: "/services#addons",
+    ctaText: "See options",
+    includes: ["Headlight restoration", "Leather conditioning", "Odor / pet hair"],
   },
 ];

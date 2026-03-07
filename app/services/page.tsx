@@ -22,24 +22,21 @@ export default function ServicesPage() {
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 leading-tight tracking-tight">
             Mobile Detailing · Paint Correction · Ceramic Coating
           </h1>
-          <p className="text-text-muted text-lg md:text-xl mb-2 max-w-[50ch] mx-auto">
-            Premium vehicle protection and care at your location. Not just a car wash — packages, correction, and protection that show.
-          </p>
-          <p className="text-text-muted text-base mb-8">
-            We come to you across Toronto and the GTA. Quote-based pricing — vehicle size and condition.
+          <p className="text-text-muted text-lg md:text-xl mb-8 max-w-[52ch] mx-auto">
+            Premium mobile detailing, paint correction, and ceramic coating in Toronto — built for drivers who want more than a basic clean.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link
               href="/contact"
               className="inline-flex py-3.5 px-8 rounded-xl bg-accent text-bg font-semibold hover:bg-accent-hover transition-colors"
             >
-              Get a Quote
+              Request a Quote
             </Link>
             <a
               href="tel:+16478237338"
               className="inline-flex py-3.5 px-8 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors"
             >
-              Call (647) 823-7338
+              Call Now
             </a>
           </div>
         </div>
@@ -74,7 +71,7 @@ export default function ServicesPage() {
                 </div>
               ))}
             </div>
-            {(section.id === "packages" || section.id === "ceramic" || section.id === "addons") && (
+            {section.showCta && (
               <p className="mt-6">
                 <Link
                   href="/contact"
