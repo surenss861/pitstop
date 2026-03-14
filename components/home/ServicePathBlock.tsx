@@ -43,12 +43,12 @@ export default function ServicePathBlock() {
             <Link
               key={item.href}
               href={item.href}
-              className="block p-6 rounded-xl border border-border bg-bg/50 hover:border-accent/40 transition-colors group"
+              className="block p-4 md:p-6 rounded-xl border border-border bg-bg/50 hover:border-accent/40 transition-colors group"
             >
               <h3 className="font-bold text-white mb-2 group-hover:text-accent transition-colors">
                 {item.title}
               </h3>
-              <p className="text-text-muted text-sm mb-4">{item.body}</p>
+              <p className="text-text-muted text-xs md:text-sm mb-3 md:mb-4">{item.body}</p>
               <span className="text-accent font-semibold text-sm">
                 {item.cta} →
               </span>

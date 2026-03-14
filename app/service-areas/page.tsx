@@ -44,7 +44,7 @@ export default function ServiceAreasPage() {
                 Toronto
               </Link>
               {gtaCityConfigs.map((c) => (
-                <Link key={c.slug} href={`/mobile-detailing-gta/${c.slug}`} className="px-4 py-2 rounded-lg bg-bg border border-border text-sm text-white/90 hover:border-accent/40 transition-colors">
+                <Link key={c.slug} href={`/${c.slug}`} className="px-4 py-2 rounded-lg bg-bg border border-border text-sm text-white/90 hover:border-accent/40 transition-colors">
                   {c.name}
                 </Link>
               ))}

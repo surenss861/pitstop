@@ -13,6 +13,7 @@ import MembershipTeaser from "@/components/home/MembershipTeaser";
 import Reveal from "@/components/animation/Reveal";
 import StaggerChildren from "@/components/animation/StaggerChildren";
 import Link from "next/link";
+import { gtaCityConfigs } from "@/lib/gta-cities-data";
 
 const whyStatement =
   "We come to you. We do the job right. People book us again for a reason.";
@@ -197,6 +198,19 @@ export default function HomePage() {
             </div>
           </Reveal>
           <ServiceAreaGrid />
+          <div className="mt-6 pt-6 border-t border-white/10">
+            <p className="text-text-muted text-sm mb-3">Mobile detailing by city — we come to you.</p>
+            <div className="flex gap-2 overflow-x-auto pb-1 md:flex-wrap scrollbar-hide snap-x snap-mandatory md:snap-none">
+              <Link href="/mobile-detailing-toronto" className="flex-shrink-0 snap-start px-3 py-1.5 rounded-lg bg-bg-card border border-border text-sm text-white/90 hover:border-accent/40 transition-colors">
+                Toronto
+              </Link>
+              {gtaCityConfigs.map((c) => (
+                <Link key={c.slug} href={`/${c.slug}`} className="flex-shrink-0 snap-start px-3 py-1.5 rounded-lg bg-bg-card border border-border text-sm text-white/90 hover:border-accent/40 transition-colors">
+                  {c.name}
+                </Link>
+              ))}
+            </div>
+          </div>
           <p className="text-left mt-4 md:mt-6">
             <Link href="/service-areas" className="text-text-muted hover:text-accent text-sm font-medium">
               View full service areas

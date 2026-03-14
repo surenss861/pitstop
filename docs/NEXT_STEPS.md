@@ -2,9 +2,9 @@
 
 The site is now a real conversion system. The **smartest next order** is:
 
-1. **Replace proof imagery** (biggest lever)
-2. **GTA city pages** (SEO + local conversion) — *in progress*
-3. **Dedicated mobile conversion pass** (tighter hero, crops, less scroll fatigue)
+1. **Replace proof imagery** (biggest lever) — see `docs/PROOF_ASSETS.md`
+2. **GTA city pages** (SEO + local conversion) — ✅ done at `/[city]` (e.g. `/mississauga`) with local FAQ
+3. **Dedicated mobile conversion pass** — ✅ tightened hero/CTA spacing, path cards, contact form, city chips scroll
 
 ---
 

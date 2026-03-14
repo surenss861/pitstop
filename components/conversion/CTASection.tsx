@@ -11,7 +11,7 @@ export default function CTASection({
   subtitle = "We come to you anywhere across Toronto and the GTA. Quote first. No pressure.",
 }: CTASectionProps) {
   return (
-    <section className="py-16 md:py-28 relative overflow-hidden">
+    <section className="py-10 md:py-16 lg:py-28 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-bg-card to-bg pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_100%_70%_at_50%_100%,rgba(201,162,39,0.12),transparent_55%)] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_80%_20%,rgba(201,162,39,0.06),transparent_50%)] pointer-events-none" />
@@ -23,11 +23,11 @@ export default function CTASection({
       <div className="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 pointer-events-none" aria-hidden style={{ background: "linear-gradient(90deg, transparent 0%, rgba(201,162,39,0.08) 20%, rgba(201,162,39,0.2) 50%, rgba(201,162,39,0.08) 80%, transparent 100%)" }} />
       <div className="relative max-w-[1100px] mx-auto px-4 sm:px-6">
         <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-2xl md:text-4xl lg:text-[3rem] font-extrabold text-white mb-2 leading-[1.1] tracking-tight">
+          <h2 className="text-xl md:text-2xl lg:text-4xl xl:text-[3rem] font-extrabold text-white mb-2 leading-[1.1] tracking-tight">
             {title}
           </h2>
           {subtitle && (
-            <p className="text-text-muted text-base md:text-xl mb-4 md:mb-5 leading-relaxed">
+            <p className="text-text-muted text-sm md:text-base lg:text-xl mb-3 md:mb-5 leading-relaxed">
               {subtitle}
             </p>
           )}

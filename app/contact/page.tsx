@@ -23,7 +23,10 @@ export default function ContactPage() {
             Request a quote or call us. We'll confirm availability, recommend the right service, and come to your location across Toronto and the GTA.
           </p>
           <p className="text-sm text-text-muted mt-4 max-w-[44ch] mx-auto">
-            Quote before job · No spam · We only use your info for your request
+            Quote before job · We confirm your area before booking · We only use your info for your request
+          </p>
+          <p className="mt-3 md:hidden">
+            <a href="tel:+16478237338" className="text-accent font-semibold text-sm">Call or text for fastest quote →</a>
           </p>
         </div>
       </section>
@@ -67,6 +70,9 @@ export default function ContactPage() {
               <QuoteForm />
               <p className="text-sm text-text-muted mt-4">
                 Want the fastest quote? <a href="tel:+16478237338" className="text-accent font-medium">Call now.</a>
+              </p>
+              <p className="text-sm text-text-muted mt-3">
+                Want easier upkeep after your detail? <Link href="/membership" className="text-accent font-medium">Ask about monthly memberships.</Link>
               </p>
             </div>
           </div>

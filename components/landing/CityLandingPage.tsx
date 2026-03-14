@@ -3,7 +3,9 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import ServiceCard from "@/components/conversion/ServiceCard";
 import ServiceAreaGrid from "@/components/conversion/ServiceAreaGrid";
 import CTASection from "@/components/conversion/CTASection";
+import FAQAccordion from "@/components/conversion/FAQAccordion";
 import type { GtaCityConfig } from "@/lib/gta-cities-data";
+import { gtaCityFaq } from "@/lib/gta-cities-data";
 
 const useCases = [
   {
@@ -25,7 +27,7 @@ type CityLandingPageProps = { city: GtaCityConfig };
 export default function CityLandingPage({ city }: CityLandingPageProps) {
   return (
     <>
-      <section className="py-16 md:py-20 text-center">
+      <section className="py-12 md:py-16 lg:py-20 text-center">
         <div className="max-w-[720px] mx-auto px-4">
           <p className="text-[10px] uppercase tracking-[0.25em] text-accent font-semibold mb-4">
             {city.eyebrow}
@@ -56,7 +58,7 @@ export default function CityLandingPage({ city }: CityLandingPageProps) {
         </div>
       </section>
 
-      <section className="py-14 md:py-16 bg-bg-card">
+      <section className="py-10 md:py-14 lg:py-16 bg-bg-card">
         <div className="max-w-[1100px] mx-auto px-4 sm:px-6">
           <SectionHeading
             label="Convenience"
@@ -64,11 +66,11 @@ export default function CityLandingPage({ city }: CityLandingPageProps) {
             subtitle="Same quality whether you're at home, work, or in a condo. We bring everything we need."
             align="center"
           />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {useCases.map((item) => (
-              <div key={item.title} className="p-6 rounded-xl border border-border bg-bg/50 text-center">
-                <h3 className="font-bold text-white mb-2">{item.title}</h3>
-                <p className="text-text-muted text-sm m-0 leading-relaxed">{item.body}</p>
+              <div key={item.title} className="p-4 md:p-6 rounded-xl border border-border bg-bg/50 text-center">
+                <h3 className="font-bold text-white mb-1.5 md:mb-2 text-sm md:text-base">{item.title}</h3>
+                <p className="text-text-muted text-xs md:text-sm m-0 leading-relaxed">{item.body}</p>
               </div>
             ))}
           </div>
@@ -138,6 +140,24 @@ export default function CityLandingPage({ city }: CityLandingPageProps) {
               View full service areas
             </Link>
           </p>
+        </div>
+      </section>
+
+      {/* Local FAQ */}
+      <section className="py-14 md:py-16 bg-bg-card">
+        <div className="max-w-[1100px] mx-auto px-4 sm:px-6">
+          <SectionHeading
+            label="FAQ"
+            title={`Common questions — ${city.name}`}
+            subtitle="Quick answers about mobile detailing in your area."
+            align="center"
+          />
+          <FAQAccordion
+            items={gtaCityFaq.map(({ question, answer }) => ({
+              question: question.replace("[City]", city.name),
+              answer: answer.replace(/\[City\]/g, city.name),
+            }))}
+          />
         </div>
       </section>
 

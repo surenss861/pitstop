@@ -24,7 +24,7 @@ export default function QuoteForm() {
           id="name"
           name="name"
           required
-          className="w-full px-4 py-3 rounded-lg bg-bg-card border border-border text-white placeholder:text-text-muted focus:outline-none focus:border-accent"
+          className="w-full px-4 py-3.5 rounded-lg bg-bg-card border border-border text-white placeholder:text-text-muted focus:outline-none focus:border-accent min-h-[48px]"
         />
       </div>
       <div>
@@ -34,7 +34,7 @@ export default function QuoteForm() {
           id="phone"
           name="phone"
           required
-          className="w-full px-4 py-3 rounded-lg bg-bg-card border border-border text-white placeholder:text-text-muted focus:outline-none focus:border-accent"
+          className="w-full px-4 py-3.5 rounded-lg bg-bg-card border border-border text-white placeholder:text-text-muted focus:outline-none focus:border-accent min-h-[48px]"
         />
       </div>
       <div>
@@ -44,7 +44,7 @@ export default function QuoteForm() {
           id="email"
           name="email"
           required
-          className="w-full px-4 py-3 rounded-lg bg-bg-card border border-border text-white placeholder:text-text-muted focus:outline-none focus:border-accent"
+          className="w-full px-4 py-3.5 rounded-lg bg-bg-card border border-border text-white placeholder:text-text-muted focus:outline-none focus:border-accent min-h-[48px]"
         />
       </div>
       <div>
@@ -132,9 +132,21 @@ export default function QuoteForm() {
           id="message"
           name="message"
           rows={3}
-          placeholder="Anything we should know? Photos of condition can be sent after you submit."
-          className="w-full px-4 py-3 rounded-lg bg-bg-card border border-border text-white placeholder:text-text-muted focus:outline-none focus:border-accent resize-y"
+          placeholder="Anything we should know? For correction or coating quotes, photos help — you can attach below or send after submit."
+          className="w-full px-4 py-3.5 rounded-lg bg-bg-card border border-border text-white placeholder:text-text-muted focus:outline-none focus:border-accent resize-y min-h-[100px]"
         />
+      </div>
+      <div>
+        <label htmlFor="photos" className="block font-medium text-white mb-1">Photos (optional)</label>
+        <input
+          type="file"
+          id="photos"
+          name="photos"
+          accept="image/*"
+          multiple
+          className="w-full px-4 py-3 rounded-lg bg-bg-card border border-border text-text-muted text-sm file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-accent/20 file:text-accent file:font-semibold file:cursor-pointer focus:outline-none focus:border-accent"
+        />
+        <p className="text-xs text-text-muted mt-1">Helpful for paint correction or ceramic coating quotes. Max size depends on your email provider.</p>
       </div>
       <button
         type="submit"
