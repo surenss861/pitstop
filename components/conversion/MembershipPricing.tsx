@@ -7,7 +7,8 @@ export default function MembershipPricing() {
       {membershipPlans.map((plan) => (
         <div
           key={plan.id}
-          className={`rounded-xl border overflow-hidden flex flex-col ${
+          id={plan.id}
+          className={`rounded-xl border overflow-hidden flex flex-col scroll-mt-28 ${
             plan.featured
               ? "border-accent/40 bg-gradient-to-b from-accent/[0.08] to-bg-card shadow-[0_0_0_1px_rgba(201,162,39,0.15)] md:scale-[1.02]"
               : "border-border bg-bg-card hover:border-accent/30"
@@ -24,13 +25,17 @@ export default function MembershipPricing() {
             <h3 className="text-xl font-extrabold text-white tracking-tight mb-1">
               {plan.name}
             </h3>
-            <div className="flex items-baseline gap-1 mb-4">
+            <div className="flex items-baseline gap-1 mb-1">
               <span className="text-3xl lg:text-4xl font-extrabold text-accent">
                 ${plan.price}
               </span>
-              <span className="text-text-muted text-sm font-medium">/{plan.period}</span>
+              <span className="text-text-muted text-sm font-medium"> / {plan.period}</span>
             </div>
-            <p className="text-text-muted text-sm mb-6 leading-relaxed">
+            <p className="text-accent/90 text-sm font-medium mb-4">
+              {plan.valueLine}
+            </p>
+            <p className="text-text-muted text-sm mb-4 leading-relaxed">
+              <span className="text-white/80 font-semibold">Best for </span>
               {plan.bestFor}
             </p>
             <ul className="space-y-2.5 mb-6 flex-1">
@@ -42,10 +47,14 @@ export default function MembershipPricing() {
               ))}
             </ul>
             <Link
-              href="/contact?ref=membership"
-              className="mt-auto inline-flex justify-center py-3.5 px-6 rounded-xl font-semibold text-sm transition-colors border-2 border-accent text-accent hover:bg-accent/10"
+              href={`/contact?ref=membership&plan=${plan.id}`}
+              className={`mt-auto inline-flex justify-center py-3.5 px-6 rounded-xl font-semibold text-sm transition-colors ${
+                plan.featured
+                  ? "bg-accent text-bg hover:bg-accent-hover border-2 border-accent"
+                  : "border-2 border-accent text-accent hover:bg-accent/10"
+              }`}
             >
-              Request to join
+              {plan.ctaLabel}
             </Link>
           </div>
         </div>

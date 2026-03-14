@@ -8,6 +8,7 @@ import ServiceAreaGrid from "@/components/conversion/ServiceAreaGrid";
 import FAQAccordion from "@/components/conversion/FAQAccordion";
 import CTASection from "@/components/conversion/CTASection";
 import BeforeAfterShowcase from "@/components/home/BeforeAfterShowcase";
+import MembershipTeaser from "@/components/home/MembershipTeaser";
 import Reveal from "@/components/animation/Reveal";
 import StaggerChildren from "@/components/animation/StaggerChildren";
 import Link from "next/link";
@@ -126,8 +127,12 @@ export default function HomePage() {
         </div>
       </section>
 
+      <Reveal variant="scale">
+        <MembershipTeaser />
+      </Reveal>
+
       {/* Reviews */}
-      <section className="py-16 lg:py-20 bg-bg-card">
+      <section className="py-16 lg:py-20 bg-bg">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <Reveal variant="lateral">
             <div className="text-left mb-10">

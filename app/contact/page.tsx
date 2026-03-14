@@ -20,6 +20,9 @@ export default function ContactPage() {
             Request a quote or call us. We'll confirm availability and price, then come to your
             location across Toronto and the GTA.
           </p>
+          <p className="text-sm text-text-muted mt-4 max-w-[44ch] mx-auto">
+            Quote before job · No spam · We only use your info for your request · Service area confirmed when you book
+          </p>
         </div>
       </section>
 
@@ -57,8 +60,7 @@ export default function ContactPage() {
             <div>
               <h2 className="text-xl font-bold text-white mb-2">Request a quote</h2>
               <p className="text-text-muted text-sm mb-6">
-                We'll get back to you with availability and pricing. No spam — we only use your
-                info for your request.
+                One form — we'll get back with availability and pricing. Quote before any job; we only use your info for your request.
               </p>
               <QuoteForm />
             </div>

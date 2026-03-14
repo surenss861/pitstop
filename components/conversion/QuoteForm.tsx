@@ -73,6 +73,9 @@ export default function QuoteForm() {
           <option value="interior">Interior detail</option>
           <option value="exterior">Exterior detail</option>
           <option value="full">Full detail</option>
+          <option value="correction">Paint correction</option>
+          <option value="ceramic">Ceramic coating</option>
+          <option value="membership">Membership inquiry</option>
           <option value="quote">Not sure / Quote me</option>
         </select>
       </div>

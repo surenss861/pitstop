@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import SectionHeading from "@/components/ui/SectionHeading";
 import CTASection from "@/components/conversion/CTASection";
+import ServicesAnchorNav from "@/components/conversion/ServicesAnchorNav";
 import { serviceSections } from "@/lib/services-data";
 
 export const metadata: Metadata = {
@@ -42,12 +43,14 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      <ServicesAnchorNav />
+
       {/* Full service structure — order: Packages → Ceramic → Correction → Exterior → Interior → Restoration → Add-Ons */}
       {serviceSections.map((section, index) => (
         <section
           key={section.id}
           id={section.id}
-          className={index % 2 === 0 ? "py-14 md:py-16 bg-bg" : "py-14 md:py-16 bg-bg-card"}
+          className={`scroll-mt-32 ${index % 2 === 0 ? "py-14 md:py-16 bg-bg" : "py-14 md:py-16 bg-bg-card"}`}
         >
           <div className="max-w-[1100px] mx-auto px-4 sm:px-6">
             <div className="mb-8">
@@ -84,6 +87,20 @@ export default function ServicesPage() {
           </div>
         </section>
       ))}
+
+      <section className="py-12 bg-bg border-t border-white/5">
+          <div className="max-w-[1100px] mx-auto px-4 sm:px-6 text-center">
+            <p className="text-white font-semibold mb-4">Ready for a quote? We come to you.</p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Link href="/contact" className="inline-flex py-3.5 px-8 rounded-xl bg-accent text-bg font-semibold hover:bg-accent-hover transition-colors">
+                Request a Quote
+              </Link>
+              <a href="tel:+16478237338" className="inline-flex py-3.5 px-8 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors">
+                Call Now
+              </a>
+            </div>
+          </div>
+        </section>
 
       <CTASection
         title="Ready to book?"
