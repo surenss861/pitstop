@@ -1,17 +1,15 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
-import SectionHeading from "@/components/ui/SectionHeading";
-import ServiceCard from "@/components/conversion/ServiceCard";
-import ServiceAreaGrid from "@/components/conversion/ServiceAreaGrid";
 import CTASection from "@/components/conversion/CTASection";
+import SectionHeading from "@/components/ui/SectionHeading";
 
 export const metadata: Metadata = {
-  title: "Mobile Detailing Toronto — We Come to You",
+  title: "Mobile Detailing Toronto — Driveway, Condo, Office | PitStop Polish",
   description:
-    "Premium mobile detailing in Toronto. Driveway, condo, office, underground parking. Interior, exterior, paint correction, ceramic coating. 5-star rated. Book or call (647) 823-7338.",
+    "Premium mobile detailing in Toronto and the GTA. Interior, exterior, paint correction, and ceramic coating at your driveway, condo, office, or underground parking. Get a quote or call (647) 823-7338.",
 };
 
-const useCases = [
+const convenienceCards = [
   {
     title: "Driveway",
     body: "We set up at your home. No drop-off, no waiting — you get your car back clean at your door.",
@@ -26,40 +24,118 @@ const useCases = [
   },
 ];
 
+const trustCards = [
+  {
+    title: "We come to you",
+    body: "Toronto neighbourhoods and GTA cities. Driveway, condo, or office — we bring the detail to your location.",
+    icon: "📍",
+  },
+  {
+    title: "Premium, not cheap wash",
+    body: "Interior, exterior, paint correction, ceramic coating. Real standards. Our reviews back it up.",
+    icon: "✨",
+  },
+  {
+    title: "Fair pricing",
+    body: "Quote before any job. No hidden fees. Member plans available for ongoing care.",
+    icon: "💰",
+  },
+];
+
+const proofQuotes = [
+  { quote: "Done at my driveway — so convenient.", forLabel: "Convenience" },
+  { quote: "Interior looked like new again.", forLabel: "Full reset" },
+  { quote: "Paint looked way better than expected.", forLabel: "Correction & protection" },
+];
+
+const offerCards = [
+  {
+    title: "Full Detail",
+    body: "Interior + exterior in one visit. The complete reset at your location.",
+    cta: "See packages",
+    href: "/services#packages",
+  },
+  {
+    title: "Paint Correction & Ceramic Coating",
+    body: "Restore clarity and protect with pro-grade correction and coating. We come to you.",
+    cta: "See protection",
+    href: "/services#ceramic",
+  },
+  {
+    title: "Interior & Exterior",
+    body: "Deep clean inside and out. Seats, carpets, wash, polish, protect.",
+    cta: "See services",
+    href: "/services",
+  },
+  {
+    title: "Membership plans",
+    body: "Monthly maintenance, priority booking, member-only savings. Toronto & GTA.",
+    cta: "View plans",
+    href: "/membership",
+  },
+];
+
+const torontoCore = [
+  "Downtown Toronto",
+  "Annex",
+  "King West",
+  "Liberty Village",
+  "Leslieville",
+  "Riverdale",
+  "Beaches",
+  "Danforth",
+];
+
+const gtaAreas = [
+  "Mississauga",
+  "Oakville",
+  "Brampton",
+  "Vaughan",
+  "Markham",
+  "Pickering",
+  "King City",
+];
+
 export default function MobileDetailingTorontoPage() {
   return (
     <>
-      {/* Local hero — Toronto-specific convenience */}
+      {/* Hero */}
       <section className="py-16 md:py-20 text-center">
-        <div className="max-w-[720px] mx-auto px-4">
+        <div className="max-w-[860px] mx-auto px-4 sm:px-6">
           <p className="text-[10px] uppercase tracking-[0.25em] text-accent font-semibold mb-4">
             Toronto
           </p>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 leading-tight tracking-tight">
+
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight mb-5">
             Mobile detailing that comes to you — Toronto & GTA
           </h1>
-          <p className="text-text-muted text-lg mb-4 max-w-[52ch] mx-auto">
-            Premium interior, exterior, paint correction, and ceramic coating at your driveway, condo, office, or underground parking. Not a cheap wash — real detailing with real results.
+
+          <p className="text-text-muted text-base md:text-xl leading-relaxed max-w-[52ch] mx-auto mb-6">
+            Premium interior, exterior, paint correction, and ceramic coating at
+            your driveway, condo, office, or underground parking. Not a cheap
+            wash — real detailing with real results.
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-3 text-sm text-text-muted mb-6">
-            <span className="text-accent text-xl tracking-wider">★★★★★</span>
+
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-text-muted mb-6">
+            <span className="text-accent">★★★★★</span>
             <span className="font-semibold text-white">5.0</span>
             <span>Google</span>
-            <span>·</span>
+            <span className="text-white/30">•</span>
             <span>13 reviews</span>
-            <span>·</span>
+            <span className="text-white/30">•</span>
             <span>Toronto & GTA</span>
           </div>
-          <div className="flex flex-wrap gap-4 justify-center">
+
+          <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex py-3.5 px-8 rounded-xl bg-accent text-bg font-semibold hover:bg-accent-hover transition-colors"
+              className="inline-flex items-center justify-center rounded-xl bg-accent text-bg font-semibold px-8 py-3.5 hover:bg-accent-hover transition-colors"
             >
               Get a quote
             </Link>
             <a
               href="tel:+16478237338"
-              className="inline-flex py-3.5 px-8 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors"
+              className="inline-flex items-center justify-center rounded-xl border-2 border-accent text-accent font-semibold px-8 py-3.5 hover:bg-accent/10 transition-colors"
             >
               Call (647) 823-7338
             </a>
@@ -67,7 +143,7 @@ export default function MobileDetailingTorontoPage() {
         </div>
       </section>
 
-      {/* Where we come — condo, driveway, office */}
+      {/* Where we come to you */}
       <section className="py-14 md:py-16 bg-bg-card">
         <div className="max-w-[1100px] mx-auto px-4 sm:px-6">
           <SectionHeading
@@ -76,21 +152,22 @@ export default function MobileDetailingTorontoPage() {
             subtitle="Same quality whether you're at home, work, or in a condo. We bring everything we need."
             align="center"
           />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {useCases.map((item) => (
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-8">
+            {convenienceCards.map((card) => (
               <div
-                key={item.title}
-                className="p-6 rounded-xl border border-border bg-bg/50 text-center"
+                key={card.title}
+                className="rounded-2xl border border-border bg-bg/60 px-6 py-7 text-center"
               >
-                <h3 className="font-bold text-white mb-2">{item.title}</h3>
-                <p className="text-text-muted text-sm m-0 leading-relaxed">{item.body}</p>
+                <h3 className="text-white font-bold text-lg mb-3">{card.title}</h3>
+                <p className="text-text-muted text-sm leading-relaxed">{card.body}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Why Toronto drivers choose us — trust points */}
+      {/* Why Toronto drivers choose */}
       <section className="py-14 md:py-16 bg-bg">
         <div className="max-w-[1100px] mx-auto px-4 sm:px-6">
           <SectionHeading
@@ -99,98 +176,162 @@ export default function MobileDetailingTorontoPage() {
             subtitle="Local, mobile, and built for people who want more than a quick wash."
             align="center"
           />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-xl border border-border bg-bg-card text-center">
-              <div className="w-12 h-12 rounded-xl bg-accent/15 flex items-center justify-center text-2xl mx-auto mb-4">📍</div>
-              <h3 className="font-bold text-white mb-2">We come to you</h3>
-              <p className="text-text-muted text-sm m-0">
-                Toronto neighbourhoods and GTA cities. Driveway, condo, or office — we bring the detail to your location.
-              </p>
-            </div>
-            <div className="p-6 rounded-xl border border-border bg-bg-card text-center">
-              <div className="w-12 h-12 rounded-xl bg-accent/15 flex items-center justify-center text-2xl mx-auto mb-4">✨</div>
-              <h3 className="font-bold text-white mb-2">Premium, not cheap wash</h3>
-              <p className="text-text-muted text-sm m-0">
-                Interior, exterior, paint correction, ceramic coating. Real standards. Our reviews back it up.
-              </p>
-            </div>
-            <div className="p-6 rounded-xl border border-border bg-bg-card text-center">
-              <div className="w-12 h-12 rounded-xl bg-accent/15 flex items-center justify-center text-2xl mx-auto mb-4">💰</div>
-              <h3 className="font-bold text-white mb-2">Fair pricing</h3>
-              <p className="text-text-muted text-sm m-0">
-                Quote before any job. No hidden fees. Member plans available for ongoing care.
-              </p>
-            </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-8">
+            {trustCards.map((card) => (
+              <div
+                key={card.title}
+                className="rounded-2xl border border-border bg-bg-card px-6 py-8 text-center"
+              >
+                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-accent/12 border border-accent/15 flex items-center justify-center text-xl">
+                  {card.icon}
+                </div>
+                <h3 className="text-white font-bold text-lg mb-3">{card.title}</h3>
+                <p className="text-text-muted text-sm leading-relaxed">{card.body}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Services in Toronto — internal links */}
-      <section className="py-14 md:py-16 bg-bg-card">
+      {/* Proof strip */}
+      <section className="py-12 md:py-14 bg-bg-card border-y border-white/5">
         <div className="max-w-[1100px] mx-auto px-4 sm:px-6">
-          <SectionHeading
-            label="Services"
-            title="What we offer in Toronto"
-            subtitle="All mobile — at your place. Packages, correction, protection, and add-ons."
-            align="left"
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <ServiceCard
-              title="Full Detail"
-              description="Interior + exterior in one visit. The complete reset at your location."
-              ctaHref="/services#packages"
-              ctaText="See packages"
-            />
-            <ServiceCard
-              title="Paint Correction & Ceramic Coating"
-              description="Restore clarity and protect with pro-grade correction and coating. We come to you."
-              ctaHref="/services#ceramic"
-              ctaText="See protection"
-            />
-            <ServiceCard
-              title="Interior & Exterior"
-              description="Deep clean inside and out. Seats, carpets, wash, polish, protect."
-              ctaHref="/services#interior"
-              ctaText="See services"
-            />
-            <ServiceCard
-              title="Membership plans"
-              description="Monthly maintenance, priority booking, member-only savings. Toronto & GTA."
-              ctaHref="/membership"
-              ctaText="View plans"
-            />
+          <p className="text-[10px] uppercase tracking-[0.25em] text-accent font-semibold mb-4 text-center">
+            Real feedback
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {proofQuotes.map((item, i) => (
+              <div key={i} className="rounded-xl border border-border bg-bg/50 px-5 py-5 text-center">
+                <blockquote className="text-white font-medium text-sm md:text-base italic mb-1">
+                  &ldquo;{item.quote}&rdquo;
+                </blockquote>
+                <p className="text-text-muted text-xs">{item.forLabel}</p>
+              </div>
+            ))}
           </div>
-          <p className="mt-6">
-            <Link href="/services" className="text-accent font-medium hover:underline">
-              Full service menu →
+          <p className="text-center mt-5">
+            <Link href="/reviews" className="text-accent font-semibold text-sm hover:underline">
+              See Reviews →
             </Link>
           </p>
         </div>
       </section>
 
-      {/* Service areas — Toronto + GTA */}
+      {/* What we offer in Toronto */}
       <section className="py-14 md:py-16 bg-bg">
         <div className="max-w-[1100px] mx-auto px-4 sm:px-6">
-          <SectionHeading
-            title="Toronto & GTA service areas"
-            subtitle="Primary: Toronto. Expanded: Mississauga, Oakville, Brampton, Vaughan, Markham, Pickering, King City."
-            align="left"
-          />
-          <ServiceAreaGrid />
-          <p className="mt-6">
+          <div className="max-w-[620px] mb-8">
+            <p className="text-[10px] uppercase tracking-[0.25em] text-accent font-semibold mb-4">
+              Services
+            </p>
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
+              What we offer in Toronto
+            </h2>
+            <p className="text-text-muted text-base md:text-lg leading-relaxed">
+              All mobile — at your place. Packages, correction, protection, and
+              add-ons.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {offerCards.map((card) => (
+              <div
+                key={card.title}
+                className="rounded-2xl border border-border bg-bg/55 px-7 py-7"
+              >
+                <h3 className="text-white font-bold text-2xl mb-3">{card.title}</h3>
+                <p className="text-text-muted text-base leading-relaxed mb-6 max-w-[34ch]">
+                  {card.body}
+                </p>
+                <Link
+                  href={card.href}
+                  className="inline-flex items-center justify-center rounded-xl border-2 border-accent text-accent font-semibold px-5 py-2.5 hover:bg-accent/10 transition-colors"
+                >
+                  {card.cta}
+                </Link>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-6">
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 text-accent font-semibold hover:text-accent-hover transition-colors"
+            >
+              Full service menu →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Service areas */}
+      <section className="py-14 md:py-16 bg-bg-card">
+        <div className="max-w-[1100px] mx-auto px-4 sm:px-6">
+          <div className="max-w-[680px] mb-10">
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
+              Toronto & GTA service areas
+            </h2>
+            <p className="text-text-muted text-base md:text-lg leading-relaxed">
+              Primary: Toronto. Expanded: Mississauga, Oakville, Brampton,
+              Vaughan, Markham, Pickering, King City.
+            </p>
+          </div>
+
+          <div className="text-center text-sm text-text-muted mb-8 max-w-[420px] mx-auto">
+            We come to you. Same quality at home or work — Toronto and GTA.
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.25em] text-accent font-semibold mb-4">
+                Toronto core
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {torontoCore.map((area) => (
+                  <span
+                    key={area}
+                    className="px-4 py-2 rounded-xl border border-border bg-bg-card text-white text-sm"
+                  >
+                    {area}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.25em] text-accent font-semibold mb-4">
+                Greater Toronto Area
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {gtaAreas.map((area) => (
+                  <span
+                    key={area}
+                    className="px-4 py-2 rounded-xl border border-border bg-bg-card text-white text-sm"
+                  >
+                    {area}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8">
             <Link
               href="/service-areas"
-              className="inline-flex py-2.5 px-5 rounded-lg border-2 border-accent text-accent font-semibold text-sm hover:bg-accent/10 transition-colors"
+              className="inline-flex items-center justify-center rounded-xl border-2 border-accent text-accent font-semibold px-6 py-3 hover:bg-accent/10 transition-colors"
             >
               View full service areas
             </Link>
-          </p>
+          </div>
         </div>
       </section>
 
+      {/* Final CTA */}
       <CTASection
         title="Book Toronto mobile detailing"
-        subtitle="Get a quote or call. We'll confirm your area and come to you — driveway, condo, or office."
+        subtitle="Tell us your vehicle type, condition, and location. We'll quote the right service before booking and come to you anywhere across Toronto and the GTA."
+        microLine="Quote first — real detailing at your location."
       />
     </>
   );
