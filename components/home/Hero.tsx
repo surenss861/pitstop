@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { primaryCtaHref, primaryCtaLabel, secondaryCtaHref, secondaryCtaLabel } from "@/lib/booking";
 import Image from "next/image";
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
@@ -130,18 +131,39 @@ export default function Hero() {
             </div>
 
             <div ref={ctaRef} className="flex flex-wrap gap-3 md:gap-4">
-              <Link
-                href="/contact"
-                className="btn-primary-hero inline-flex py-3.5 px-6 md:py-4 md:px-8 rounded-xl bg-accent text-bg font-semibold hover:bg-accent-hover transition-all duration-300 text-sm md:text-base"
-              >
-                Get a Quote
-              </Link>
-              <a
-                href="tel:+16478237338"
-                className="inline-flex py-3.5 px-6 md:py-4 md:px-8 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors text-sm md:text-base"
-              >
-                Call Now
-              </a>
+              {primaryCtaHref.startsWith("http") ? (
+                <a
+                  href={primaryCtaHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary-hero inline-flex py-3.5 px-6 md:py-4 md:px-8 rounded-xl bg-accent text-bg font-semibold hover:bg-accent-hover transition-all duration-300 text-sm md:text-base"
+                >
+                  {primaryCtaLabel}
+                </a>
+              ) : (
+                <Link
+                  href={primaryCtaHref}
+                  className="btn-primary-hero inline-flex py-3.5 px-6 md:py-4 md:px-8 rounded-xl bg-accent text-bg font-semibold hover:bg-accent-hover transition-all duration-300 text-sm md:text-base"
+                >
+                  {primaryCtaLabel}
+                </Link>
+              )}
+              {secondaryCtaHref.startsWith("http") || secondaryCtaHref.startsWith("tel") ? (
+                <a
+                  href={secondaryCtaHref}
+                  {...(secondaryCtaHref.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="inline-flex py-3.5 px-6 md:py-4 md:px-8 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors text-sm md:text-base"
+                >
+                  {secondaryCtaLabel}
+                </a>
+              ) : (
+                <Link
+                  href={secondaryCtaHref}
+                  className="inline-flex py-3.5 px-6 md:py-4 md:px-8 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors text-sm md:text-base"
+                >
+                  {secondaryCtaLabel}
+                </Link>
+              )}
             </div>
           </div>
 

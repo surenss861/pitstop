@@ -2,6 +2,8 @@
 
 Single reference for how booking and payments should work once Square is live.
 
+**Env:** Copy `.env.example` to `.env.local` and fill in your values. Never commit `.env` or `.env.local`. Store **only** `NEXT_PUBLIC_BOOKING_URL` in Vercel/host env if you want "Book Now" to point to Square; keep `SQUARE_ACCESS_TOKEN` and other secrets server-side and **rotate the access token** in the Square Developer Console if it was ever exposed (e.g. in chat or logs).
+
 ---
 
 ## Recommended stack

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { serviceAreaCopy } from "@/lib/service-areas-data";
+import { primaryCtaHref, primaryCtaLabel, secondaryCtaHref, secondaryCtaLabel } from "@/lib/booking";
 
 type CTASectionProps = {
   title?: string;
@@ -36,18 +37,39 @@ export default function CTASection({
           )}
           <p className="text-xs md:text-sm text-accent/90 font-medium mb-4">{microLine}</p>
           <div className="flex flex-wrap gap-3 md:gap-4 justify-center mb-4 md:mb-5">
-            <Link
-              href="/contact"
-              className="btn-primary-hero inline-flex py-4 px-8 md:py-5 md:px-12 rounded-xl bg-accent text-bg font-semibold text-base md:text-lg hover:bg-accent-hover transition-all shadow-[0_0_0_0_rgba(201,162,39,0.3)] hover:shadow-[0_0_28px_6px_rgba(201,162,39,0.25)]"
-            >
-              Get a Quote
-            </Link>
-            <a
-              href="tel:+16478237338"
-              className="inline-flex py-4 px-8 md:py-5 md:px-12 rounded-xl border-2 border-accent text-accent font-semibold text-base md:text-lg hover:bg-accent/10 transition-colors"
-            >
-              Call Now
-            </a>
+            {primaryCtaHref.startsWith("http") ? (
+              <a
+                href={primaryCtaHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary-hero inline-flex py-4 px-8 md:py-5 md:px-12 rounded-xl bg-accent text-bg font-semibold text-base md:text-lg hover:bg-accent-hover transition-all shadow-[0_0_0_0_rgba(201,162,39,0.3)] hover:shadow-[0_0_28px_6px_rgba(201,162,39,0.25)]"
+              >
+                {primaryCtaLabel}
+              </a>
+            ) : (
+              <Link
+                href={primaryCtaHref}
+                className="btn-primary-hero inline-flex py-4 px-8 md:py-5 md:px-12 rounded-xl bg-accent text-bg font-semibold text-base md:text-lg hover:bg-accent-hover transition-all shadow-[0_0_0_0_rgba(201,162,39,0.3)] hover:shadow-[0_0_28px_6px_rgba(201,162,39,0.25)]"
+              >
+                {primaryCtaLabel}
+              </Link>
+            )}
+            {secondaryCtaHref.startsWith("http") || secondaryCtaHref.startsWith("tel") ? (
+              <a
+                href={secondaryCtaHref}
+                {...(secondaryCtaHref.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                className="inline-flex py-4 px-8 md:py-5 md:px-12 rounded-xl border-2 border-accent text-accent font-semibold text-base md:text-lg hover:bg-accent/10 transition-colors"
+              >
+                {secondaryCtaLabel}
+              </a>
+            ) : (
+              <Link
+                href={secondaryCtaHref}
+                className="inline-flex py-4 px-8 md:py-5 md:px-12 rounded-xl border-2 border-accent text-accent font-semibold text-base md:text-lg hover:bg-accent/10 transition-colors"
+              >
+                {secondaryCtaLabel}
+              </Link>
+            )}
           </div>
           <div className="pt-4 md:pt-5 border-t border-white/10 flex flex-wrap items-center justify-center gap-2 md:gap-3">
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-semibold">5.0</span>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { primaryCtaHref, primaryCtaLabel } from "@/lib/booking";
 
 const navLinks = [
   { href: "/services", label: "Services" },
@@ -43,12 +44,23 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/contact"
-              className="px-6 py-3 rounded-xl text-bg font-semibold text-sm bg-accent hover:bg-accent-hover transition-all shadow-[0_0_0_0_rgba(201,162,39,0.2)] hover:shadow-[0_0_20px_2px_rgba(201,162,39,0.25)]"
-            >
-              Book Now
-            </Link>
+            {primaryCtaHref.startsWith("http") ? (
+              <a
+                href={primaryCtaHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 rounded-xl text-bg font-semibold text-sm bg-accent hover:bg-accent-hover transition-all shadow-[0_0_0_0_rgba(201,162,39,0.2)] hover:shadow-[0_0_20px_2px_rgba(201,162,39,0.25)]"
+              >
+                {primaryCtaLabel}
+              </a>
+            ) : (
+              <Link
+                href={primaryCtaHref}
+                className="px-6 py-3 rounded-xl text-bg font-semibold text-sm bg-accent hover:bg-accent-hover transition-all shadow-[0_0_0_0_rgba(201,162,39,0.2)] hover:shadow-[0_0_20px_2px_rgba(201,162,39,0.25)]"
+              >
+                {primaryCtaLabel}
+              </Link>
+            )}
           </nav>
 
           <a
@@ -109,13 +121,25 @@ export default function Navbar() {
           >
             Call (647) 823-7338
           </a>
-          <Link
-            href="/contact"
-            className="py-3 px-4 rounded-xl border-2 border-accent text-accent font-semibold text-center"
-            onClick={() => setMobileOpen(false)}
-          >
-            Get a Quote
-          </Link>
+          {primaryCtaHref.startsWith("http") ? (
+            <a
+              href={primaryCtaHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="py-3 px-4 rounded-xl border-2 border-accent text-accent font-semibold text-center"
+              onClick={() => setMobileOpen(false)}
+            >
+              {primaryCtaLabel}
+            </a>
+          ) : (
+            <Link
+              href={primaryCtaHref}
+              className="py-3 px-4 rounded-xl border-2 border-accent text-accent font-semibold text-center"
+              onClick={() => setMobileOpen(false)}
+            >
+              {primaryCtaLabel}
+            </Link>
+          )}
         </nav>
       </div>
     </>
