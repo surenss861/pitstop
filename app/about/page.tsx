@@ -21,7 +21,7 @@ export default function AboutPage() {
             About PitStop Polish
           </h1>
           <p className="text-text-muted text-lg max-w-[48ch] mx-auto">
-            Professional mobile detailing in Toronto — real operator, real work, real standards. We come to you.
+            Professional mobile detailing in Toronto — built around real work, real care, and real standards.
           </p>
         </div>
       </section>
@@ -31,43 +31,54 @@ export default function AboutPage() {
           <div>
             <h2 className="text-xl font-bold text-white mb-3">Who we are</h2>
             <p className="text-text-muted text-sm md:text-base leading-relaxed m-0">
-              PitStop Polish is a Toronto-based mobile detailing business built around one idea: bring quality detailing to your doorstep. No drop-off, no waiting at a shop — we come to your driveway, condo, or office with everything we need to do the job right.
+              PitStop Polish is a Toronto-based mobile detailing business built around one simple idea: bring quality detailing to the customer instead of forcing the customer to lose time at a shop.
             </p>
           </div>
 
           <div>
             <h2 className="text-xl font-bold text-white mb-3">Why this business exists</h2>
             <p className="text-text-muted text-sm md:text-base leading-relaxed m-0">
-              Your time matters. We'd rather spend ours coming to you so you can keep your day. Whether you're at home, work, or somewhere in between, we show up, do the work, and leave you with a cleaner car. That's the whole point.
+              Your time matters. The goal is simple: show up prepared, do the work properly, and leave you with a cleaner, better-protected vehicle without wasting your day.
             </p>
           </div>
 
           <div>
-            <h2 className="text-xl font-bold text-white mb-3">Why mobile</h2>
+            <h2 className="text-xl font-bold text-white mb-3">Why mobile detailing</h2>
             <p className="text-text-muted text-sm md:text-base leading-relaxed m-0">
-              Convenience without sacrificing quality. Our customers choose us because they get real attention to detail — interior and exterior, paint correction, ceramic coating when they want it — at a fair price, without the hassle of driving somewhere. Done right in your own driveway.
+              Convenience only matters if quality is still there. That's why the focus is not just washing cars — it's interior care, exterior finish, correction, and protection done properly at your location.
             </p>
           </div>
 
           <div>
             <h2 className="text-xl font-bold text-white mb-3">The standard we work to</h2>
             <p className="text-text-muted text-sm md:text-base leading-relaxed m-0">
-              No shortcuts, no fake promises. What you see in our gallery and read in our reviews is what we aim for every time. We're committed to doing the job right: interior deep clean, exterior wash and protect, correction and coating when that's what you're after.
+              No rush jobs. No fake luxury. No careless work. What you see in the gallery and reviews is the level we aim for every time.
             </p>
           </div>
 
           <div>
             <h2 className="text-xl font-bold text-white mb-3">What we don't do</h2>
             <p className="text-text-muted text-sm md:text-base leading-relaxed m-0">
-              We don't do rush jobs or cut corners. We don't upsell you into services you don't need. We don't show up unprepared. We quote before the job, we show up with the right equipment, and we leave your vehicle in better shape than we found it.
+              We do not push unnecessary upsells, show up unprepared, or pretend every vehicle needs the most expensive package. We quote first and recommend the right level of work.
             </p>
           </div>
 
           <div>
             <h2 className="text-xl font-bold text-white mb-3">Why trust us with your vehicle</h2>
             <p className="text-text-muted text-sm md:text-base leading-relaxed m-0">
-              Local Toronto focus — we serve this city and the GTA because we're here, and we care about the results. Real reviews, real before/after proof, and a straightforward way to book. You get a quote first, we confirm your area, and we come to you. Simple.
+              Local Toronto & GTA focus, real reviews, real proof, quote-first pricing, and service built around your location.
             </p>
+          </div>
+
+          <div className="p-5 rounded-xl border border-accent/20 bg-accent/5">
+            <h3 className="text-white font-bold text-sm mb-3">How we work</h3>
+            <ul className="text-text-muted text-sm space-y-2 m-0">
+              <li>Quote first</li>
+              <li>Arrive prepared</li>
+              <li>Confirm area before booking</li>
+              <li>Real detailing, not rushed work</li>
+              <li>Focus on results and repeat customers</li>
+            </ul>
           </div>
 
           <div className="pt-6 flex flex-col sm:flex-row gap-4">

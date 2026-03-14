@@ -23,9 +23,10 @@ export default function ServicesPage() {
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 leading-tight tracking-tight">
             Mobile Detailing · Paint Correction · Ceramic Coating
           </h1>
-          <p className="text-text-muted text-lg md:text-xl mb-8 max-w-[52ch] mx-auto">
-            Premium mobile detailing, paint correction, and ceramic coating in Toronto — built for drivers who want more than a basic clean.
+          <p className="text-text-muted text-lg md:text-xl mb-4 max-w-[52ch] mx-auto">
+            Premium mobile detailing built for drivers who want real care, real gloss, and more than a cheap wash.
           </p>
+          <p className="text-sm text-text-muted mb-6">Toronto & GTA · Quote first · We come to you</p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link
               href="/contact"
@@ -74,13 +75,34 @@ export default function ServicesPage() {
                 </div>
               ))}
             </div>
-            {section.showCta && (
+            {section.id === "packages" && (
               <p className="mt-6">
-                <Link
-                  href="/contact"
-                  className="inline-flex py-2.5 px-5 rounded-lg border-2 border-accent text-accent font-semibold text-sm hover:bg-accent/10 transition-colors"
-                >
-                  Request a quote for {section.label.toLowerCase()}
+                <Link href="/contact" className="inline-flex py-2.5 px-5 rounded-lg border-2 border-accent text-accent font-semibold text-sm hover:bg-accent/10 transition-colors">
+                  Request pricing for packages
+                </Link>
+              </p>
+            )}
+            {section.id === "ceramic" && (
+              <p className="mt-6">
+                <Link href="/contact" className="inline-flex py-2.5 px-5 rounded-lg border-2 border-accent text-accent font-semibold text-sm hover:bg-accent/10 transition-colors">
+                  Request a ceramic quote
+                </Link>
+              </p>
+            )}
+            {section.id === "correction" && (
+              <>
+                <p className="mt-4 text-sm text-text-muted">Not sure how much correction your paint needs? Send photos and get a quote.</p>
+                <p className="mt-3">
+                  <Link href="/contact" className="inline-flex py-2.5 px-5 rounded-lg border-2 border-accent text-accent font-semibold text-sm hover:bg-accent/10 transition-colors">
+                    Get a correction quote
+                  </Link>
+                </p>
+              </>
+            )}
+            {section.id === "addons" && (
+              <p className="mt-6">
+                <Link href="/contact" className="inline-flex py-2.5 px-5 rounded-lg border-2 border-accent text-accent font-semibold text-sm hover:bg-accent/10 transition-colors">
+                  Request an add-ons quote
                 </Link>
               </p>
             )}
@@ -90,7 +112,8 @@ export default function ServicesPage() {
 
       <section className="py-12 bg-bg border-t border-white/5">
           <div className="max-w-[1100px] mx-auto px-4 sm:px-6 text-center">
-            <p className="text-white font-semibold mb-4">Ready for a quote? We come to you.</p>
+            <p className="text-white font-semibold mb-2">Not sure what level of service your vehicle needs?</p>
+            <p className="text-text-muted text-sm mb-4">Tell us your vehicle type, condition, and location. We'll recommend the right service before booking.</p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link href="/contact" className="inline-flex py-3.5 px-8 rounded-xl bg-accent text-bg font-semibold hover:bg-accent-hover transition-colors">
                 Request a Quote

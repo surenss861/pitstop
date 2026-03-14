@@ -13,15 +13,17 @@ export default function ContactPage() {
     <>
       <section className="py-16 text-center">
         <div className="max-w-[1100px] mx-auto px-4">
+          <p className="text-[10px] uppercase tracking-[0.25em] text-accent font-semibold mb-4">
+            Contact
+          </p>
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Contact & Book Now
           </h1>
           <p className="text-text-muted max-w-[50ch] mx-auto">
-            Request a quote or call us. We'll confirm availability and price, then come to your
-            location across Toronto and the GTA.
+            Request a quote or call us. We'll confirm availability, recommend the right service, and come to your location across Toronto and the GTA.
           </p>
           <p className="text-sm text-text-muted mt-4 max-w-[44ch] mx-auto">
-            Quote before job · No spam · We only use your info for your request · Service area confirmed when you book
+            Quote before job · No spam · We only use your info for your request
           </p>
         </div>
       </section>
@@ -60,9 +62,12 @@ export default function ContactPage() {
             <div>
               <h2 className="text-xl font-bold text-white mb-2">Request a quote</h2>
               <p className="text-text-muted text-sm mb-6">
-                One form — we'll get back with availability and pricing. Quote before any job; we only use your info for your request.
+                One form. We'll get back with pricing and availability based on your vehicle, condition, and location.
               </p>
               <QuoteForm />
+              <p className="text-sm text-text-muted mt-4">
+                Want the fastest quote? <a href="tel:+16478237338" className="text-accent font-medium">Call now.</a>
+              </p>
             </div>
           </div>
         </div>

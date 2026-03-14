@@ -26,8 +26,8 @@ export default function BeforeAfterShowcase() {
           <SectionHeading
             align="left"
             label="Results"
-            title="Results That Speak"
-            subtitle="Real transformations — interior, exterior, and full details."
+            title="Real results, not generic car photos"
+            subtitle="Interior resets, exterior gloss, wheel finishes, and full-detail work at customer locations."
           />
         </div>
 
@@ -85,7 +85,7 @@ export default function BeforeAfterShowcase() {
             href="/gallery"
             className="inline-flex py-3 px-6 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors"
           >
-            View full gallery
+            View Gallery
           </Link>
         </p>
       </div>

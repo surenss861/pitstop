@@ -19,7 +19,7 @@ export default function MobileStickyCTA() {
         href="/contact"
         className="flex-1 py-3.5 px-4 rounded-xl border-2 border-accent text-accent font-semibold text-center hover:bg-accent/10 transition-colors"
       >
-        Book
+        Get Quote
       </Link>
     </div>
   );

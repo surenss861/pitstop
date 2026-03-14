@@ -19,11 +19,14 @@ export default function MembershipTeaser() {
             <Link
               key={plan.id}
               href={`/membership#${plan.id}`}
-              className="block p-5 rounded-xl border border-border bg-bg/50 hover:border-accent/40 transition-colors text-center"
+              className="block p-5 rounded-xl border border-border bg-bg/50 hover:border-accent/40 transition-colors text-center group"
             >
               <p className="font-bold text-white mb-1">{plan.name}</p>
               <p className="text-accent text-xl font-extrabold">${plan.price}<span className="text-text-muted text-sm font-medium">/mo</span></p>
-              <p className="text-text-muted text-xs mt-2">{plan.valueLine}</p>
+              <p className="text-text-muted text-xs mt-2 mb-3">{plan.valueLine}</p>
+              <span className="text-accent font-semibold text-sm group-hover:underline">
+                {plan.id === "essential" ? "View Essential" : plan.id === "premium-care" ? "View Premium Care" : "View Showroom Club"} →
+              </span>
             </Link>
           ))}
         </div>
@@ -40,7 +43,7 @@ export default function MembershipTeaser() {
             href="/membership"
             className="inline-flex py-3.5 px-8 rounded-xl bg-accent text-bg font-semibold hover:bg-accent-hover transition-colors"
           >
-            View membership plans
+            View Membership Plans
           </Link>
         </p>
       </div>

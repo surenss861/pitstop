@@ -80,7 +80,20 @@ export default function QuoteForm() {
         </select>
       </div>
       <div>
-        <label htmlFor="location" className="block font-medium text-white mb-1">Location (area or address) *</label>
+        <label htmlFor="condition" className="block font-medium text-white mb-1">Vehicle condition</label>
+        <select
+          id="condition"
+          name="condition"
+          className="w-full px-4 py-3 rounded-lg bg-bg-card border border-border text-white focus:outline-none focus:border-accent"
+        >
+          <option value="">Select…</option>
+          <option value="light">Light — regularly maintained</option>
+          <option value="medium">Medium — needs a good clean</option>
+          <option value="heavy">Heavy — neglected / restoration level</option>
+        </select>
+      </div>
+      <div>
+        <label htmlFor="location" className="block font-medium text-white mb-1">Location / city *</label>
         <input
           type="text"
           id="location"
@@ -91,12 +104,35 @@ export default function QuoteForm() {
         />
       </div>
       <div>
-        <label htmlFor="message" className="block font-medium text-white mb-1">Message / Vehicle condition</label>
+        <label htmlFor="preferred_date" className="block font-medium text-white mb-1">Preferred date</label>
+        <input
+          type="text"
+          id="preferred_date"
+          name="preferred_date"
+          placeholder="e.g. Next week, flexible"
+          className="w-full px-4 py-3 rounded-lg bg-bg-card border border-border text-white placeholder:text-text-muted focus:outline-none focus:border-accent"
+        />
+      </div>
+      <div>
+        <label htmlFor="location_type" className="block font-medium text-white mb-1">Where will we work?</label>
+        <select
+          id="location_type"
+          name="location_type"
+          className="w-full px-4 py-3 rounded-lg bg-bg-card border border-border text-white focus:outline-none focus:border-accent"
+        >
+          <option value="">Select…</option>
+          <option value="driveway">Driveway / home</option>
+          <option value="condo">Condo / underground</option>
+          <option value="office">Office / work</option>
+        </select>
+      </div>
+      <div>
+        <label htmlFor="message" className="block font-medium text-white mb-1">Notes</label>
         <textarea
           id="message"
           name="message"
           rows={3}
-          placeholder="Anything we should know?"
+          placeholder="Anything we should know? Photos of condition can be sent after you submit."
           className="w-full px-4 py-3 rounded-lg bg-bg-card border border-border text-white placeholder:text-text-muted focus:outline-none focus:border-accent resize-y"
         />
       </div>
@@ -105,7 +141,7 @@ export default function QuoteForm() {
         disabled={status === "sending"}
         className="w-full py-4 px-6 rounded-lg bg-accent text-bg font-semibold hover:bg-accent-hover transition-colors disabled:opacity-70"
       >
-        {status === "idle" && "Send request"}
+        {status === "idle" && "Request My Quote"}
         {status === "sending" && "Sending…"}
         {status === "sent" && "Request sent — we'll call you soon!"}
       </button>

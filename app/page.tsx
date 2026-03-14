@@ -1,4 +1,5 @@
 import Hero from "@/components/home/Hero";
+import ServicePathBlock from "@/components/home/ServicePathBlock";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ServiceCard from "@/components/conversion/ServiceCard";
 import ReviewCard from "@/components/conversion/ReviewCard";
@@ -14,13 +15,13 @@ import StaggerChildren from "@/components/animation/StaggerChildren";
 import Link from "next/link";
 
 const whyStatement =
-  "We come to you. We do quality work. People already trust us. Booking is easy.";
+  "We come to you. We do the job right. People book us again for a reason.";
 const whyMiniQuote = "Done at my driveway — so convenient. Quality was top notch.";
 const whyProof = [
-  { label: "We come to you", line: "No drop-off. Your driveway, condo, or office." },
-  { label: "Quality that shows", line: "Interior and exterior, real care in every corner." },
-  { label: "Toronto & GTA", line: "Same standard at home or work." },
-  { label: "Honest pricing", line: "No hidden fees. No upsell pressure." },
+  { label: "We come to you", line: "Driveway, condo, office, and approved underground parking." },
+  { label: "Quality that shows", line: "Interior, exterior, correction, and protection with real attention to detail." },
+  { label: "Toronto & GTA", line: "Toronto, Mississauga, Oakville, Vaughan, Markham, Brampton, Pickering, King City." },
+  { label: "Quote-first pricing", line: "Clear recommendations before the job starts." },
 ];
 
 const reviewQuotes = [
@@ -34,14 +35,18 @@ export default function HomePage() {
     <>
       <Hero />
 
+      <Reveal variant="scale">
+        <ServicePathBlock />
+      </Reveal>
+
       {/* Why */}
-      <section className="py-16 lg:py-20 bg-bg-card">
+      <section className="py-16 lg:py-20 bg-bg">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <Reveal variant="scale">
             <SectionHeading
               align="left"
               label="Why PitStop Polish"
-              title="Why People Choose Us"
+              title="Why drivers book with us"
             />
           </Reveal>
           <StaggerChildren
@@ -84,19 +89,24 @@ export default function HomePage() {
               </ul>
             </div>
           </StaggerChildren>
+          <p className="text-left mt-8">
+            <Link href="/reviews" className="inline-flex py-2.5 px-6 rounded-xl border-2 border-accent text-accent font-semibold text-sm hover:bg-accent/10 transition-colors">
+              See Reviews
+            </Link>
+          </p>
         </div>
       </section>
 
       {/* Services */}
-      <section className="py-16 lg:py-20">
+      <section className="py-16 lg:py-20 bg-bg-card">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <Reveal variant="scale">
             <div className="text-left mb-12">
               <SectionHeading
                 align="left"
                 label="Services"
-                title="What We Offer"
-                subtitle="Packages, correction, protection, and care — premium mobile detailing in Toronto, done at your location."
+                title="Packages, correction, protection, and care"
+                subtitle="From maintenance details to paint correction and ceramic coating — built for drivers who want more than a basic wash."
               />
             </div>
           </Reveal>
@@ -124,6 +134,9 @@ export default function HomePage() {
               </div>
             ))}
           </StaggerChildren>
+          <p className="text-left mt-8">
+            <Link href="/services" className="text-accent font-medium hover:underline">View All Services →</Link>
+          </p>
         </div>
       </section>
 
@@ -131,7 +144,7 @@ export default function HomePage() {
         <MembershipTeaser />
       </Reveal>
 
-      {/* Reviews */}
+      {/* Reviews preview */}
       <section className="py-16 lg:py-20 bg-bg">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <Reveal variant="lateral">
@@ -139,8 +152,8 @@ export default function HomePage() {
               <SectionHeading
                 align="left"
                 label="Reviews"
-                title="What Toronto Drivers Say"
-                subtitle="Real feedback from real customers. 5.0 on Google."
+                title="What Toronto drivers say"
+                subtitle="Convenience, quality, pricing, and repeat bookings — from real customers."
               />
             </div>
           </Reveal>
@@ -150,32 +163,16 @@ export default function HomePage() {
             <span className="text-text-muted">·</span>
             <span className="text-text-muted">13 Google Reviews</span>
           </div>
-          <StaggerChildren className="grid grid-cols-1 md:grid-cols-3 gap-6" stagger={0.12} variant="lateral">
-            <div className="md:col-span-3 stagger-item">
-              <ReviewCard quote={reviewQuotes[0]} author="Driveway detail customer · Google review · Toronto" featured />
-            </div>
-            <div className="stagger-item">
-              <ReviewCard quote={reviewQuotes[1]} />
-            </div>
-            <div className="stagger-item hidden md:block">
-              <ReviewCard quote={reviewQuotes[2]} />
-            </div>
-          </StaggerChildren>
-          <div className="flex flex-wrap gap-4 mt-10">
-            <Link
-              href="/reviews"
-              className="inline-flex py-3 px-6 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors"
-            >
-              Read more reviews
+          <div className="max-w-[900px] mb-10">
+            <ReviewCard quote={reviewQuotes[0]} author="Driveway detail customer · Google review · Toronto" featured />
+          </div>
+          <div className="flex flex-wrap gap-4">
+            <Link href="/reviews" className="inline-flex py-3 px-6 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors">
+              See Reviews
             </Link>
-            <a
-              href="https://www.google.com/maps?cid=0x89d4cdaa61cd7613:0xf0845188efaf56c6"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex py-3 px-6 rounded-xl text-text-muted hover:text-accent transition-colors"
-            >
-              See us on Google
-            </a>
+            <Link href="/contact" className="inline-flex py-3 px-6 rounded-xl bg-accent text-bg font-semibold hover:bg-accent-hover transition-colors">
+              Get a Quote
+            </Link>
           </div>
         </div>
       </section>

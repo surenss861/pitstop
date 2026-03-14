@@ -29,21 +29,22 @@ export default function MembershipPage() {
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 leading-tight tracking-tight">
             Keep your vehicle clean year-round — without rebooking every time.
           </h1>
-          <p className="text-text-muted text-lg mb-6 max-w-[52ch] mx-auto">
-            Monthly maintenance plans for drivers who want consistent results, priority booking, and member-only savings. Designed for regularly maintained vehicles across Toronto and the GTA.
+          <p className="text-text-muted text-lg mb-4 max-w-[52ch] mx-auto">
+            Monthly maintenance for drivers across Toronto and the GTA who want easier upkeep, predictable pricing, and priority booking.
           </p>
+          <p className="text-sm text-text-muted mb-6">Vehicle-specific · 3-month minimum · Member pricing on upgrades</p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link
               href="/contact?ref=membership"
               className="inline-flex py-3.5 px-8 rounded-xl bg-accent text-bg font-semibold hover:bg-accent-hover transition-colors"
             >
-              Request to join
+              Request to Join
             </Link>
             <a
               href="tel:+16478237338"
               className="inline-flex py-3.5 px-8 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors"
             >
-              Call to ask about plans
+              Call About Plans
             </a>
           </div>
         </div>

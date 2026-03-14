@@ -57,11 +57,12 @@ export default function GalleryPage() {
 
       <section className="py-12 bg-bg">
         <div className="max-w-[700px] mx-auto px-4 text-center">
+          <h2 className="text-lg font-bold text-white mb-2">Real proof converts</h2>
           <p className="text-text-muted text-sm mb-4">
-            Add your own before/after photos to this gallery as you complete jobs. Real proof converts.
+            As you complete jobs, replace generic images with real before/after shots of interiors, wheels, gloss, trim, and correction work.
           </p>
-          <Link href="/services" className="text-accent font-medium hover:underline">
-            See our services →
+          <Link href="/services" className="inline-flex py-2.5 px-6 rounded-xl border-2 border-accent text-accent font-semibold text-sm hover:bg-accent/10 transition-colors">
+            See Our Services
           </Link>
         </div>
       </section>

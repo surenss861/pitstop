@@ -103,23 +103,24 @@ export default function Hero() {
                 that comes to you.
               </span>
               <span ref={line3Ref} className="block mt-1 text-white/95">
-                Done right across Toronto.
+                Done right in Toronto.
               </span>
             </h1>
-            <p ref={subRef} className="text-sm text-text-muted leading-relaxed mb-2 max-w-[28ch] tracking-tight md:text-base md:mb-3">
-              At your driveway or location. 5-star local service.
+            <p ref={subRef} className="text-sm text-text-muted leading-relaxed mb-2 max-w-[32ch] tracking-tight md:text-base md:mb-2">
+              Interior, exterior, paint correction, and ceramic coating at your driveway, condo, or office. Real detailing. Real results.
             </p>
-            <p className="text-xs text-accent/90 font-medium mb-4 tracking-tight md:text-sm md:mb-5">
-              At your driveway. One visit.
+            <p className="text-xs text-accent/90 font-medium mb-3 tracking-tight md:text-sm md:mb-4">
+              Quote first. No hidden upsell. We come to you.
             </p>
 
             <div ref={trustRef} className="flex flex-wrap items-center gap-2 mb-4">
               <span className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-accent/10 border border-accent/25 text-accent font-semibold text-sm">
-                <span className="tracking-wider">★★★★★</span> 5.0
+                <span className="tracking-wider">★★★★★</span> 5.0 Google rating
               </span>
-              <span className="text-text-muted text-sm">13 Google Reviews</span>
-              <span className="text-border">·</span>
-              <span className="text-text-muted text-sm">Toronto</span>
+              <span className="text-text-muted text-sm">·</span>
+              <span className="text-text-muted text-sm">13 reviews</span>
+              <span className="text-text-muted text-sm">·</span>
+              <span className="text-text-muted text-sm">Toronto & GTA</span>
             </div>
 
             <div ref={statRef} className="hidden md:flex items-center gap-6 mb-6 text-xs text-text-muted tracking-tight">
@@ -133,13 +134,13 @@ export default function Hero() {
                 href="/contact"
                 className="btn-primary-hero inline-flex py-3.5 px-6 md:py-4 md:px-8 rounded-xl bg-accent text-bg font-semibold hover:bg-accent-hover transition-all duration-300 text-sm md:text-base"
               >
-                Book Now
+                Get a Quote
               </Link>
               <a
                 href="tel:+16478237338"
                 className="inline-flex py-3.5 px-6 md:py-4 md:px-8 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors text-sm md:text-base"
               >
-                Call
+                Call Now
               </a>
             </div>
           </div>

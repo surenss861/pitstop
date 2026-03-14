@@ -8,7 +8,7 @@ type CTASectionProps = {
 
 export default function CTASection({
   title = "Ready to get your car detailed without leaving home?",
-  subtitle = "We come to you anywhere across Toronto and the GTA. Book now or call for a quick quote.",
+  subtitle = "We come to you anywhere across Toronto and the GTA. Quote first. No pressure.",
 }: CTASectionProps) {
   return (
     <section className="py-16 md:py-28 relative overflow-hidden">
@@ -37,13 +37,13 @@ export default function CTASection({
               href="/contact"
               className="btn-primary-hero inline-flex py-4 px-8 md:py-5 md:px-12 rounded-xl bg-accent text-bg font-semibold text-base md:text-lg hover:bg-accent-hover transition-all shadow-[0_0_0_0_rgba(201,162,39,0.3)] hover:shadow-[0_0_28px_6px_rgba(201,162,39,0.25)]"
             >
-              Book Now
+              Get a Quote
             </Link>
             <a
               href="tel:+16478237338"
               className="inline-flex py-4 px-8 md:py-5 md:px-12 rounded-xl border-2 border-accent text-accent font-semibold text-base md:text-lg hover:bg-accent/10 transition-colors"
             >
-              Call
+              Call Now
             </a>
           </div>
           <div className="pt-4 md:pt-5 border-t border-white/10 flex flex-wrap items-center justify-center gap-2 md:gap-3">

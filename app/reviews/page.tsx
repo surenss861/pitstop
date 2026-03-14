@@ -76,7 +76,7 @@ export default function ReviewsPage() {
       <section className="py-12 bg-bg-card">
         <div className="max-w-[900px] mx-auto px-4 sm:px-6">
           <p className="text-[11px] uppercase tracking-wider text-accent font-semibold mb-4 text-center">
-            Featured review
+            A common reason people book again
           </p>
           <ReviewCard
             quote={featuredReview.quote}
