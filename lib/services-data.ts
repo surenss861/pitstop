@@ -17,23 +17,58 @@ export type ServiceSection = {
   showCta?: boolean;
 };
 
-/** Package-level copy for sales framing: outcome + best-for */
+/** Package-level copy for sales framing: outcome + best-for. layout drives visual hierarchy. */
 export type PackageDetail = {
   name: string;
   outcome: string;
   bestFor: string;
+  /** featured = wide hero-style card; secondary = row 1 smaller; row2/row3 = standard cards */
+  layout: "featured" | "secondary" | "row2" | "row3";
 };
 
 export const packageDetails: PackageDetail[] = [
-  { name: "Basic Detail", outcome: "A quick refresh for vehicles that need regular maintenance, not a full restoration.", bestFor: "Routine upkeep, light dirt, and in-between visits" },
-  { name: "Interior Detail", outcome: "Deep cleaning for seats, carpets, trim, mats, glass, and everyday buildup.", bestFor: "Family vehicles, daily drivers, rideshare use, and neglected interiors" },
-  { name: "Exterior Detail", outcome: "A proper exterior clean, decontamination, and finish protection — not just a quick wash.", bestFor: "Dull paint, seasonal cleanup, and vehicles that need gloss brought back" },
-  { name: "Full Detail", outcome: "Interior and exterior care in one visit for a full vehicle reset.", bestFor: "Drivers who want the car feeling clean, sharp, and fully refreshed again" },
-  { name: "Premium Detail", outcome: "A stronger reset with deeper cleaning and added finish care.", bestFor: "Vehicles that need more than maintenance but not full correction" },
-  { name: "Showroom Detail", outcome: "A higher-level detail for drivers who want the cleanest, sharpest version of the vehicle possible.", bestFor: "Special occasions, resale prep, enthusiast care, and full presentation" },
-  { name: "Paint Correction Package", outcome: "Correction and polishing work to improve clarity, reduce swirls, and restore gloss before protection is applied.", bestFor: "Faded paint, visible swirls, oxidation, and drivers who want a sharper finish" },
-  { name: "Ceramic Coating Package", outcome: "Paint prep, refinement, and long-term protection in one package.", bestFor: "Drivers who want easier upkeep, better gloss retention, and stronger long-term protection" },
-  { name: "Sale Prep Detail", outcome: "Focused detailing to help your vehicle show better before sale or trade-in.", bestFor: "Resale, dealer trade-in prep, and getting the car presentation-ready" },
+  { name: "Full Detail", outcome: "Interior and exterior care in one visit for a full vehicle reset.", bestFor: "Drivers who want the car feeling clean, sharp, and fully refreshed again", layout: "featured" },
+  { name: "Interior Detail", outcome: "Deep cleaning for seats, carpets, trim, mats, glass, and everyday buildup.", bestFor: "Family vehicles, daily drivers, rideshare use, and neglected interiors", layout: "secondary" },
+  { name: "Exterior Detail", outcome: "A proper exterior clean, decontamination, and finish protection — not just a quick wash.", bestFor: "Dull paint, seasonal cleanup, and vehicles that need gloss brought back", layout: "secondary" },
+  { name: "Basic Detail", outcome: "A quick refresh for vehicles that need regular maintenance, not a full restoration.", bestFor: "Routine upkeep, light dirt, and in-between visits", layout: "row2" },
+  { name: "Premium Detail", outcome: "A stronger reset with deeper cleaning and added finish care.", bestFor: "Vehicles that need more than maintenance but not full correction", layout: "row2" },
+  { name: "Showroom Detail", outcome: "A higher-level detail for drivers who want the cleanest, sharpest version of the vehicle possible.", bestFor: "Special occasions, resale prep, enthusiast care, and full presentation", layout: "row2" },
+  { name: "Paint Correction Package", outcome: "Correction and polishing work to improve clarity, reduce swirls, and restore gloss before protection is applied.", bestFor: "Faded paint, visible swirls, oxidation, and drivers who want a sharper finish", layout: "row3" },
+  { name: "Ceramic Coating Package", outcome: "Paint prep, refinement, and long-term protection in one package.", bestFor: "Drivers who want easier upkeep, better gloss retention, and stronger long-term protection", layout: "row3" },
+  { name: "Sale Prep Detail", outcome: "Focused detailing to help your vehicle show better before sale or trade-in.", bestFor: "Resale, dealer trade-in prep, and getting the car presentation-ready", layout: "row3" },
+];
+
+/** Ceramic: benefit callouts above the service list */
+export const ceramicBenefits = ["Easier washes", "Better gloss retention", "Longer-term protection"];
+export const ceramicBestFor = "Best for: drivers who plan to keep the vehicle, want easier upkeep, or care about long-term finish quality.";
+
+/** Correction: what it solves + emotional line */
+export const correctionSolves = ["Swirl marks in sunlight", "Dull or hazy paint", "Light scratching", "Oxidation and loss of clarity"];
+export const correctionEmotionalLine = "Correction is for drivers who look at their paint and know it should look better than it does right now.";
+
+/** Exterior items grouped for visual clusters */
+export type ServiceCluster = { heading: string; items: string[] };
+export const exteriorClusters: ServiceCluster[] = [
+  { heading: "Wash & decontaminate", items: ["Hand Wash", "Foam Cannon Pre-Wash", "Bug Removal", "Tar Removal", "Iron Fallout Removal", "Clay Bar Treatment", "Paint Decontamination"] },
+  { heading: "Wheels, tires, and lower body", items: ["Wheel & Rim Deep Cleaning", "Brake Dust Removal", "Tire Dressing", "Wheel Well Cleaning", "Door Jamb Cleaning"] },
+  { heading: "Finish & presentation", items: ["Exterior Trim Dressing", "Exterior Trim Restoration", "Chrome & Metal Polishing", "Exterior Window Cleaning", "Exterior Wax Application"] },
+];
+
+/** Interior items grouped for visual clusters */
+export const interiorClusters: ServiceCluster[] = [
+  { heading: "Core reset", items: ["Full Interior Vacuum", "Interior Surface Wipe Down", "Dashboard & Console Cleaning", "Interior Glass Cleaning", "Interior Sanitizing"] },
+  { heading: "Deep cleaning", items: ["Carpet Shampooing", "Fabric Seat Shampoo", "Hot Water Extraction", "Steam Cleaning", "Floor Mat Deep Cleaning"] },
+  { heading: "Material care", items: ["Leather Cleaning", "Leather Conditioning", "Headliner Cleaning", "Interior Plastic & Trim Protection"] },
+];
+
+/** Restoration: intro line (replaces generic supportCopy for this section) */
+export const restorationIntro = "These are the high-impact fixes that make a vehicle feel noticeably better without requiring a full overhaul.";
+
+/** Add-ons: intro + demand order for display */
+export const addonsIntro = "Popular add-ons customers pair with full details, correction, and coating services.";
+export const addonsOrdered = [
+  "Headlight Restoration", "Engine Bay Detailing", "Pet Hair Removal", "Odor Removal", "Leather Conditioning",
+  "Trim Restoration", "Wheel Coating", "Glass Coating", "Paint Correction Upgrade", "Ceramic Coating Upgrade",
 ];
 
 export const serviceSections: ServiceSection[] = [
@@ -154,7 +189,7 @@ export const serviceSections: ServiceSection[] = [
     label: "Restoration",
     title: "Restoration and specialty services",
     subtitle: "Targeted services for the parts of the vehicle that make it feel older, rougher, or more neglected than it should.",
-    supportCopy: "These are the fixes and focused upgrades that go beyond maintenance and make a visible difference.",
+    supportCopy: "These are the high-impact fixes that make a vehicle feel noticeably better without requiring a full overhaul.",
     items: [
       { name: "Headlight Restoration" },
       { name: "Black Trim Restoration" },

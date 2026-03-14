@@ -3,25 +3,25 @@ import SectionHeading from "@/components/ui/SectionHeading";
 
 const paths = [
   {
-    title: "My interior needs a full reset",
+    title: "My interior feels used and dirty",
     body: "Deep cleaning for seats, carpets, trim, mats, glass, and the high-contact areas that make the whole car feel used.",
     cta: "See Interior Services",
     href: "/services#interior",
   },
   {
-    title: "My paint looks dull or scratched",
+    title: "My paint looks dull, swirled, or scratched",
     body: "Built for swirl marks, haze, oxidation, light scratching, and the kind of finish that no longer looks sharp in the sun.",
     cta: "See Paint Correction",
     href: "/services#correction",
   },
   {
-    title: "I want long-term protection",
+    title: "I want long-term gloss and protection",
     body: "Ceramic and coating options for drivers who want better gloss retention, easier upkeep, and stronger surface protection.",
     cta: "See Ceramic Options",
     href: "/services#ceramic",
   },
   {
-    title: "I want regular upkeep without rebooking every time",
+    title: "I want regular upkeep without thinking about it",
     body: "Monthly maintenance plans for drivers who want their car kept clean on a predictable schedule.",
     cta: "See Membership Plans",
     href: "/membership",
