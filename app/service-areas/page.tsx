@@ -3,6 +3,7 @@ import Link from "next/link";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ServiceAreaGrid from "@/components/conversion/ServiceAreaGrid";
 import CTASection from "@/components/conversion/CTASection";
+import { gtaCityConfigs } from "@/lib/gta-cities-data";
 
 export const metadata: Metadata = {
   title: "Service Areas — Toronto & GTA",
@@ -35,6 +36,20 @@ export default function ServiceAreasPage() {
             subtitle="Toronto neighbourhoods and GTA cities. Same quality at home or work."
           />
           <ServiceAreaGrid />
+          <div className="mt-10 pt-10 border-t border-white/10">
+            <h3 className="text-sm font-semibold text-white mb-3">Mobile detailing by city</h3>
+            <p className="text-text-muted text-sm mb-4">Toronto and GTA — we come to you in each area.</p>
+            <div className="flex flex-wrap gap-2">
+              <Link href="/mobile-detailing-toronto" className="px-4 py-2 rounded-lg bg-bg border border-border text-sm text-white/90 hover:border-accent/40 transition-colors">
+                Toronto
+              </Link>
+              {gtaCityConfigs.map((c) => (
+                <Link key={c.slug} href={`/mobile-detailing-gta/${c.slug}`} className="px-4 py-2 rounded-lg bg-bg border border-border text-sm text-white/90 hover:border-accent/40 transition-colors">
+                  {c.name}
+                </Link>
+              ))}
+            </div>
+          </div>
           <p className="text-center mt-10 text-text-muted">
             Don't see your area? <Link href="/contact" className="text-accent">Contact us</Link> —
             we may still be able to come to you.
