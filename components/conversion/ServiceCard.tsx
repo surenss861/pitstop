@@ -95,12 +95,23 @@ export default function ServiceCard({
         </ul>
       )}
       {ctaHref && (
-        <Link
-          href={ctaHref}
-          className={`inline-flex rounded-lg border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors ${featured ? "py-3 px-6 text-base" : "py-2.5 px-5 text-sm"}`}
-        >
-          {ctaText}
-        </Link>
+        ctaHref.startsWith("http") ? (
+          <a
+            href={ctaHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`inline-flex rounded-lg border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors ${featured ? "py-3 px-6 text-base" : "py-2.5 px-5 text-sm"}`}
+          >
+            {ctaText}
+          </a>
+        ) : (
+          <Link
+            href={ctaHref}
+            className={`inline-flex rounded-lg border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors ${featured ? "py-3 px-6 text-base" : "py-2.5 px-5 text-sm"}`}
+          >
+            {ctaText}
+          </Link>
+        )
       )}
     </div>
   );

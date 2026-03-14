@@ -14,6 +14,7 @@ import Reveal from "@/components/animation/Reveal";
 import StaggerChildren from "@/components/animation/StaggerChildren";
 import Link from "next/link";
 import { gtaCityConfigs } from "@/lib/gta-cities-data";
+import { bookingUrl } from "@/lib/booking";
 
 const whyStatement =
   "We come to you. We do the job right. People book us again for a reason.";
@@ -116,7 +117,11 @@ export default function HomePage() {
             stagger={0.08}
             variant="scale"
           >
-            {homepageServiceCards.map((card) => (
+            {homepageServiceCards.map((card) => {
+              const isBook = card.ctaKind === "book" && bookingUrl;
+              const ctaHref = (isBook && bookingUrl) ? bookingUrl : "/contact";
+              const ctaText = isBook ? "Book Now" : "Get a Quote";
+              return (
               <div
                 key={card.id}
                 className={`stagger-item ${card.featured ? "md:col-span-2 lg:col-span-2" : ""}`}
@@ -126,14 +131,15 @@ export default function HomePage() {
                   description={card.description}
                   bestFor={card.featured ? "Full transformation at your location" : undefined}
                   includes={card.includes ?? []}
-                  ctaHref={card.href}
-                  ctaText={card.ctaText}
+                  ctaHref={ctaHref}
+                  ctaText={ctaText}
                   tag={card.tag}
                   featured={card.featured}
                   premiumLine={card.premiumLine}
                 />
               </div>
-            ))}
+            );
+            })}
           </StaggerChildren>
           <p className="text-left mt-8">
             <Link href="/services" className="text-accent font-medium hover:underline">View All Services →</Link>

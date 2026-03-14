@@ -17,25 +17,26 @@ export type ServiceSection = {
   showCta?: boolean;
 };
 
-/** Package-level copy for sales framing: outcome + best-for. layout drives visual hierarchy. */
+/** Package-level copy for sales framing: outcome + best-for. layout drives visual hierarchy. ctaKind: book = Book Now (Square); quote = Get a Quote (/contact). */
 export type PackageDetail = {
   name: string;
   outcome: string;
   bestFor: string;
-  /** featured = wide hero-style card; secondary = row 1 smaller; row2/row3 = standard cards */
   layout: "featured" | "secondary" | "row2" | "row3";
+  /** book = Book Now (Square when set); quote = Get a Quote (/contact) */
+  ctaKind: "book" | "quote";
 };
 
 export const packageDetails: PackageDetail[] = [
-  { name: "Full Detail", outcome: "Interior and exterior care in one visit for a full vehicle reset.", bestFor: "Drivers who want the car feeling clean, sharp, and fully refreshed again", layout: "featured" },
-  { name: "Interior Detail", outcome: "Deep cleaning for seats, carpets, trim, mats, glass, and everyday buildup.", bestFor: "Family vehicles, daily drivers, rideshare use, and neglected interiors", layout: "secondary" },
-  { name: "Exterior Detail", outcome: "A proper exterior clean, decontamination, and finish protection — not just a quick wash.", bestFor: "Dull paint, seasonal cleanup, and vehicles that need gloss brought back", layout: "secondary" },
-  { name: "Basic Detail", outcome: "A quick refresh for vehicles that need regular maintenance, not a full restoration.", bestFor: "Routine upkeep, light dirt, and in-between visits", layout: "row2" },
-  { name: "Premium Detail", outcome: "A stronger reset with deeper cleaning and added finish care.", bestFor: "Vehicles that need more than maintenance but not full correction", layout: "row2" },
-  { name: "Showroom Detail", outcome: "A higher-level detail for drivers who want the cleanest, sharpest version of the vehicle possible.", bestFor: "Special occasions, resale prep, enthusiast care, and full presentation", layout: "row2" },
-  { name: "Paint Correction Package", outcome: "Correction and polishing work to improve clarity, reduce swirls, and restore gloss before protection is applied.", bestFor: "Faded paint, visible swirls, oxidation, and drivers who want a sharper finish", layout: "row3" },
-  { name: "Ceramic Coating Package", outcome: "Paint prep, refinement, and long-term protection in one package.", bestFor: "Drivers who want easier upkeep, better gloss retention, and stronger long-term protection", layout: "row3" },
-  { name: "Sale Prep Detail", outcome: "Focused detailing to help your vehicle show better before sale or trade-in.", bestFor: "Resale, dealer trade-in prep, and getting the car presentation-ready", layout: "row3" },
+  { name: "Full Detail", outcome: "Interior and exterior care in one visit for a full vehicle reset.", bestFor: "Drivers who want the car feeling clean, sharp, and fully refreshed again", layout: "featured", ctaKind: "book" },
+  { name: "Interior Detail", outcome: "Deep cleaning for seats, carpets, trim, mats, glass, and everyday buildup.", bestFor: "Family vehicles, daily drivers, rideshare use, and neglected interiors", layout: "secondary", ctaKind: "book" },
+  { name: "Exterior Detail", outcome: "A proper exterior clean, decontamination, and finish protection — not just a quick wash.", bestFor: "Dull paint, seasonal cleanup, and vehicles that need gloss brought back", layout: "secondary", ctaKind: "book" },
+  { name: "Basic Detail", outcome: "A quick refresh for vehicles that need regular maintenance, not a full restoration.", bestFor: "Routine upkeep, light dirt, and in-between visits", layout: "row2", ctaKind: "book" },
+  { name: "Premium Detail", outcome: "A stronger reset with deeper cleaning and added finish care.", bestFor: "Vehicles that need more than maintenance but not full correction", layout: "row2", ctaKind: "book" },
+  { name: "Showroom Detail", outcome: "A higher-level detail for drivers who want the cleanest, sharpest version of the vehicle possible.", bestFor: "Special occasions, resale prep, enthusiast care, and full presentation", layout: "row2", ctaKind: "quote" },
+  { name: "Paint Correction Package", outcome: "Correction and polishing work to improve clarity, reduce swirls, and restore gloss before protection is applied.", bestFor: "Faded paint, visible swirls, oxidation, and drivers who want a sharper finish", layout: "row3", ctaKind: "quote" },
+  { name: "Ceramic Coating Package", outcome: "Paint prep, refinement, and long-term protection in one package.", bestFor: "Drivers who want easier upkeep, better gloss retention, and stronger long-term protection", layout: "row3", ctaKind: "quote" },
+  { name: "Sale Prep Detail", outcome: "Focused detailing to help your vehicle show better before sale or trade-in.", bestFor: "Resale, dealer trade-in prep, and getting the car presentation-ready", layout: "row3", ctaKind: "book" },
 ];
 
 /** Ceramic: benefit callouts above the service list */
@@ -228,19 +229,19 @@ export const serviceSections: ServiceSection[] = [
   },
 ];
 
-/** Homepage: 6 premium service cards. Deep-link to /services#anchor */
+/** Homepage: 6 premium service cards. ctaKind drives Book Now (Square) vs Get a Quote (/contact). */
 export type HomepageServiceCard = {
   id: string;
   title: string;
   description: string;
   tag: string;
+  /** For quote cards: link to /contact. For book cards: overridden by bookingUrl when set. */
   href: string;
+  /** book = Book Now (Square when set); quote = Get a Quote (/contact) */
+  ctaKind: "book" | "quote";
   featured?: boolean;
-  /** Short premium line (featured card only) */
   premiumLine?: string;
-  /** Bullets for includes (optional, shown on card) */
   includes?: string[];
-  /** Override CTA label (e.g. "See options") */
   ctaText?: string;
 };
 
@@ -251,6 +252,7 @@ export const homepageServiceCards: HomepageServiceCard[] = [
     description: "Interior + exterior, one visit. The best place to start when your vehicle needs a full reset.",
     tag: "Package",
     href: "/services#packages",
+    ctaKind: "book",
     featured: true,
     premiumLine: "One visit. Full reset.",
     includes: ["Everything in Interior + Exterior", "One visit"],
@@ -262,6 +264,7 @@ export const homepageServiceCards: HomepageServiceCard[] = [
     description: "Vacuum, wipe down, extraction, stain-focused cleaning, trim and glass care.",
     tag: "Interior",
     href: "/services#interior",
+    ctaKind: "book",
     includes: ["Vacuum & extraction", "Seat & carpet deep clean", "Dash & trim"],
     ctaText: "See Interior Services",
   },
@@ -271,6 +274,7 @@ export const homepageServiceCards: HomepageServiceCard[] = [
     description: "Wash, decontamination, clay, gloss boost, trim and wheel care.",
     tag: "Exterior",
     href: "/services#exterior",
+    ctaKind: "book",
     includes: ["Wash & dry", "Clay bar", "Polish & protection"],
     ctaText: "See Exterior Services",
   },
@@ -280,6 +284,7 @@ export const homepageServiceCards: HomepageServiceCard[] = [
     description: "1-stage to 3-stage machine polishing for swirl marks, scratches, oxidation, and gloss.",
     tag: "Correction",
     href: "/services#correction",
+    ctaKind: "quote",
     includes: ["1–3 stage correction", "Machine polish", "Scratch & swirl removal"],
     ctaText: "See Correction",
   },
@@ -289,6 +294,7 @@ export const homepageServiceCards: HomepageServiceCard[] = [
     description: "Paint, wheel, and glass protection with 1-year, 3-year, and 5-year options.",
     tag: "Protection",
     href: "/services#ceramic",
+    ctaKind: "quote",
     includes: ["Paint coating", "Wheel & glass options", "1–5 year options"],
     ctaText: "See Coating Options",
   },
@@ -298,6 +304,7 @@ export const homepageServiceCards: HomepageServiceCard[] = [
     description: "Headlights, leather, odor removal, pet hair, engine bay, trim, and more.",
     tag: "Specialty",
     href: "/services#addons",
+    ctaKind: "quote",
     ctaText: "See Add-Ons",
     includes: ["Headlight restoration", "Leather conditioning", "Odor / pet hair"],
   },

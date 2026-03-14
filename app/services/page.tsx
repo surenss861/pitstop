@@ -16,6 +16,7 @@ import {
   addonsIntro,
   addonsOrdered,
 } from "@/lib/services-data";
+import { primaryCtaHref, primaryCtaLabel, secondaryCtaHref, secondaryCtaLabel, bookingUrl } from "@/lib/booking";
 
 export const metadata: Metadata = {
   title: "Mobile Detailing Services — Paint Correction, Ceramic Coating, Toronto",
@@ -58,12 +59,24 @@ export default function ServicesPage() {
           </p>
           <p className="text-sm text-text-muted mb-6">Toronto & GTA · Quote first · No hidden upsell · We come to you</p>
           <div className="flex flex-wrap gap-4 justify-center mb-6">
-            <Link href="/contact" className="inline-flex py-3.5 px-8 rounded-xl bg-accent text-bg font-semibold hover:bg-accent-hover transition-colors">
-              Get a Quote
-            </Link>
-            <a href="tel:+16478237338" className="inline-flex py-3.5 px-8 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors">
-              Call Now
-            </a>
+            {primaryCtaHref.startsWith("http") ? (
+              <a href={primaryCtaHref} target="_blank" rel="noopener noreferrer" className="inline-flex py-3.5 px-8 rounded-xl bg-accent text-bg font-semibold hover:bg-accent-hover transition-colors">
+                {primaryCtaLabel}
+              </a>
+            ) : (
+              <Link href={primaryCtaHref} className="inline-flex py-3.5 px-8 rounded-xl bg-accent text-bg font-semibold hover:bg-accent-hover transition-colors">
+                {primaryCtaLabel}
+              </Link>
+            )}
+            {secondaryCtaHref.startsWith("http") || secondaryCtaHref.startsWith("tel") ? (
+              <a href={secondaryCtaHref} {...(secondaryCtaHref.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="inline-flex py-3.5 px-8 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors">
+                {secondaryCtaLabel}
+              </a>
+            ) : (
+              <Link href={secondaryCtaHref} className="inline-flex py-3.5 px-8 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors">
+                {secondaryCtaLabel}
+              </Link>
+            )}
           </div>
           <div className="flex flex-wrap gap-2 justify-center">
             <span className="px-3 py-1.5 rounded-full bg-bg-card border border-border text-text-muted text-xs font-medium">Daily drivers</span>
@@ -97,50 +110,101 @@ export default function ServicesPage() {
                 <div className="space-y-4 md:space-y-6">
                   {/* Row 1: Featured Full Detail + Interior + Exterior */}
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
-                    {packagesFeatured.map((pkg) => (
-                      <div key={pkg.name} className="lg:col-span-2 p-6 md:p-8 rounded-2xl border-2 border-accent/30 bg-accent/5 hover:border-accent/50 transition-colors">
-                        <p className="text-[10px] uppercase tracking-wider text-accent font-semibold mb-2">Most popular</p>
-                        <h3 className="font-bold text-white text-xl md:text-2xl mb-2">{pkg.name}</h3>
-                        <p className="text-text-muted text-sm md:text-base mb-2 leading-relaxed">{pkg.outcome}</p>
-                        <p className="text-accent/90 text-xs font-medium"><span className="text-white/80">Best for: </span>{pkg.bestFor}</p>
-                      </div>
-                    ))}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
-                      {packagesSecondary.map((pkg) => (
-                        <div key={pkg.name} className="p-4 md:p-5 rounded-xl border border-border bg-bg/50 hover:border-accent/40 transition-colors">
-                          <h3 className="font-bold text-white text-base mb-1.5">{pkg.name}</h3>
-                          <p className="text-text-muted text-xs mb-1 leading-relaxed">{pkg.outcome}</p>
-                          <p className="text-accent/90 text-xs font-medium"><span className="text-white/80">Best for: </span>{pkg.bestFor}</p>
+                    {packagesFeatured.map((pkg) => {
+                      const isBook = pkg.ctaKind === "book" && bookingUrl;
+                      const pkgHref = (isBook && bookingUrl) ? bookingUrl : "/contact";
+                      const pkgCta = isBook ? "Book Now" : "Get a Quote";
+                      return (
+                        <div key={pkg.name} className="lg:col-span-2 p-6 md:p-8 rounded-2xl border-2 border-accent/30 bg-accent/5 hover:border-accent/50 transition-colors flex flex-col">
+                          <p className="text-[10px] uppercase tracking-wider text-accent font-semibold mb-2">Most popular</p>
+                          <h3 className="font-bold text-white text-xl md:text-2xl mb-2">{pkg.name}</h3>
+                          <p className="text-text-muted text-sm md:text-base mb-2 leading-relaxed">{pkg.outcome}</p>
+                          <p className="text-accent/90 text-xs font-medium mb-4"><span className="text-white/80">Best for: </span>{pkg.bestFor}</p>
+                          {pkgHref.startsWith("http") ? (
+                            <a href={pkgHref} target="_blank" rel="noopener noreferrer" className="mt-auto inline-flex py-2.5 px-5 rounded-lg border-2 border-accent text-accent font-semibold text-sm hover:bg-accent/10 transition-colors w-fit">
+                              {pkgCta}
+                            </a>
+                          ) : (
+                            <Link href={pkgHref} className="mt-auto inline-flex py-2.5 px-5 rounded-lg border-2 border-accent text-accent font-semibold text-sm hover:bg-accent/10 transition-colors w-fit">
+                              {pkgCta}
+                            </Link>
+                          )}
                         </div>
-                      ))}
+                      );
+                    })}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+                      {packagesSecondary.map((pkg) => {
+                        const isBook = pkg.ctaKind === "book" && bookingUrl;
+                        const pkgHref = (isBook && bookingUrl) ? bookingUrl : "/contact";
+                        const pkgCta = isBook ? "Book Now" : "Get a Quote";
+                        return (
+                          <div key={pkg.name} className="p-4 md:p-5 rounded-xl border border-border bg-bg/50 hover:border-accent/40 transition-colors flex flex-col">
+                            <h3 className="font-bold text-white text-base mb-1.5">{pkg.name}</h3>
+                            <p className="text-text-muted text-xs mb-1 leading-relaxed">{pkg.outcome}</p>
+                            <p className="text-accent/90 text-xs font-medium mb-3"><span className="text-white/80">Best for: </span>{pkg.bestFor}</p>
+                            {pkgHref.startsWith("http") ? (
+                              <a href={pkgHref} target="_blank" rel="noopener noreferrer" className="mt-auto text-accent font-semibold text-sm hover:underline w-fit">
+                                {pkgCta} →
+                              </a>
+                            ) : (
+                              <Link href={pkgHref} className="mt-auto text-accent font-semibold text-sm hover:underline w-fit">
+                                {pkgCta} →
+                              </Link>
+                            )}
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                   {/* Row 2: Basic, Premium, Showroom */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    {packagesRow2.map((pkg) => (
-                      <div key={pkg.name} className="p-4 md:p-5 rounded-xl border border-border bg-bg/50 hover:border-accent/40 transition-colors">
-                        <h3 className="font-bold text-white text-base mb-1.5">{pkg.name}</h3>
-                        <p className="text-text-muted text-xs mb-1 leading-relaxed">{pkg.outcome}</p>
-                        <p className="text-accent/90 text-xs font-medium"><span className="text-white/80">Best for: </span>{pkg.bestFor}</p>
-                      </div>
-                    ))}
+                    {packagesRow2.map((pkg) => {
+                      const isBook = pkg.ctaKind === "book" && bookingUrl;
+                      const pkgHref = (isBook && bookingUrl) ? bookingUrl : "/contact";
+                      const pkgCta = isBook ? "Book Now" : "Get a Quote";
+                      return (
+                        <div key={pkg.name} className="p-4 md:p-5 rounded-xl border border-border bg-bg/50 hover:border-accent/40 transition-colors flex flex-col">
+                          <h3 className="font-bold text-white text-base mb-1.5">{pkg.name}</h3>
+                          <p className="text-text-muted text-xs mb-1 leading-relaxed">{pkg.outcome}</p>
+                          <p className="text-accent/90 text-xs font-medium mb-3"><span className="text-white/80">Best for: </span>{pkg.bestFor}</p>
+                          {pkgHref.startsWith("http") ? (
+                            <a href={pkgHref} target="_blank" rel="noopener noreferrer" className="mt-auto text-accent font-semibold text-sm hover:underline w-fit">
+                              {pkgCta} →
+                            </a>
+                          ) : (
+                            <Link href={pkgHref} className="mt-auto text-accent font-semibold text-sm hover:underline w-fit">
+                              {pkgCta} →
+                            </Link>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                   {/* Row 3: Correction, Ceramic, Sale Prep */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    {packagesRow3.map((pkg) => (
-                      <div key={pkg.name} className="p-4 md:p-5 rounded-xl border border-border bg-bg/50 hover:border-accent/40 transition-colors">
-                        <h3 className="font-bold text-white text-base mb-1.5">{pkg.name}</h3>
-                        <p className="text-text-muted text-xs mb-1 leading-relaxed">{pkg.outcome}</p>
-                        <p className="text-accent/90 text-xs font-medium"><span className="text-white/80">Best for: </span>{pkg.bestFor}</p>
-                      </div>
-                    ))}
+                    {packagesRow3.map((pkg) => {
+                      const isBook = pkg.ctaKind === "book" && bookingUrl;
+                      const pkgHref = (isBook && bookingUrl) ? bookingUrl : "/contact";
+                      const pkgCta = isBook ? "Book Now" : "Get a Quote";
+                      return (
+                        <div key={pkg.name} className="p-4 md:p-5 rounded-xl border border-border bg-bg/50 hover:border-accent/40 transition-colors flex flex-col">
+                          <h3 className="font-bold text-white text-base mb-1.5">{pkg.name}</h3>
+                          <p className="text-text-muted text-xs mb-1 leading-relaxed">{pkg.outcome}</p>
+                          <p className="text-accent/90 text-xs font-medium mb-3"><span className="text-white/80">Best for: </span>{pkg.bestFor}</p>
+                          {pkgHref.startsWith("http") ? (
+                            <a href={pkgHref} target="_blank" rel="noopener noreferrer" className="mt-auto text-accent font-semibold text-sm hover:underline w-fit">
+                              {pkgCta} →
+                            </a>
+                          ) : (
+                            <Link href={pkgHref} className="mt-auto text-accent font-semibold text-sm hover:underline w-fit">
+                              {pkgCta} →
+                            </Link>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
-                <p className="mt-6">
-                  <Link href="/contact" className="inline-flex py-2.5 px-5 rounded-lg border-2 border-accent text-accent font-semibold text-sm hover:bg-accent/10 transition-colors">
-                    Request pricing for packages
-                  </Link>
-                </p>
               </>
             )}
 
@@ -165,7 +229,7 @@ export default function ServicesPage() {
                 </div>
                 <p className="mt-6">
                   <Link href="/contact" className="inline-flex py-2.5 px-5 rounded-lg border-2 border-accent text-accent font-semibold text-sm hover:bg-accent/10 transition-colors">
-                    Request a ceramic quote
+                    Request a Ceramic Quote
                   </Link>
                 </p>
               </>
@@ -194,7 +258,7 @@ export default function ServicesPage() {
                 <p className="mt-4 text-sm text-text-muted">Not sure how much correction your paint needs? Send photos and get a quote before booking.</p>
                 <p className="mt-3">
                   <Link href="/contact" className="inline-flex py-2.5 px-5 rounded-lg border-2 border-accent text-accent font-semibold text-sm hover:bg-accent/10 transition-colors">
-                    Get a correction quote
+                    Get a Correction Quote
                   </Link>
                 </p>
               </>
@@ -260,7 +324,7 @@ export default function ServicesPage() {
                 </div>
                 <p className="mt-6">
                   <Link href="/contact" className="inline-flex py-2.5 px-5 rounded-lg border-2 border-accent text-accent font-semibold text-sm hover:bg-accent/10 transition-colors">
-                    Request an add-ons quote
+                    Request an Add-On Quote
                   </Link>
                 </p>
               </>
@@ -275,8 +339,16 @@ export default function ServicesPage() {
           <p className="text-white font-semibold text-lg mb-2">Not sure what level of service your vehicle needs?</p>
           <p className="text-text-muted text-sm md:text-base mb-4 max-w-[50ch] mx-auto">Tell us your vehicle type, condition, and location. We'll recommend the right service before you book — whether that's a package, correction, protection, or maintenance detail.</p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Link href="/contact" className="inline-flex py-3.5 px-8 rounded-xl bg-accent text-bg font-semibold hover:bg-accent-hover transition-colors">Request a Quote</Link>
-            <a href="tel:+16478237338" className="inline-flex py-3.5 px-8 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors">Call Now</a>
+            {primaryCtaHref.startsWith("http") ? (
+              <a href={primaryCtaHref} target="_blank" rel="noopener noreferrer" className="inline-flex py-3.5 px-8 rounded-xl bg-accent text-bg font-semibold hover:bg-accent-hover transition-colors">{primaryCtaLabel}</a>
+            ) : (
+              <Link href={primaryCtaHref} className="inline-flex py-3.5 px-8 rounded-xl bg-accent text-bg font-semibold hover:bg-accent-hover transition-colors">{primaryCtaLabel}</Link>
+            )}
+            {secondaryCtaHref.startsWith("http") || secondaryCtaHref.startsWith("tel") ? (
+              <a href={secondaryCtaHref} {...(secondaryCtaHref.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="inline-flex py-3.5 px-8 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors">{secondaryCtaLabel}</a>
+            ) : (
+              <Link href={secondaryCtaHref} className="inline-flex py-3.5 px-8 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors">{secondaryCtaLabel}</Link>
+            )}
           </div>
         </div>
       </section>

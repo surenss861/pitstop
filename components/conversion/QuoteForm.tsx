@@ -70,13 +70,18 @@ export default function QuoteForm() {
           className="w-full px-4 py-3 rounded-lg bg-bg-card border border-border text-white focus:outline-none focus:border-accent"
         >
           <option value="">Select…</option>
-          <option value="interior">Interior detail</option>
-          <option value="exterior">Exterior detail</option>
-          <option value="full">Full detail</option>
-          <option value="correction">Paint correction</option>
-          <option value="ceramic">Ceramic coating</option>
-          <option value="membership">Membership inquiry</option>
-          <option value="quote">Not sure / Quote me</option>
+          <option value="basic">Basic Detail</option>
+          <option value="interior">Interior Detail</option>
+          <option value="exterior">Exterior Detail</option>
+          <option value="full">Full Detail</option>
+          <option value="premium">Premium Detail</option>
+          <option value="showroom">Showroom Detail</option>
+          <option value="correction">Paint Correction</option>
+          <option value="ceramic">Ceramic Coating</option>
+          <option value="correction-ceramic">Paint Correction + Ceramic Coating</option>
+          <option value="addons">Add-Ons / Specialty</option>
+          <option value="membership">Membership Inquiry</option>
+          <option value="not-sure">Not sure — recommend the right service</option>
         </select>
       </div>
       <div>
@@ -121,9 +126,10 @@ export default function QuoteForm() {
           className="w-full px-4 py-3 rounded-lg bg-bg-card border border-border text-white focus:outline-none focus:border-accent"
         >
           <option value="">Select…</option>
-          <option value="driveway">Driveway / home</option>
-          <option value="condo">Condo / underground</option>
-          <option value="office">Office / work</option>
+          <option value="driveway">Driveway</option>
+          <option value="condo">Condo / underground parking</option>
+          <option value="office">Office / workplace</option>
+          <option value="not-sure">Not sure yet</option>
         </select>
       </div>
       <div>

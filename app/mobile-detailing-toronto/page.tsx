@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CTASection from "@/components/conversion/CTASection";
 import SectionHeading from "@/components/ui/SectionHeading";
+import { primaryCtaHref, primaryCtaLabel, secondaryCtaHref, secondaryCtaLabel, bookingUrl } from "@/lib/booking";
 
 export const metadata: Metadata = {
   title: "Mobile Detailing Toronto — Driveway, Condo, Office | PitStop Polish",
@@ -48,30 +49,35 @@ const proofQuotes = [
   { quote: "Paint looked way better than expected.", forLabel: "Correction & protection" },
 ];
 
-const offerCards = [
+/** Offer cards: book = Book Now (Square when set); quote = Get a Quote (/contact); plans = View Plans (/membership). */
+const getOfferCards = () => [
   {
     title: "Full Detail",
     body: "Interior + exterior in one visit. The complete reset at your location.",
-    cta: "See packages",
-    href: "/services#packages",
+    cta: bookingUrl ? "Book Now" : "Get a Quote",
+    href: bookingUrl ?? "/contact",
+    external: !!bookingUrl,
   },
   {
     title: "Paint Correction & Ceramic Coating",
     body: "Restore clarity and protect with pro-grade correction and coating. We come to you.",
-    cta: "See protection",
-    href: "/services#ceramic",
+    cta: "Get a Quote",
+    href: "/contact",
+    external: false,
   },
   {
     title: "Interior & Exterior",
     body: "Deep clean inside and out. Seats, carpets, wash, polish, protect.",
-    cta: "See services",
-    href: "/services",
+    cta: bookingUrl ? "Book Now" : "Get a Quote",
+    href: bookingUrl ?? "/contact",
+    external: !!bookingUrl,
   },
   {
     title: "Membership plans",
     body: "Monthly maintenance, priority booking, member-only savings. Toronto & GTA.",
-    cta: "View plans",
+    cta: "View Plans",
     href: "/membership",
+    external: false,
   },
 ];
 
@@ -97,6 +103,7 @@ const gtaAreas = [
 ];
 
 export default function MobileDetailingTorontoPage() {
+  const offerCards = getOfferCards();
   return (
     <>
       {/* Hero */}
@@ -127,18 +134,39 @@ export default function MobileDetailingTorontoPage() {
           </div>
 
           <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-xl bg-accent text-bg font-semibold px-8 py-3.5 hover:bg-accent-hover transition-colors"
-            >
-              Get a quote
-            </Link>
-            <a
-              href="tel:+16478237338"
-              className="inline-flex items-center justify-center rounded-xl border-2 border-accent text-accent font-semibold px-8 py-3.5 hover:bg-accent/10 transition-colors"
-            >
-              Call (647) 823-7338
-            </a>
+            {primaryCtaHref.startsWith("http") ? (
+              <a
+                href={primaryCtaHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-xl bg-accent text-bg font-semibold px-8 py-3.5 hover:bg-accent-hover transition-colors"
+              >
+                {primaryCtaLabel}
+              </a>
+            ) : (
+              <Link
+                href={primaryCtaHref}
+                className="inline-flex items-center justify-center rounded-xl bg-accent text-bg font-semibold px-8 py-3.5 hover:bg-accent-hover transition-colors"
+              >
+                {primaryCtaLabel}
+              </Link>
+            )}
+            {secondaryCtaHref.startsWith("http") || secondaryCtaHref.startsWith("tel") ? (
+              <a
+                href={secondaryCtaHref}
+                {...(secondaryCtaHref.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                className="inline-flex items-center justify-center rounded-xl border-2 border-accent text-accent font-semibold px-8 py-3.5 hover:bg-accent/10 transition-colors"
+              >
+                {secondaryCtaLabel}
+              </a>
+            ) : (
+              <Link
+                href={secondaryCtaHref}
+                className="inline-flex items-center justify-center rounded-xl border-2 border-accent text-accent font-semibold px-8 py-3.5 hover:bg-accent/10 transition-colors"
+              >
+                {secondaryCtaLabel}
+              </Link>
+            )}
           </div>
         </div>
       </section>
@@ -244,12 +272,23 @@ export default function MobileDetailingTorontoPage() {
                 <p className="text-text-muted text-base leading-relaxed mb-6 max-w-[34ch]">
                   {card.body}
                 </p>
-                <Link
-                  href={card.href}
-                  className="inline-flex items-center justify-center rounded-xl border-2 border-accent text-accent font-semibold px-5 py-2.5 hover:bg-accent/10 transition-colors"
-                >
-                  {card.cta}
-                </Link>
+                {card.external ? (
+                  <a
+                    href={card.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center rounded-xl border-2 border-accent text-accent font-semibold px-5 py-2.5 hover:bg-accent/10 transition-colors"
+                  >
+                    {card.cta}
+                  </a>
+                ) : (
+                  <Link
+                    href={card.href}
+                    className="inline-flex items-center justify-center rounded-xl border-2 border-accent text-accent font-semibold px-5 py-2.5 hover:bg-accent/10 transition-colors"
+                  >
+                    {card.cta}
+                  </Link>
+                )}
               </div>
             ))}
           </div>

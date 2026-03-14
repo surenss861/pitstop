@@ -56,6 +56,7 @@ For high-ticket (correction, coating), keep “Get a Quote” or “Request a qu
 
 ## On the website today
 
+- **`/contact` is the quote page only** — headline “Request a Quote”, not “Contact & Book Now”. It is for paint correction, ceramic coating, memberships, custom jobs, and anything that needs pricing before booking. Standard details (Basic, Interior, Exterior, Full) go to Square when `NEXT_PUBLIC_BOOKING_URL` is set.
 - **Contact/quote form** stays the main capture for “Get a Quote” and for correction/coating/membership inquiries.
 - **Membership page** can link “Join [plan]” to Square subscription checkout once you have the links.
 - No custom Square API integration required for launch: use Square-hosted booking page and payment links to get live fast.
