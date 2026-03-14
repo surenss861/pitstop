@@ -1,91 +1,74 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import SectionHeading from "@/components/ui/SectionHeading";
+import GalleryShowcase from "@/components/gallery/GalleryShowcase";
 import CTASection from "@/components/conversion/CTASection";
 
 export const metadata: Metadata = {
-  title: "Gallery",
+  title: "Gallery — Before & After Detailing Results | PitStop Polish",
   description:
-    "Before and after mobile detailing results. Interior resets, exterior shine, full details — Toronto. See the quality before you book.",
+    "Before and after mobile detailing results. Interior, exterior, wheels, paint correction, full detail. Real proof from real jobs — Toronto & GTA.",
 };
-
-const interiorLabels = [
-  "Full interior reset — SUV",
-  "Seat & carpet deep clean",
-  "Dashboard & trim detail",
-  "Interior — sedan",
-];
-const exteriorLabels = [
-  "Exterior gloss finish — sedan",
-  "Wheel & tire detail",
-  "Paint correction result",
-  "Full exterior — Toronto",
-];
-const beforeAfterLabels = [
-  "Before/after interior",
-  "Before/after exterior",
-  "Full detail transformation",
-  "Mobile driveway detail — Toronto",
-];
-
-function GalleryGrid({ labels }: { labels: string[] }) {
-  return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-      {labels.map((label) => (
-        <div
-          key={label}
-          className="aspect-[4/3] rounded-lg bg-bg-card border border-border flex items-center justify-center text-text-muted text-sm text-center px-2"
-        >
-          {label}
-        </div>
-      ))}
-    </div>
-  );
-}
 
 export default function GalleryPage() {
   return (
     <>
-      <section className="py-16 text-center">
-        <div className="max-w-[1100px] mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">Gallery</h1>
-          <p className="text-text-muted max-w-[50ch] mx-auto mb-6">
-            Real results — interior resets, exterior shine, and full-detail transformations. Add
-            your own before/after photos here to build trust.
+      {/* Proof-first hero */}
+      <section className="py-16 md:py-20 text-center">
+        <div className="max-w-[720px] mx-auto px-4">
+          <p className="text-[10px] uppercase tracking-[0.25em] text-accent font-semibold mb-4">
+            Gallery
+          </p>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 leading-tight tracking-tight">
+            Real results — not stock photos
+          </h1>
+          <p className="text-text-muted text-lg mb-8 max-w-[52ch] mx-auto">
+            Interior resets, exterior gloss, wheel finish, paint correction, and full-detail transformations. Evidence from real jobs at customer locations across Toronto and the GTA.
           </p>
           <Link
             href="/contact"
-            className="inline-flex py-3 px-6 rounded-lg bg-accent text-bg font-semibold hover:bg-accent-hover transition-colors"
+            className="inline-flex py-3.5 px-8 rounded-xl bg-accent text-bg font-semibold hover:bg-accent-hover transition-colors"
           >
-            Book a Detail
+            Get results like these
           </Link>
         </div>
       </section>
 
-      <section className="py-12 bg-bg-card">
-        <div className="max-w-[1100px] mx-auto px-4">
-          <SectionHeading title="Interior Results" />
-          <GalleryGrid labels={interiorLabels} />
+      {/* Featured results — filter + grid/swipe */}
+      <section className="py-14 md:py-16 bg-bg-card">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+          <SectionHeading
+            label="Proof"
+            title="Before & after — by category"
+            subtitle="Interior, exterior, wheels, correction, full detail. Filter below. Swipe on mobile."
+            align="left"
+          />
+          <GalleryShowcase />
+          <p className="mt-10 text-center">
+            <Link
+              href="/contact"
+              className="inline-flex py-3 px-6 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors"
+            >
+              Book a detail
+            </Link>
+          </p>
         </div>
       </section>
 
-      <section className="py-12">
-        <div className="max-w-[1100px] mx-auto px-4">
-          <SectionHeading title="Exterior Shine" />
-          <GalleryGrid labels={exteriorLabels} />
-        </div>
-      </section>
-
-      <section className="py-12 bg-bg-card">
-        <div className="max-w-[1100px] mx-auto px-4">
-          <SectionHeading title="Before & After" />
-          <GalleryGrid labels={beforeAfterLabels} />
+      <section className="py-12 bg-bg">
+        <div className="max-w-[700px] mx-auto px-4 text-center">
+          <p className="text-text-muted text-sm mb-4">
+            Add your own before/after photos to this gallery as you complete jobs. Real proof converts.
+          </p>
+          <Link href="/services" className="text-accent font-medium hover:underline">
+            See our services →
+          </Link>
         </div>
       </section>
 
       <CTASection
         title="Like what you see?"
-        subtitle="Book a detail and get results like these at your location."
+        subtitle="Book a detail and get results like these at your location. We come to you."
       />
     </>
   );
