@@ -4,11 +4,14 @@ import { serviceAreaCopy } from "@/lib/service-areas-data";
 type CTASectionProps = {
   title?: string;
   subtitle?: string;
+  /** Micro reassurance line above CTAs (e.g. "Book with confidence — quote first, real results, no pressure.") */
+  microLine?: string;
 };
 
 export default function CTASection({
   title = "Ready to get your car detailed without leaving home?",
   subtitle = "We come to you anywhere across Toronto and the GTA. Quote first. No pressure.",
+  microLine = "Book with confidence — we come to you.",
 }: CTASectionProps) {
   return (
     <section className="py-10 md:py-16 lg:py-28 relative overflow-hidden">
@@ -31,7 +34,7 @@ export default function CTASection({
               {subtitle}
             </p>
           )}
-          <p className="text-xs md:text-sm text-accent/90 font-medium mb-4">Book with confidence — we come to you.</p>
+          <p className="text-xs md:text-sm text-accent/90 font-medium mb-4">{microLine}</p>
           <div className="flex flex-wrap gap-3 md:gap-4 justify-center mb-4 md:mb-5">
             <Link
               href="/contact"
