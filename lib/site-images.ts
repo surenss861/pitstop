@@ -1,41 +1,113 @@
 /**
  * PitStop Polish — page-by-page image map.
  * Single source of truth for hero, gallery, proof strip, and services.
- * Drop your best shot into each path (see public/images/IMAGES_README.md).
+ * Category mapping is strict: Interior = cabin only, Exterior = full vehicle, Wheels = wheel close-up, Full detail = whole-car result.
+ * See public/images/IMAGES_README.md and CROPPING_GUIDE.md.
  */
 
 const hero = (name: string) => `/images/hero/${name}`;
 const gallery = (name: string) => `/images/gallery/${name}`;
 
+export type GalleryCategory = "Interior" | "Exterior" | "Wheels" | "Full detail";
+
 /** Homepage hero — best: Black Bentley exterior; backup: Silver Mercedes */
 export const heroImage = hero("hero-bentley.jpg");
 export const heroImageBackup = hero("hero-mercedes.jpg");
 
-/** Toronto / local landing hero — Silver Mercedes or BMW X6 (driveway vibe) */
+/** Toronto / local landing hero — Silver Mercedes (driveway vibe) */
 export const torontoHeroImage = hero("hero-mercedes.jpg");
 
-/** Homepage proof strip (3 images): interior, wheel, exterior variety */
+/** Homepage proof strip: interior, wheel, exterior — strict labels */
 export const homepageProofStrip = [
-  { src: gallery("interior-tesla-black.jpg"), label: "Interior detail" },
-  { src: gallery("detail-wheel-mercedes.jpg"), label: "Wheel & finish" },
-  { src: gallery("exterior-jeep.jpg"), label: "Exterior — SUV" },
+  { src: gallery("interior-tesla-black.jpg"), label: "Interior reset" },
+  { src: gallery("detail-wheel-mercedes.jpg"), label: "Wheel finish / detail work" },
+  { src: gallery("exterior-jeep.jpg"), label: "Exterior finish / SUVs" },
 ] as const;
 
-/** Gallery: 12 curated images in display order (Row 1 → Row 4) */
-export const galleryImageMap = [
-  { src: gallery("exterior-bentley.jpg"), label: "Black Bentley exterior", category: "Exterior" as const },
-  { src: gallery("interior-tesla-black.jpg"), label: "Tesla interior", category: "Interior" as const },
-  { src: gallery("detail-wheel-mercedes.jpg"), label: "Mercedes wheel close-up", category: "Wheels" as const },
-  { src: gallery("exterior-mercedes.jpg"), label: "Silver Mercedes exterior", category: "Exterior" as const },
-  { src: gallery("interior-tesla-white.jpg"), label: "Tesla white interior", category: "Interior" as const },
-  { src: gallery("detail-wheel-audi.jpg"), label: "Audi wheel close-up", category: "Wheels" as const },
-  { src: gallery("exterior-jeep.jpg"), label: "Jeep Wrangler exterior", category: "Exterior" as const },
-  { src: gallery("interior-defender-front.jpg"), label: "Defender front interior", category: "Interior" as const },
-  { src: gallery("exterior-porsche.jpg"), label: "Red Porsche exterior", category: "Exterior" as const },
-  { src: gallery("variety-bmw-x6.jpg"), label: "BMW X6 rear", category: "Full detail" as const },
-  { src: gallery("interior-alfa-red.jpg"), label: "Alfa Romeo red interior", category: "Interior" as const },
-  { src: gallery("variety-classic-turquoise.jpg"), label: "Classic car", category: "Full detail" as const },
-] as const;
+/**
+ * Gallery: 12 curated images. Each item has one primary category (for "All" view) and
+ * a categories array so it can appear in multiple filters (e.g. Bentley in Exterior + Full detail).
+ * Labels match content — no wheel under Interior, no interior under Exterior.
+ */
+export const galleryImageMap: ReadonlyArray<{
+  src: string;
+  label: string;
+  category: GalleryCategory;
+  categories: readonly GalleryCategory[];
+}> = [
+  {
+    src: gallery("exterior-bentley.jpg"),
+    label: "Luxury exterior finish",
+    category: "Exterior",
+    categories: ["Exterior", "Full detail"],
+  },
+  {
+    src: gallery("interior-tesla-black.jpg"),
+    label: "Interior deep clean",
+    category: "Interior",
+    categories: ["Interior"],
+  },
+  {
+    src: gallery("detail-wheel-mercedes.jpg"),
+    label: "Wheel finish",
+    category: "Wheels",
+    categories: ["Wheels"],
+  },
+  {
+    src: gallery("exterior-mercedes.jpg"),
+    label: "Exterior gloss & protection",
+    category: "Exterior",
+    categories: ["Exterior", "Full detail"],
+  },
+  {
+    src: gallery("interior-tesla-white.jpg"),
+    label: "Interior reset",
+    category: "Interior",
+    categories: ["Interior"],
+  },
+  {
+    src: gallery("detail-wheel-audi.jpg"),
+    label: "Wheel & rim clean",
+    category: "Wheels",
+    categories: ["Wheels"],
+  },
+  {
+    src: gallery("exterior-jeep.jpg"),
+    label: "SUV exterior detail",
+    category: "Exterior",
+    categories: ["Exterior", "Full detail"],
+  },
+  {
+    src: gallery("interior-defender-front.jpg"),
+    label: "SUV interior clean",
+    category: "Interior",
+    categories: ["Interior"],
+  },
+  {
+    src: gallery("exterior-porsche.jpg"),
+    label: "Sports car exterior finish",
+    category: "Exterior",
+    categories: ["Exterior", "Full detail"],
+  },
+  {
+    src: gallery("variety-bmw-x6.jpg"),
+    label: "Premium SUV finish",
+    category: "Full detail",
+    categories: ["Exterior", "Full detail"],
+  },
+  {
+    src: gallery("interior-alfa-red.jpg"),
+    label: "Leather interior detail",
+    category: "Interior",
+    categories: ["Interior"],
+  },
+  {
+    src: gallery("variety-classic-turquoise.jpg"),
+    label: "Classic car detail",
+    category: "Full detail",
+    categories: ["Exterior", "Full detail"],
+  },
+];
 
 /** Services page — interior section (4-image grid) */
 export const servicesInteriorImages = [

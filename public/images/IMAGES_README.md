@@ -28,6 +28,15 @@ Drop your best shot into each file. The site uses these paths; replace the place
 | `interior-alfa-red.jpg` | Alfa Romeo red interior | Interior |
 | `variety-classic-turquoise.jpg` | Classic car | Full detail |
 
+## Category rules (strict)
+
+- **Interior** — cabin/seats/dash only. No wheel or exterior shots.
+- **Exterior** — full-vehicle or strong 3/4 body. No cabin-only shots.
+- **Wheels** — wheel/rim close-up only. No full-body shots.
+- **Full detail** — whole-car finished result. Same exterior files can appear here.
+
+Filters use these rules so labels always match the image.
+
 ## Before going live
 
 - Crop or blur **license plates** and **house numbers**

@@ -10,8 +10,11 @@ export default function GalleryShowcase() {
   const filtered =
     activeCategory === "All"
       ? galleryItems
-      : galleryItems.filter((i) => i.category === activeCategory);
+      : galleryItems.filter((i) => i.categories.includes(activeCategory));
   const isFiltered = activeCategory !== "All";
+  /** When filtered, show tab name as category label; otherwise primary category */
+  const getCategoryLabel = (item: (typeof galleryItems)[0]) =>
+    isFiltered ? activeCategory : item.category;
 
   return (
     <div className="space-y-8">
@@ -52,7 +55,7 @@ export default function GalleryShowcase() {
             <div className="absolute inset-0 bg-gradient-to-t from-bg/85 via-transparent to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-4">
               <span className="text-[10px] uppercase tracking-wider text-accent/90 font-semibold">
-                {item.category}
+                {getCategoryLabel(item)}
               </span>
               <p className="text-white text-base font-medium mt-1">{item.label}</p>
             </div>

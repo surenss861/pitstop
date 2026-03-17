@@ -16,8 +16,10 @@ export default function BeforeAfterShowcase() {
   const filtered =
     activeCategory === "All"
       ? items
-      : items.filter((i) => i.category === activeCategory);
+      : items.filter((i) => i.categories.includes(activeCategory));
   const isFiltered = activeCategory !== "All";
+  const getCategoryLabel = (item: (typeof items)[0]) =>
+    isFiltered ? activeCategory : item.category;
 
   return (
     <section className="py-16 lg:py-20 bg-bg-card">
@@ -72,7 +74,7 @@ export default function BeforeAfterShowcase() {
               <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-4 lg:p-4">
                 <span className="text-[10px] uppercase tracking-wider text-accent/90 font-semibold">
-                  {item.category}
+                  {getCategoryLabel(item)}
                 </span>
                 <p className="text-white text-base font-medium mt-1">{item.label}</p>
               </div>
