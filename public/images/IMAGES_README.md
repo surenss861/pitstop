@@ -2,6 +2,8 @@
 
 Drop your best shot into each file. The site uses these paths; replace the placeholders with your final crops (blur plates, crop tighter, then export).
 
+**Cropping:** See **CROPPING_GUIDE.md** in this folder for aspect ratio, orientation, and crop focus per file.
+
 ## Hero (`hero/`)
 
 | File | Use for | Description |
