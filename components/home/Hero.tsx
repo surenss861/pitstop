@@ -5,11 +5,9 @@ import { primaryCtaHref, primaryCtaLabel, secondaryCtaHref, secondaryCtaLabel } 
 import Image from "next/image";
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
+import { heroImage } from "@/lib/site-images";
 
-// Hero: local image from public/images/hero, or env override (e.g. NEXT_PUBLIC_HERO_IMAGE)
-const DEFAULT_HERO_IMAGE = "/images/hero/hero.jpg";
-const HERO_IMAGE_URL =
-  process.env.NEXT_PUBLIC_HERO_IMAGE || DEFAULT_HERO_IMAGE;
+const HERO_IMAGE_URL = process.env.NEXT_PUBLIC_HERO_IMAGE || heroImage;
 
 export default function Hero() {
   const navRef = useRef<HTMLElement | null>(null);

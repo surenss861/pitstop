@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { videoPosterImage } from "@/lib/site-images";
 
-/** One MP4 from public/videos — real work at customer location */
 const VIDEO_SRC = "/videos/detail-work.mp4";
 
 export default function VideoShowcase() {
@@ -24,7 +24,7 @@ export default function VideoShowcase() {
             controls
             playsInline
             className="w-full aspect-video object-cover"
-            poster="/images/gallery/gallery-8.jpg"
+            poster={videoPosterImage}
           >
             Your browser does not support the video tag.
           </video>
