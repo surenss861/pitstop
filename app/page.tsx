@@ -9,6 +9,7 @@ import ServiceAreaGrid from "@/components/conversion/ServiceAreaGrid";
 import FAQAccordion from "@/components/conversion/FAQAccordion";
 import CTASection from "@/components/conversion/CTASection";
 import BeforeAfterShowcase from "@/components/home/BeforeAfterShowcase";
+import VideoShowcase from "@/components/home/VideoShowcase";
 import MembershipTeaser from "@/components/home/MembershipTeaser";
 import Reveal from "@/components/animation/Reveal";
 import StaggerChildren from "@/components/animation/StaggerChildren";
@@ -187,6 +188,8 @@ export default function HomePage() {
       <Reveal variant="scale">
         <BeforeAfterShowcase />
       </Reveal>
+
+      <VideoShowcase />
 
       <HowItWorks />
 

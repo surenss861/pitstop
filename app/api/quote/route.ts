@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 /** Required fields for a valid quote request */
 const REQUIRED = ["name", "phone", "email", "location"] as const;
 
@@ -90,6 +88,7 @@ export async function POST(request: Request) {
   const from = process.env.QUOTE_FROM_EMAIL?.trim() || "PitStop Polish <onboarding@resend.dev>";
   const subject = `Quote request: ${payload.name} — ${payload.service || "Not specified"}`;
 
+  const resend = new Resend(process.env.RESEND_API_KEY);
   const { data, error } = await resend.emails.send({
     from,
     to: [to],

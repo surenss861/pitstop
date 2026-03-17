@@ -6,10 +6,10 @@ import Image from "next/image";
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 
-// Hero: use a detailing image (polished hood, wheel finish, interior detail). See docs/IMAGE_DIRECTION.md.
-const DEFAULT_HERO_IMAGE =
-  "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=1200&q=85";
-const HERO_IMAGE_URL = process.env.NEXT_PUBLIC_HERO_IMAGE || DEFAULT_HERO_IMAGE;
+// Hero: local image from public/images/hero, or env override (e.g. NEXT_PUBLIC_HERO_IMAGE)
+const DEFAULT_HERO_IMAGE = "/images/hero/hero.jpg";
+const HERO_IMAGE_URL =
+  process.env.NEXT_PUBLIC_HERO_IMAGE || DEFAULT_HERO_IMAGE;
 
 export default function Hero() {
   const navRef = useRef<HTMLElement | null>(null);
