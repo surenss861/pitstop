@@ -2,17 +2,59 @@
 
 import { useState } from "react";
 
-export default function QuoteForm() {
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+type Status = "idle" | "sending" | "sent" | "error";
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+export default function QuoteForm() {
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("sending");
-    // Replace with Formspree or your backend endpoint
-    setTimeout(() => {
+    setErrorMessage("");
+    const form = e.target as HTMLFormElement;
+    const fd = new FormData(form);
+    const payload: Record<string, string> = {};
+    fd.forEach((value, key) => {
+      if (key === "photos" && value instanceof File && value.size > 0) return;
+      payload[key] = typeof value === "string" ? value : (value as File).name ?? "";
+    });
+
+    try {
+      const res = await fetch("/api/quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setStatus("error");
+        setErrorMessage(data.error || "Something went wrong. Please try again or call (647) 823-7338.");
+        return;
+      }
       setStatus("sent");
-      (e.target as HTMLFormElement).reset();
-    }, 800);
+      form.reset();
+    } catch {
+      setStatus("error");
+      setErrorMessage("Request failed. Please call (647) 823-7338.");
+    }
+  }
+
+  if (status === "sent") {
+    return (
+      <div className="rounded-xl border border-border bg-bg/50 p-6 md:p-8 text-center">
+        <h3 className="text-xl font-bold text-white mb-3">Quote request received</h3>
+        <p className="text-text-muted text-sm leading-relaxed mb-4">
+          We&apos;ll review your vehicle, service needs, and location, then follow up with pricing and next steps.
+        </p>
+        <p className="text-text-muted text-sm mb-4">
+          For faster help, <a href="tel:+16478237338" className="text-accent font-medium">call (647) 823-7338</a>.
+        </p>
+        <p className="text-xs text-text-muted">
+          We usually respond with pricing and next steps within business hours.
+        </p>
+      </div>
+    );
   }
 
   return (
@@ -154,6 +196,14 @@ export default function QuoteForm() {
         />
         <p className="text-xs text-text-muted mt-1">Helpful for paint correction or ceramic coating quotes. Max size depends on your email provider.</p>
       </div>
+      {status === "error" && errorMessage && (
+        <div className="rounded-lg border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+          {errorMessage}
+        </div>
+      )}
+      <p className="text-sm text-text-muted">
+        We usually respond with pricing and next steps within business hours.
+      </p>
       <button
         type="submit"
         disabled={status === "sending"}
@@ -161,7 +211,7 @@ export default function QuoteForm() {
       >
         {status === "idle" && "Request My Quote"}
         {status === "sending" && "Sending…"}
-        {status === "sent" && "Request sent — we'll call you soon!"}
+        {status === "error" && "Try again"}
       </button>
     </form>
   );
