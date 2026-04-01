@@ -5,20 +5,20 @@ const paths = [
   {
     title: "Need a full reset?",
     body: "Interior + exterior in one visit.",
-    cta: "See Full Detail",
+    cta: "See Showroom & packages",
     href: "/services#packages",
   },
   {
     title: "Need paint restored?",
     body: "Swirl reduction, gloss improvement, machine polish.",
-    cta: "See Paint Correction",
-    href: "/services#correction",
+    cta: "See correction & coating",
+    href: "/services#paint-protection",
   },
   {
     title: "Need long-term protection?",
     body: "Ceramic coating for paint, wheels, and glass.",
-    cta: "See Ceramic Options",
-    href: "/services#ceramic",
+    cta: "See correction & coating",
+    href: "/services#paint-protection",
   },
   {
     title: "Need regular upkeep?",

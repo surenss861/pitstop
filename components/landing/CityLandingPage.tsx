@@ -120,8 +120,8 @@ export default function CityLandingPage({ city }: CityLandingPageProps) {
             align="left"
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <ServiceCard title="Full Detail" description="Interior + exterior in one visit. The complete reset at your location." ctaHref="/services#packages" ctaText="See packages" />
-            <ServiceCard title="Paint Correction & Ceramic Coating" description="Restore clarity and protect with pro-grade correction and coating. We come to you." ctaHref="/services#ceramic" ctaText="See protection" />
+            <ServiceCard title="Showroom Detail" description="Our most complete interior + exterior reset in one visit." ctaHref="/services#packages" ctaText="See packages" />
+            <ServiceCard title="Paint Correction & Ceramic Coating" description="Restore clarity and protect with pro-grade correction and coating. We come to you." ctaHref="/services#paint-protection" ctaText="See protection" />
             <ServiceCard title="Interior & Exterior" description="Deep clean inside and out. Seats, carpets, wash, polish, protect." ctaHref="/services#interior" ctaText="See services" />
             <ServiceCard title="Membership plans" description="Monthly maintenance, priority booking, member-only savings. Toronto & GTA." ctaHref="/membership" ctaText="View plans" />
           </div>

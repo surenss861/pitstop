@@ -52,8 +52,8 @@ const proofQuotes = [
 /** Offer cards: book = Book Now (Square when set); quote = Get a Quote (/contact); plans = View Plans (/membership). */
 const getOfferCards = () => [
   {
-    title: "Full Detail",
-    body: "Interior + exterior in one visit. The complete reset at your location.",
+    title: "Showroom Detail",
+    body: "Our most complete interior + exterior detail — full reset at your location.",
     cta: bookingUrl ? "Book Now" : "Get a Quote",
     href: bookingUrl ?? "/contact",
     external: !!bookingUrl,
@@ -66,8 +66,8 @@ const getOfferCards = () => [
     external: false,
   },
   {
-    title: "Interior & Exterior",
-    body: "Deep clean inside and out. Seats, carpets, wash, polish, protect.",
+    title: "In & Out",
+    body: "Lighter interior + exterior together — great between Showroom visits.",
     cta: bookingUrl ? "Book Now" : "Get a Quote",
     href: bookingUrl ?? "/contact",
     external: !!bookingUrl,

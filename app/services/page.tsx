@@ -4,9 +4,14 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import CTASection from "@/components/conversion/CTASection";
 import ServicesAnchorNav from "@/components/conversion/ServicesAnchorNav";
 import ServicesPathBlock from "@/components/services/ServicesPathBlock";
+import ServicesBeforeAfter from "@/components/services/ServicesBeforeAfter";
+import SectionPackageCard from "@/components/services/SectionPackageCard";
 import {
   serviceSections,
-  packageDetails,
+  packagesTop,
+  interiorSectionPackage,
+  exteriorSectionPackage,
+  paintCorrectionCeramicPackage,
   ceramicBenefits,
   ceramicBestFor,
   correctionSolves,
@@ -21,7 +26,7 @@ import { primaryCtaHref, primaryCtaLabel, secondaryCtaHref, secondaryCtaLabel, b
 export const metadata: Metadata = {
   title: "Mobile Detailing Services — Paint Correction, Ceramic Coating, Toronto",
   description:
-    "Premium mobile detailing in Toronto: packages, paint correction, ceramic coating, interior & exterior care, restoration. We come to you — request a quote or call (647) 823-7338.",
+    "Showroom Detail, In & Out, interior and exterior packages, paint correction and ceramic coating. Mobile detailing Toronto & GTA — quote-first. Call (647) 823-7338.",
 };
 
 const featuredQuote = {
@@ -39,15 +44,29 @@ const whyBookPillars = [
   { heading: "Real care", body: "Detailing, correction, protection, and maintenance done with actual attention to the result." },
 ];
 
+function PackageCta({ pkg }: { pkg: (typeof packagesTop)[0] }) {
+  const isBook = pkg.ctaKind === "book" && bookingUrl;
+  const href = isBook && bookingUrl ? bookingUrl : "/contact";
+  const cta = isBook ? "Book Now" : "Get a Quote";
+  if (href.startsWith("http")) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className="inline-flex py-2.5 px-5 rounded-lg border-2 border-accent text-accent font-semibold text-sm hover:bg-accent/10 transition-colors w-fit">
+        {cta}
+      </a>
+    );
+  }
+  return (
+    <Link href={href} className="inline-flex py-2.5 px-5 rounded-lg border-2 border-accent text-accent font-semibold text-sm hover:bg-accent/10 transition-colors w-fit">
+      {cta}
+    </Link>
+  );
+}
+
 export default function ServicesPage() {
-  const packagesFeatured = packageDetails.filter((p) => p.layout === "featured");
-  const packagesSecondary = packageDetails.filter((p) => p.layout === "secondary");
-  const packagesRow2 = packageDetails.filter((p) => p.layout === "row2");
-  const packagesRow3 = packageDetails.filter((p) => p.layout === "row3");
+  const [showroom, inOut] = packagesTop;
 
   return (
     <>
-      {/* Hero — sharper, with buyer chips */}
       <section className="py-16 md:py-20 text-center">
         <div className="max-w-[800px] mx-auto px-4">
           <p className="text-[10px] uppercase tracking-[0.25em] text-accent font-semibold mb-4">Services</p>
@@ -55,7 +74,7 @@ export default function ServicesPage() {
             Real detailing, correction, and protection — without dropping your car at a shop.
           </h1>
           <p className="text-text-muted text-lg md:text-xl mb-4 max-w-[52ch] mx-auto">
-            We come to your driveway, condo, or office across Toronto and the GTA. From interior resets to paint correction and ceramic coating, we help your vehicle look right again — with quote-first pricing and no hidden upsell.
+            We come to your driveway, condo, or office across Toronto and the GTA. Showroom Detail, In & Out, interior-only and exterior-only packages, plus paint correction and ceramic coating — quote-first, no hidden upsell.
           </p>
           <p className="text-sm text-text-muted mb-6">Toronto & GTA · Quote first · No hidden upsell · We come to you</p>
           <div className="flex flex-wrap gap-4 justify-center mb-6">
@@ -69,7 +88,11 @@ export default function ServicesPage() {
               </Link>
             )}
             {secondaryCtaHref.startsWith("http") || secondaryCtaHref.startsWith("tel") ? (
-              <a href={secondaryCtaHref} {...(secondaryCtaHref.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="inline-flex py-3.5 px-8 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors">
+              <a
+                href={secondaryCtaHref}
+                {...(secondaryCtaHref.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                className="inline-flex py-3.5 px-8 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors"
+              >
                 {secondaryCtaLabel}
               </a>
             ) : (
@@ -89,7 +112,6 @@ export default function ServicesPage() {
       <ServicesPathBlock />
       <ServicesAnchorNav />
 
-      {/* Sections — packages use hierarchy; ceramic/correction get extra blocks; exterior/interior use clusters */}
       {serviceSections.map((section, index) => (
         <section
           key={section.id}
@@ -99,118 +121,44 @@ export default function ServicesPage() {
           <div className="max-w-[1100px] mx-auto px-4 sm:px-6">
             <div className="mb-6 md:mb-8">
               <SectionHeading label={section.label} title={section.title} subtitle={section.subtitle} align="left" />
-              {section.supportCopy && section.id !== "ceramic" && section.id !== "correction" && (
+              {section.supportCopy && section.id !== "paint-protection" && (
                 <p className="text-text-muted text-sm md:text-base mt-4 max-w-[65ch] leading-relaxed">{section.supportCopy}</p>
               )}
             </div>
 
-            {/* Packages: hierarchical layout */}
             {section.id === "packages" && (
-              <>
-                <div className="space-y-4 md:space-y-6">
-                  {/* Row 1: Featured Full Detail + Interior + Exterior */}
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
-                    {packagesFeatured.map((pkg) => {
-                      const isBook = pkg.ctaKind === "book" && bookingUrl;
-                      const pkgHref = (isBook && bookingUrl) ? bookingUrl : "/contact";
-                      const pkgCta = isBook ? "Book Now" : "Get a Quote";
-                      return (
-                        <div key={pkg.name} className="lg:col-span-2 p-6 md:p-8 rounded-2xl border-2 border-accent/30 bg-accent/5 hover:border-accent/50 transition-colors flex flex-col">
-                          <p className="text-[10px] uppercase tracking-wider text-accent font-semibold mb-2">Most popular</p>
-                          <h3 className="font-bold text-white text-xl md:text-2xl mb-2">{pkg.name}</h3>
-                          <p className="text-text-muted text-sm md:text-base mb-2 leading-relaxed">{pkg.outcome}</p>
-                          <p className="text-accent/90 text-xs font-medium mb-4"><span className="text-white/80">Best for: </span>{pkg.bestFor}</p>
-                          {pkgHref.startsWith("http") ? (
-                            <a href={pkgHref} target="_blank" rel="noopener noreferrer" className="mt-auto inline-flex py-2.5 px-5 rounded-lg border-2 border-accent text-accent font-semibold text-sm hover:bg-accent/10 transition-colors w-fit">
-                              {pkgCta}
-                            </a>
-                          ) : (
-                            <Link href={pkgHref} className="mt-auto inline-flex py-2.5 px-5 rounded-lg border-2 border-accent text-accent font-semibold text-sm hover:bg-accent/10 transition-colors w-fit">
-                              {pkgCta}
-                            </Link>
-                          )}
-                        </div>
-                      );
-                    })}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
-                      {packagesSecondary.map((pkg) => {
-                        const isBook = pkg.ctaKind === "book" && bookingUrl;
-                        const pkgHref = (isBook && bookingUrl) ? bookingUrl : "/contact";
-                        const pkgCta = isBook ? "Book Now" : "Get a Quote";
-                        return (
-                          <div key={pkg.name} className="p-4 md:p-5 rounded-xl border border-border bg-bg/50 hover:border-accent/40 transition-colors flex flex-col">
-                            <h3 className="font-bold text-white text-base mb-1.5">{pkg.name}</h3>
-                            <p className="text-text-muted text-xs mb-1 leading-relaxed">{pkg.outcome}</p>
-                            <p className="text-accent/90 text-xs font-medium mb-3"><span className="text-white/80">Best for: </span>{pkg.bestFor}</p>
-                            {pkgHref.startsWith("http") ? (
-                              <a href={pkgHref} target="_blank" rel="noopener noreferrer" className="mt-auto text-accent font-semibold text-sm hover:underline w-fit">
-                                {pkgCta} →
-                              </a>
-                            ) : (
-                              <Link href={pkgHref} className="mt-auto text-accent font-semibold text-sm hover:underline w-fit">
-                                {pkgCta} →
-                              </Link>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                  {/* Row 2: Basic, Premium, Showroom */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    {packagesRow2.map((pkg) => {
-                      const isBook = pkg.ctaKind === "book" && bookingUrl;
-                      const pkgHref = (isBook && bookingUrl) ? bookingUrl : "/contact";
-                      const pkgCta = isBook ? "Book Now" : "Get a Quote";
-                      return (
-                        <div key={pkg.name} className="p-4 md:p-5 rounded-xl border border-border bg-bg/50 hover:border-accent/40 transition-colors flex flex-col">
-                          <h3 className="font-bold text-white text-base mb-1.5">{pkg.name}</h3>
-                          <p className="text-text-muted text-xs mb-1 leading-relaxed">{pkg.outcome}</p>
-                          <p className="text-accent/90 text-xs font-medium mb-3"><span className="text-white/80">Best for: </span>{pkg.bestFor}</p>
-                          {pkgHref.startsWith("http") ? (
-                            <a href={pkgHref} target="_blank" rel="noopener noreferrer" className="mt-auto text-accent font-semibold text-sm hover:underline w-fit">
-                              {pkgCta} →
-                            </a>
-                          ) : (
-                            <Link href={pkgHref} className="mt-auto text-accent font-semibold text-sm hover:underline w-fit">
-                              {pkgCta} →
-                            </Link>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                  {/* Row 3: Correction, Ceramic, Sale Prep */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    {packagesRow3.map((pkg) => {
-                      const isBook = pkg.ctaKind === "book" && bookingUrl;
-                      const pkgHref = (isBook && bookingUrl) ? bookingUrl : "/contact";
-                      const pkgCta = isBook ? "Book Now" : "Get a Quote";
-                      return (
-                        <div key={pkg.name} className="p-4 md:p-5 rounded-xl border border-border bg-bg/50 hover:border-accent/40 transition-colors flex flex-col">
-                          <h3 className="font-bold text-white text-base mb-1.5">{pkg.name}</h3>
-                          <p className="text-text-muted text-xs mb-1 leading-relaxed">{pkg.outcome}</p>
-                          <p className="text-accent/90 text-xs font-medium mb-3"><span className="text-white/80">Best for: </span>{pkg.bestFor}</p>
-                          {pkgHref.startsWith("http") ? (
-                            <a href={pkgHref} target="_blank" rel="noopener noreferrer" className="mt-auto text-accent font-semibold text-sm hover:underline w-fit">
-                              {pkgCta} →
-                            </a>
-                          ) : (
-                            <Link href={pkgHref} className="mt-auto text-accent font-semibold text-sm hover:underline w-fit">
-                              {pkgCta} →
-                            </Link>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="p-6 md:p-8 rounded-2xl border-2 border-accent/30 bg-accent/5 flex flex-col">
+                  <p className="text-[10px] uppercase tracking-wider text-accent font-semibold mb-2">Most complete</p>
+                  <h3 className="font-bold text-white text-xl md:text-2xl mb-2">{showroom.name}</h3>
+                  <p className="text-text-muted text-sm md:text-base mb-2 leading-relaxed">{showroom.outcome}</p>
+                  <p className="text-accent/90 text-xs font-medium mb-4">
+                    <span className="text-white/80">Best for: </span>
+                    {showroom.bestFor}
+                  </p>
+                  <PackageCta pkg={showroom} />
                 </div>
-              </>
+                <div className="p-6 md:p-8 rounded-2xl border border-border bg-bg/50 flex flex-col">
+                  <p className="text-[10px] uppercase tracking-wider text-accent font-semibold mb-2">Lighter both sides</p>
+                  <h3 className="font-bold text-white text-xl md:text-2xl mb-2">{inOut.name}</h3>
+                  <p className="text-text-muted text-sm md:text-base mb-2 leading-relaxed">{inOut.outcome}</p>
+                  <p className="text-accent/90 text-xs font-medium mb-4">
+                    <span className="text-white/80">Best for: </span>
+                    {inOut.bestFor}
+                  </p>
+                  <PackageCta pkg={inOut} />
+                </div>
+              </div>
             )}
 
-            {/* Ceramic: benefits strip + best-for + grid */}
-            {section.id === "ceramic" && (
+            {section.id === "before-after" && <ServicesBeforeAfter />}
+
+            {section.id === "paint-protection" && (
               <>
+                <SectionPackageCard pkg={paintCorrectionCeramicPackage} />
+                {section.supportCopy && (
+                  <p className="text-text-muted text-sm mb-6 max-w-[65ch] leading-relaxed">{section.supportCopy}</p>
+                )}
                 <div className="flex flex-wrap gap-3 mb-4">
                   {ceramicBenefits.map((b) => (
                     <span key={b} className="px-4 py-2 rounded-lg bg-accent/10 border border-accent/20 text-accent font-semibold text-sm">
@@ -219,31 +167,13 @@ export default function ServicesPage() {
                   ))}
                 </div>
                 <p className="text-text-muted text-sm mb-6 max-w-[60ch]">{ceramicBestFor}</p>
-                {section.supportCopy && <p className="text-text-muted text-sm mb-6 max-w-[65ch] leading-relaxed">{section.supportCopy}</p>}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                  {section.items.map((item) => (
-                    <div key={item.name} className="px-4 py-3 rounded-xl border border-border bg-bg/50 hover:border-accent/40 transition-colors">
-                      <span className="text-white font-medium text-sm md:text-base">{item.name}</span>
-                    </div>
-                  ))}
-                </div>
-                <p className="mt-6">
-                  <Link href="/contact" className="inline-flex py-2.5 px-5 rounded-lg border-2 border-accent text-accent font-semibold text-sm hover:bg-accent/10 transition-colors">
-                    Request a Ceramic Quote
-                  </Link>
-                </p>
-              </>
-            )}
-
-            {/* Correction: what it solves + emotional line + grid */}
-            {section.id === "correction" && (
-              <>
-                {section.supportCopy && <p className="text-text-muted text-sm mb-4 max-w-[65ch] leading-relaxed">{section.supportCopy}</p>}
                 <div className="mb-4">
                   <p className="text-white font-semibold text-sm mb-2">What correction actually solves</p>
                   <ul className="flex flex-wrap gap-2">
                     {correctionSolves.map((s) => (
-                      <li key={s} className="px-3 py-1.5 rounded-lg bg-bg-card border border-border text-text-muted text-xs">{s}</li>
+                      <li key={s} className="px-3 py-1.5 rounded-lg bg-bg-card border border-border text-text-muted text-xs">
+                        {s}
+                      </li>
                     ))}
                   </ul>
                 </div>
@@ -255,52 +185,54 @@ export default function ServicesPage() {
                     </div>
                   ))}
                 </div>
-                <p className="mt-4 text-sm text-text-muted">Not sure how much correction your paint needs? Send photos and get a quote before booking.</p>
-                <p className="mt-3">
+                <p className="mt-6">
                   <Link href="/contact" className="inline-flex py-2.5 px-5 rounded-lg border-2 border-accent text-accent font-semibold text-sm hover:bg-accent/10 transition-colors">
-                    Get a Correction Quote
+                    Request correction & coating quote
                   </Link>
                 </p>
               </>
             )}
 
-            {/* Exterior: clusters */}
             {section.id === "exterior" && (
-              <div className="space-y-8">
-                {exteriorClusters.map((cluster) => (
-                  <div key={cluster.heading}>
-                    <h3 className="text-sm font-bold text-accent uppercase tracking-wider mb-3">{cluster.heading}</h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                      {cluster.items.map((name) => (
-                        <div key={name} className="px-4 py-3 rounded-xl border border-border bg-bg/50 hover:border-accent/40 transition-colors">
-                          <span className="text-white font-medium text-sm md:text-base">{name}</span>
-                        </div>
-                      ))}
+              <>
+                <SectionPackageCard pkg={exteriorSectionPackage} />
+                <div className="space-y-8">
+                  {exteriorClusters.map((cluster) => (
+                    <div key={cluster.heading}>
+                      <h3 className="text-sm font-bold text-accent uppercase tracking-wider mb-3">{cluster.heading}</h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                        {cluster.items.map((name) => (
+                          <div key={name} className="px-4 py-3 rounded-xl border border-border bg-bg/50 hover:border-accent/40 transition-colors">
+                            <span className="text-white font-medium text-sm md:text-base">{name}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              </>
             )}
 
-            {/* Interior: clusters */}
             {section.id === "interior" && (
-              <div className="space-y-8">
-                {interiorClusters.map((cluster) => (
-                  <div key={cluster.heading}>
-                    <h3 className="text-sm font-bold text-accent uppercase tracking-wider mb-3">{cluster.heading}</h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                      {cluster.items.map((name) => (
-                        <div key={name} className="px-4 py-3 rounded-xl border border-border bg-bg/50 hover:border-accent/40 transition-colors">
-                          <span className="text-white font-medium text-sm md:text-base">{name}</span>
-                        </div>
-                      ))}
+              <>
+                <SectionPackageCard pkg={interiorSectionPackage} />
+                <div className="space-y-8">
+                  {interiorClusters.map((cluster) => (
+                    <div key={cluster.heading}>
+                      <h3 className="text-sm font-bold text-accent uppercase tracking-wider mb-3">{cluster.heading}</h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                        {cluster.items.map((name) => (
+                          <div key={name} className="px-4 py-3 rounded-xl border border-border bg-bg/50 hover:border-accent/40 transition-colors">
+                            <span className="text-white font-medium text-sm md:text-base">{name}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              </>
             )}
 
-            {/* Restoration: standard grid with updated supportCopy */}
             {section.id === "restoration" && (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 {section.items.map((item) => (
@@ -311,7 +243,6 @@ export default function ServicesPage() {
               </div>
             )}
 
-            {/* Add-ons: intro + demand-ordered list */}
             {section.id === "addons" && (
               <>
                 <p className="text-text-muted text-sm mb-6 max-w-[60ch]">{addonsIntro}</p>
@@ -333,27 +264,39 @@ export default function ServicesPage() {
         </section>
       ))}
 
-      {/* Mid-page conversion block */}
       <section className="py-12 bg-bg border-t border-white/5">
         <div className="max-w-[1100px] mx-auto px-4 sm:px-6 text-center">
           <p className="text-white font-semibold text-lg mb-2">Not sure what level of service your vehicle needs?</p>
-          <p className="text-text-muted text-sm md:text-base mb-4 max-w-[50ch] mx-auto">Tell us your vehicle type, condition, and location. We'll recommend the right service before you book — whether that's a package, correction, protection, or maintenance detail.</p>
+          <p className="text-text-muted text-sm md:text-base mb-4 max-w-[50ch] mx-auto">
+            Tell us your vehicle type, condition, and location. We&apos;ll recommend Showroom, In & Out, interior-only, exterior-only, or correction and coating before you book.
+          </p>
           <div className="flex flex-wrap gap-4 justify-center">
             {primaryCtaHref.startsWith("http") ? (
-              <a href={primaryCtaHref} target="_blank" rel="noopener noreferrer" className="inline-flex py-3.5 px-8 rounded-xl bg-accent text-bg font-semibold hover:bg-accent-hover transition-colors">{primaryCtaLabel}</a>
+              <a href={primaryCtaHref} target="_blank" rel="noopener noreferrer" className="inline-flex py-3.5 px-8 rounded-xl bg-accent text-bg font-semibold hover:bg-accent-hover transition-colors">
+                {primaryCtaLabel}
+              </a>
             ) : (
-              <Link href={primaryCtaHref} className="inline-flex py-3.5 px-8 rounded-xl bg-accent text-bg font-semibold hover:bg-accent-hover transition-colors">{primaryCtaLabel}</Link>
+              <Link href={primaryCtaHref} className="inline-flex py-3.5 px-8 rounded-xl bg-accent text-bg font-semibold hover:bg-accent-hover transition-colors">
+                {primaryCtaLabel}
+              </Link>
             )}
             {secondaryCtaHref.startsWith("http") || secondaryCtaHref.startsWith("tel") ? (
-              <a href={secondaryCtaHref} {...(secondaryCtaHref.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="inline-flex py-3.5 px-8 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors">{secondaryCtaLabel}</a>
+              <a
+                href={secondaryCtaHref}
+                {...(secondaryCtaHref.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                className="inline-flex py-3.5 px-8 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors"
+              >
+                {secondaryCtaLabel}
+              </a>
             ) : (
-              <Link href={secondaryCtaHref} className="inline-flex py-3.5 px-8 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors">{secondaryCtaLabel}</Link>
+              <Link href={secondaryCtaHref} className="inline-flex py-3.5 px-8 rounded-xl border-2 border-accent text-accent font-semibold hover:bg-accent/10 transition-colors">
+                {secondaryCtaLabel}
+              </Link>
             )}
           </div>
         </div>
       </section>
 
-      {/* Proof strip — one featured, two supporting */}
       <section className="py-12 md:py-16 bg-bg-card">
         <div className="max-w-[1100px] mx-auto px-4 sm:px-6">
           <SectionHeading label="Real customer feedback" title="Why people book — and book again" align="center" />
@@ -379,7 +322,6 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Why book — 3 pillars */}
       <section className="py-12 md:py-16 bg-bg">
         <div className="max-w-[1100px] mx-auto px-4 sm:px-6">
           <h2 className="text-xl md:text-2xl font-extrabold text-white text-center mb-8">Why drivers choose PitStop Polish</h2>
@@ -396,7 +338,7 @@ export default function ServicesPage() {
 
       <CTASection
         title="Ready to book the right service for your vehicle?"
-        subtitle="Tell us your vehicle type, condition, and location. We'll recommend the right package, correction, coating, or add-on before you book."
+        subtitle="Tell us your vehicle type, condition, and location. We'll recommend Showroom, In & Out, interior or exterior packages, or correction and coating before you book."
         microLine="Book with confidence — quote first, real results, no pressure."
       />
     </>

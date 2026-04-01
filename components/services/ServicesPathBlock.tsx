@@ -10,15 +10,15 @@ const paths = [
   },
   {
     title: "My paint looks dull, swirled, or scratched",
-    body: "Built for swirl marks, haze, oxidation, light scratching, and the kind of finish that no longer looks sharp in the sun.",
-    cta: "See Paint Correction",
-    href: "/services#correction",
+    body: "Paint correction and ceramic coating quoted together — clarity, gloss, then lasting protection.",
+    cta: "See Correction & Coating",
+    href: "/services#paint-protection",
   },
   {
     title: "I want long-term gloss and protection",
-    body: "Ceramic and coating options for drivers who want better gloss retention, easier upkeep, and stronger surface protection.",
-    cta: "See Ceramic Options",
-    href: "/services#ceramic",
+    body: "Ceramic coating after proper prep — easier washes, better gloss retention, and real protection.",
+    cta: "See Correction & Coating",
+    href: "/services#paint-protection",
   },
   {
     title: "I want regular upkeep without thinking about it",

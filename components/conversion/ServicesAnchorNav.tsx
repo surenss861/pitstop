@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 
 const anchors = [
   { id: "packages", label: "Packages" },
-  { id: "ceramic", label: "Ceramic" },
-  { id: "correction", label: "Correction" },
+  { id: "before-after", label: "Before & after" },
+  { id: "paint-protection", label: "Correction & coating" },
   { id: "exterior", label: "Exterior" },
   { id: "interior", label: "Interior" },
   { id: "restoration", label: "Restoration" },

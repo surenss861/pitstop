@@ -28,7 +28,7 @@ export default function ContactPage() {
           </p>
           {bookingUrl && (
             <p className="text-sm text-text-muted mt-3 max-w-[48ch] mx-auto">
-              For standard maintenance details (Basic, Interior, Exterior, Full Detail), you can also <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="text-accent font-medium hover:underline">book directly online</a>.
+              For standard packages (Showroom, In & Out, interior or exterior packages), you can also <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="text-accent font-medium hover:underline">book directly online</a>.
             </p>
           )}
           <p className="mt-3 md:hidden">
