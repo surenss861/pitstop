@@ -59,9 +59,11 @@ export default function BeforeAfterShowcase() {
         >
           {filtered.map((item) => (
             <div
-              key={`${item.src}-${item.label}`}
+              key={`${item.src}-${item.label}-${item.categories.join(",")}`}
               className={`gallery-item-hover stagger-item flex-shrink-0 w-[82vw] md:w-auto snap-center overflow-hidden rounded-xl border border-border relative ${
-                isFiltered ? "min-h-[200px] lg:min-h-[240px]" : `min-h-[200px] md:min-h-0 ${item.span} ${item.minH}`.trim()
+                isFiltered
+                  ? "min-h-[220px] lg:min-h-[260px]"
+                  : `min-h-[220px] ${item.span} ${item.minH}`.trim()
               }`}
             >
               <Image

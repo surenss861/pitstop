@@ -1,6 +1,8 @@
 # PitStop Polish — Image map
 
-Drop your best shot into each file. The site uses these paths; replace the placeholders with your final crops (blur plates, crop tighter, then export).
+**Live gallery + hero paths are defined in `lib/site-images.ts`** and point at canonical files like `gallery/gallery-8.jpg`, `gallery/gallery-image1.jpg`, etc. Those filenames match the actual photo content (interior vs exterior vs wheel).
+
+You can still use semantic names (`exterior-bentley.jpg`, …) as optional copies for your own workflow; swapping those does not change the site until you update `site-images.ts` or repoint imports.
 
 **Cropping:** See **CROPPING_GUIDE.md** in this folder for aspect ratio, orientation, and crop focus per file.
 

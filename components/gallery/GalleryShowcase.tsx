@@ -42,8 +42,8 @@ export default function GalleryShowcase() {
       >
         {filtered.map((item) => (
           <div
-            key={`${item.src}-${item.label}`}
-            className={`flex-shrink-0 w-[82vw] md:w-auto snap-center overflow-hidden rounded-xl border border-border relative min-h-[220px] ${isFiltered ? "lg:min-h-[240px]" : `md:min-h-0 ${item.span || ""} ${item.minH || ""}`.trim()}`}
+            key={`${item.src}-${item.label}-${item.categories.join(",")}`}
+            className={`flex-shrink-0 w-[82vw] md:w-auto snap-center overflow-hidden rounded-xl border border-border relative min-h-[220px] ${isFiltered ? "lg:min-h-[260px]" : `${item.span || ""} ${item.minH || ""}`.trim()}`}
           >
             <Image
               src={item.src}
